@@ -1,0 +1,18 @@
+1. Projekt Charanis__dependencies auschecken
+	Inhalt des Ordners charanis in den Ornder /Library/Frameworks kopieren
+	Inhalt des Ordners ogre in den Ornder /Library/Frameworks kopieren
+
+3. boost libraries installieren (z.B. Ãber Fink-Commander. Es wird auf jeden Fall Boost.Thread und die random-Bibliothek verwendet).
+4. Ogre Dagon v1.2.2 aus dem CVS-Repository runterladen und installieren.
+	:pserver:anonymous@cvs.ogre3d.org:/cvsroot/ogre
+5. Ogre compilieren: 
+	- Im Verzeichnis Mac/XCode/Ogre/Ogre.xcode oeffnen und compiliere
+6. Ogre Framework installieren.
+	- Obiges Compilieren erzeugt ein Framework im Unterverzeichnis Mac/XCode/Ogre/build/Development/
+	  Dieses (Ogre.framework) nach /Library/Frameworks kopieren.
+7. Charanis auschecken
+8. Charanis in XCode oeffnen
+9. Charanis kompilieren.
+10. Charanis__remote_control auschecken
+11. Charanis__remote_control starten
+12. Charanis starten.
