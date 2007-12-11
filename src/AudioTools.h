@@ -14,12 +14,12 @@
 #include <vector>
 
 #include "OpenAL/alc.h"
-//#include "OpenAL/alut.h" // Problem mit XCode-Update
+#include "alut.h" // Problem mit XCode-Update
 
 
 namespace Charanis {
-/*
-------- Problem mit XCode-Update
+
+
 class AudioTools {
 	private:
 		std::vector<std::string> loadedFiles; // Holds loaded file paths temporarily.
@@ -48,6 +48,6 @@ class AudioTools {
 		
 		void loadALSample(ALuint* source, std::string path, bool loop);
 };
-*/
+
 } // end of namespace
 #endif

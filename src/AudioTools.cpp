@@ -10,8 +10,7 @@
 #include "AudioTools.h"
 
 namespace Charanis {
-/*
--------------- Problem mit XCode-Update
+
 AudioTools::AudioTools() {}
 AudioTools::~AudioTools() {}
 
@@ -166,5 +165,5 @@ void AudioTools::loadALSample(ALuint* source, std::string path, bool loop) {
 	//alSourcefv(*source, AL_VELOCITY, SourceVel);
 	alSourcei (*source, AL_LOOPING,  loop);
 }
-*/
+
 } // end of namespace
