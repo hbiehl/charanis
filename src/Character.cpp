@@ -395,9 +395,9 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	currentAudioTrack = NULL;
 	
 	
-	std::string filename = "../../sound_engine.wav";
+	std::string filename = "../../../../CLEAN_UP/sound_engine.wav";
 	if (name=="Robbie") {
-		filename = "../../sound_electric.wav";
+		filename = "../../../../CLEAN_UP/sound_electric.wav";
 	}
 	playAudioTrack(new AudioTrack(filename, 0));
 	
