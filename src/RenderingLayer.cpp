@@ -31,7 +31,7 @@ RenderingLayer::RenderingLayer(EngineManager* em, DataManager* dm, const std::st
 	}
 	*/
 	
-	loadResources("../../resources.cfg");
+	loadResources("../../../../cfg/resources.cfg");
 	initialize();
 	setupScene();
 	root->addFrameListener(this);

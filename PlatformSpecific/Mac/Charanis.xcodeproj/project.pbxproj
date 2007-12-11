@@ -129,7 +129,7 @@
 		8B1CD3930B12386A005C6FBE /* TimedEyePositionMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimedEyePositionMap.h; sourceTree = "<group>"; };
 		8B1CD3DB0B124924005C6FBE /* EyeAnimationVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EyeAnimationVector.h; sourceTree = "<group>"; };
 		8B2B76520A8B2DE3001E51A4 /* PipelineMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PipelineMap.h; sourceTree = "<group>"; };
-		8B2D3C440A9600ED00BD068A /* newFormat.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = newFormat.xml; sourceTree = "<group>"; };
+		8B2D3C440A9600ED00BD068A /* newFormat.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = newFormat.xml; path = ../../CLEAN_UP/newFormat.xml; sourceTree = "<group>"; };
 		8B2D851309ECF93500D3CA10 /* QtGui.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QtGui.framework; path = "/usr/local/Trolltech/Qt-4.1.0/lib/QtGui.framework"; sourceTree = "<absolute>"; };
 		8B2D8A680A97387E00D2FA52 /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
 		8B2D8A690A97387E00D2FA52 /* Parser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Parser.cpp; sourceTree = "<group>"; };
@@ -141,7 +141,7 @@
 		8B30731609E95058006213A5 /* TestServer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TestServer.cpp; sourceTree = "<group>"; };
 		8B309F1A0A9DB9A800348EF3 /* AddCharacterPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCharacterPackage.h; sourceTree = "<group>"; };
 		8B309F1B0A9DB9A800348EF3 /* AddCharacterPackage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AddCharacterPackage.cpp; sourceTree = "<group>"; };
-		8B30A07D0A9DE26400348EF3 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = config.xml; sourceTree = "<group>"; };
+		8B30A07D0A9DE26400348EF3 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = config.xml; path = ../../CLEAN_UP/config.xml; sourceTree = "<group>"; };
 		8B30A0800A9DE2A400348EF3 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		8B30A0810A9DE2A400348EF3 /* Config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Config.cpp; sourceTree = "<group>"; };
 		8B351B150B0495F90033E27F /* Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Generator.h; sourceTree = "<group>"; };
@@ -193,7 +193,7 @@
 		8B971EC609E69EB2000FA720 /* DataManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataManager.cpp; sourceTree = "<group>"; };
 		8B971EC809E6A0A9000FA720 /* CharacterData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CharacterData.h; sourceTree = "<group>"; };
 		8B971EC909E6A0A9000FA720 /* CharacterData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterData.cpp; sourceTree = "<group>"; };
-		8BA1F9010B27209200670B11 /* test.saml */ = {isa = PBXFileReference; explicitFileType = text.xml; fileEncoding = 4; path = test.saml; sourceTree = "<group>"; };
+		8BA1F9010B27209200670B11 /* test.saml */ = {isa = PBXFileReference; explicitFileType = text.xml; fileEncoding = 4; name = test.saml; path = ../../CLEAN_UP/test.saml; sourceTree = "<group>"; };
 		8BA1F9070B2721BF00670B11 /* SAMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SAMLParser.h; sourceTree = "<group>"; };
 		8BA1F9080B2721BF00670B11 /* SAMLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SAMLParser.cpp; sourceTree = "<group>"; };
 		8BC30D7409F9216D001AEC0B /* moc_ClientSocketList.cpp */ = {isa = PBXFileReference; fileEncoding = 30; lastKnownFileType = sourcecode.cpp.cpp; path = moc_ClientSocketList.cpp; sourceTree = "<group>"; };
@@ -258,7 +258,7 @@
 		8BFD4C1A0A77B8FE00DDB7F8 /* FKTrackMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKTrackMap.h; sourceTree = "<group>"; };
 		8BFD4C470A77BF1B00DDB7F8 /* FKKeyFrameMap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKKeyFrameMap.h; sourceTree = "<group>"; };
 		8BFD4D050A77C36300DDB7F8 /* FKPerformanceVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FKPerformanceVector.h; sourceTree = "<group>"; };
-		8BFED28F0A8DDDA30048DE95 /* test.feml */ = {isa = PBXFileReference; explicitFileType = text.xml; fileEncoding = 4; path = test.feml; sourceTree = "<group>"; };
+		8BFED28F0A8DDDA30048DE95 /* test.feml */ = {isa = PBXFileReference; explicitFileType = text.xml; fileEncoding = 4; name = test.feml; path = ../../CLEAN_UP/test.feml; sourceTree = "<group>"; };
 		8BFED2A50A8DE15B0048DE95 /* FEMLParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FEMLParser.h; sourceTree = "<group>"; };
 		8BFED2A60A8DE15B0048DE95 /* FEMLParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FEMLParser.cpp; sourceTree = "<group>"; };
 		8BFF956A0A1E068900F2E4D1 /* ExpressionVector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExpressionVector.h; sourceTree = "<group>"; };

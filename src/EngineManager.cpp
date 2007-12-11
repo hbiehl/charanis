@@ -26,7 +26,7 @@ EngineManager::EngineManager() {
 	dataManager = new DataManager();
 	
 	networkLayer = new NetworkLayer(this);
-	renderingLayer = new RenderingLayer(this, dataManager, "../../plugins.cfg", "../../ogre.cfg", "ogre.log");
+	renderingLayer = new RenderingLayer(this, dataManager, "../../../../cfg/plugins.cfg", "../../../../cfg/ogre.cfg", "ogre.log");
 	PackageQueue* queue = renderingLayer->getInputQueue();
 	if (queue == NULL) {
 		queue = new PackageQueue(NULL, renderingLayer);

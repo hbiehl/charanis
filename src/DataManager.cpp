@@ -14,7 +14,7 @@ namespace Charanis {
 
 DataManager::DataManager() : engineTime(0) , manualAnimationId(0) {
 	std::cout << "§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ DataManager::DataManager()" << std::endl;
-	config = new Config("../../config.xml");
+	config = new Config("../../../../CLEAN_UP/config.xml");
 
 	boost::mt19937 rng;
 	rng.seed(static_cast<unsigned int>(std::time(0)));
