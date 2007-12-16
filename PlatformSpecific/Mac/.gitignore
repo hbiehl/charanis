@@ -1,0 +1,10 @@
+# ignore objects and archives, anywhere in the tree.
+*.[oa]
+*.ob
+*.log
+*.mode1
+*.pbxuser
+*.pbxproj
+*.pbxindex
+Charanis.build
+build
