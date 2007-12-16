@@ -1,0 +1,31 @@
+<FEML>
+		<Expression>
+			<Name>O</Name>
+			<Pose>
+				<MorphTarget id="O_ShapeKey" weight="1"/>
+			</Pose>
+		</Expression>
+		
+		<Expression>
+			<Name>I</Name>
+			<Pose>
+				<MorphTarget id="I_ShapeKey" weight="1"/>
+			</Pose>
+		</Expression>
+		
+		<Expression>
+			<Name>IO</Name>
+			<Pose>
+				<MorphTarget id="O_ShapeKey" weight="0.5"/>
+				<MorphTarget id="I_ShapeKey" weight="0.5"/>
+			</Pose>
+		</Expression>
+		
+		<Expression>
+			<Name>MAD_O</Name>
+			<Pose>
+				<MorphTarget id="Expression_mad" weight="0.8"/>
+				<MorphTarget id="O_ShapeKey" weight="0.8"/>
+			</Pose>
+		</Expression>
+</FEML>

@@ -1,0 +1,361 @@
+<package>
+	<length>20</length>
+	
+	
+	<!--
+		Interne System-Kommandos:
+		Szenenwechsel, Beenden des Programmes und aehnliches
+	-->
+	<systemCommands/>
+
+	
+	
+	<!-- 
+		Hier wuerden dann Kommandos, die die Szene betreffen, folgen. 
+		Dies koennen z.B. Modifikation der Lichtverhaeltnisse, Steuerung der Kamera,
+		Ein- und ausblenden von Objekten (Moebel etc) usw. sein.
+	 -->
+	<scene/>
+
+
+
+	<!--
+		Hier werden die Charactere angesteuert:
+			- Setzen der Emotionen
+			- Viseme
+			- Sonstige Gesichtsanimation
+			- Körperanimation (vordefinierte)
+			- Körperanimation (inline per Vorwaerts-Kinematik)
+	-->
+	<characters>
+		<character name="Emma">
+			<emotions>
+				<emotion>
+					<type>anger</type>
+					<time>3</time>
+					<intensity>1</intensity>
+				</emotion>
+				<emotion>
+					<type>anger</type>
+					<time>5</time>
+					<intensity>0</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>4</time>
+					<intensity>0</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>5</time>
+					<intensity>1</intensity>
+				</emotion>
+			</emotions>
+			
+			<speech/>
+			
+			<facialAnimation>
+				<expression>
+					<type>O</type>
+					<time>3</time>
+				</expression>
+				<expression>
+					<type>O</type>
+					<time>6</time>
+				</expression>
+				<expression>
+					<type>I</type>
+					<time>9</time>
+				</expression>
+				<expression>
+					<type>MAD_O</type>
+					<time>12</time>
+				</expression>
+				<expression>
+					<type>MAD_O</type>
+					<time>14</time>
+				</expression>
+				<expression>
+					<type>IO</type>
+					<time>18</time>
+				</expression>
+			</facialAnimation>
+		</character>
+		
+		<character name="Robbie">
+			<emotions>
+				<emotion>
+					<type>anger</type>
+					<time>2.4</time>
+					<intensity>1</intensity>
+				</emotion>
+				<emotion>
+					<type>anger</type>
+					<time>3.1</time>
+					<intensity>0.8</intensity>
+				</emotion>
+				<emotion>
+					<type>anger</type>
+					<time>3.3</time>
+					<intensity>1</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>3.1</time>
+					<intensity>0</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>3.5</time>
+					<intensity>1</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>4</time>
+					<intensity>0</intensity>
+				</emotion>
+				<emotion>
+					<type>anger</type>
+					<time>4.1</time>
+					<intensity>0.8</intensity>
+				</emotion>
+				<emotion>
+					<type>anger</type>
+					<time>5.7</time>
+					<intensity>0</intensity>
+				</emotion>
+				<emotion>
+					<type>sadness</type>
+					<time>5</time>
+					<intensity>0</intensity>
+				</emotion>
+				<emotion>
+					<type>sadness</type>
+					<time>6.3</time>
+					<intensity>0.6</intensity>
+				</emotion>
+				<emotion>
+					<type>sadness</type>
+					<time>7.3</time>
+					<intensity>0</intensity>
+				</emotion>
+			</emotions>
+
+			
+			<speech>
+				<viseme>
+					<type>VISEME_NEUTRAL</type>
+					<time>3</time>
+				</viseme>
+				<viseme>
+					<type>VISEME_A</type>
+					<time>3.3</time>
+				</viseme>
+				<viseme>
+					<type>VISEME_L</type>
+					<time>3.6</time>
+				</viseme>
+				<viseme>
+					<type>VISEME_O</type>
+					<time>3.9</time>
+				</viseme>
+				<viseme>
+					<type>VISEME_NEUTRAL</type>
+					<time>4.5</time>
+				</viseme>
+				<viseme>
+					<type>VISEME_NEUTRAL</type>
+					<time>6</time>
+				</viseme>
+				<viseme>
+					<type>VISEME_A</type>
+					<time>6.3</time>
+				</viseme>
+				<viseme>
+					<type>VISEME_L</type>
+					<time>6.6</time>
+				</viseme>
+				<viseme>
+					<type>VISEME_O</type>
+					<time>6.9</time>
+				</viseme>
+				<viseme>
+					<type>VISEME_NEUTRAL</type>
+					<time>7.5</time>
+				</viseme>
+				
+				<viseme>
+					<type>VISEME_NEUTRAL</type>
+					<time>14</time>
+				</viseme>
+				<viseme>
+					<type>VISEME_A</type>
+					<time>14.3</time>
+				</viseme>
+				<viseme>
+					<type>VISEME_L</type>
+					<time>14.6</time>
+				</viseme>
+				<viseme>
+					<type>VISEME_O</type>
+					<time>14.9</time>
+				</viseme>
+				<viseme>
+					<type>VISEME_NEUTRAL</type>
+					<time>15.5</time>
+				</viseme>
+			</speech>
+			
+			
+			
+			<performances>
+				<performance>
+					<name>Walk</name>
+					<startTime>10</startTime>
+					<endTime>20</endTime>
+					<speedModifier>1</speedModifier>
+				</performance>
+				<performance>
+					<name>Walk</name>
+					<startTime>19</startTime>
+					<endTime>30</endTime>
+					<speedModifier>2</speedModifier>
+				</performance>
+				<performance>
+					<name>Idle</name>
+					<startTime>25</startTime>
+					<endTime>50</endTime>
+					<speedModifier>1</speedModifier>
+				</performance>
+				<inlinePerformance>
+					<length>24</length>
+					<track>
+						<bone>Joint7</bone>
+						<keyFrame>
+							<time>0</time>
+							<rotation w="1" x="0" y="0" z="0"/>
+						</keyFrame>
+						<keyFrame>
+							<time>1</time>
+							<rotation w="1" x="1" y="0" z="0"/>
+						</keyFrame>
+						<keyFrame>
+							<time>3.5</time>
+							<rotation w="0.5" x="0" y="0" z="0"/>
+						</keyFrame>
+						<keyFrame>
+							<time>5</time>
+							<rotation w="1" x="0" y="1" z="0"/>
+						</keyFrame>
+						<keyFrame>
+							<time>10</time>
+							<rotation w="0.5" x="1" y="0" z="1"/>
+						</keyFrame>
+						<keyFrame>
+							<time>20</time>
+							<rotation w="0.3" x="0" y="1" z="1"/>
+						</keyFrame>
+					</track>
+				</inlinePerformance>
+			</performances>
+		</character>
+		
+		<character name="Herrmann">
+			<emotions>
+				<emotion>
+					<type>joy</type>
+					<time>3</time>
+					<intensity>0</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>4</time>
+					<intensity>1</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>10</time>
+					<intensity>1</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>11</time>
+					<intensity>0</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>12</time>
+					<intensity>1</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>12.2</time>
+					<intensity>0</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>12.4</time>
+					<intensity>1</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>12.6</time>
+					<intensity>0</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>12.8</time>
+					<intensity>1</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>13</time>
+					<intensity>0</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>14</time>
+					<intensity>1</intensity>
+				</emotion>
+				<emotion>
+					<type>joy</type>
+					<time>15</time>
+					<intensity>0</intensity>
+				</emotion>
+				<emotion>
+					<type>sadness</type>
+					<time>10</time>
+					<intensity>0</intensity>
+				</emotion>
+				<emotion>
+					<type>sadness</type>
+					<time>12</time>
+					<intensity>1</intensity>
+				</emotion>
+				<emotion>
+					<type>sadness</type>
+					<time>25</time>
+					<intensity>1</intensity>
+				</emotion>
+				<emotion>
+					<type>sadness</type>
+					<time>28</time>
+					<intensity>0</intensity>
+				</emotion>
+			</emotions>
+			
+			<performances>
+				<performance>
+					<name>Shoot</name>
+					<startTime>4</startTime>
+					<endTime>30</endTime>
+					<speedModifier>1</speedModifier>
+				</performance>
+			</performances>
+		</character>
+		
+		
+	</characters>
+
+
+</package>

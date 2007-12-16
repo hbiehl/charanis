@@ -1,0 +1,145 @@
+# vim: filetype=python 
+
+env = Environment(LIBPATH=['/opt/local/lib/','/sw/lib/','/Library/Frameworks/'])
+
+print dir(env)
+print "=========", env['PLATFORM'], "========="
+
+conf = Configure(env)
+# Checks for libraries, header files, etc. go here!
+
+
+
+if env['ENV'].has_key('INCLUDE'):
+	print 'before:', env['ENV']['INCLUDE']  
+include_path = '/opt/local/include/boost/'
+env.PrependENVPath('INCLUDE', include_path)
+
+include_path = '/sw/include/'
+env.PrependENVPath('INCLUDE', include_path)
+include_path = '/sw/include/xercesc/'
+env.PrependENVPath('INCLUDE', include_path)
+
+print 'after:',env['ENV']['INCLUDE']
+
+print 'LIBPATH=', env['LIBPATH']
+
+#print 'ENV=', env['ENV']
+#env['ENV']['FRAMEWORKPREFIX'] = '-framework'
+#print 'ENV=', env['ENV']
+
+
+#envDict =  env.Dictionary()
+env['CPPPATH'] = ['/opt/local/include', '/sw/include/']
+print "ENV-Dict", env['CPPPATH']
+#for dictKey in envDict.keys():
+#	print str(dictKey) + " ----> " + str(envDict[dictKey]) +  "\n"
+
+
+#libs = ['libboost_unit_test_framework.a']
+#env['LIBS'] = libs
+
+libs = ['libxerces-c', 
+	'libboost_thread.a'
+	]
+env['LIBS'] = libs
+
+
+#env.AppendUnique(FRAMEWORKPATH='/Library/Frameworks/')
+#env.AppendUnique(FRAMEWORKPREFIX='-framework')
+#env.AppendUnique(FRAMEWORKPATHPREFIX='-F')
+env['FRAMEWORKPATH']        = '/Library/Frameworks/'
+env['FRAMEWORKPREFIX']      = '-framework'
+env['FRAMEWORKPATHPREFIX']  = '-F'
+#env.AppendUnique(FRAMEWORKS=['Foundation', 'AppKit', 'CoreData', 'Ogre', 'Xercesc', 'Cocoa', 'SDL', 'SDL_net'])
+#env.AppendUnique(FRAMEWORKS=[
+
+env['FRAMEWORKS'] = [   'Foundation', 
+			'Cocoa', 
+			'SDL', 
+			'AppKit', 
+			#'CoreData', 
+			'OpenAL', 
+			'Xerces', 
+			'Ogre', 
+			'SDL_net']
+
+
+
+env['LINKFLAGS'].append('-F/Library/Frameworks/')
+env['LINKFLAGS'].append('-frameworkOgre.framework')
+env['LINKFLAGS'].append('-frameworkOpenAL.framework')
+env['LINKFLAGS'].append('-frameworkSDL.framework')
+env['LINKFLAGS'].append('-frameworkSDL_net.framework')
+print "LINKFLAGS=", env['LINKFLAGS'], "###################################"
+
+#env.Program(['main.cpp', 'EngineManager.cpp'])
+
+
+sourceList = [
+	'ActionLibrary.cpp',
+	'CharacterExpression.cpp',           
+	'FacialExpression.cpp',
+	'Parser.cpp',
+	'ActionScript.cpp',
+	'CharacterPerformance.cpp',
+	'Generator.cpp',
+	'Pipeline.cpp',
+	'AddCharacterPackage.cpp',
+	'CharacterSoundPackage.cpp',
+	'HeadMovementGenerator.cpp',
+	'PipelineLayer.cpp',
+	'AddObjectPackage.cpp',
+	'IdleGenerationLayer.cpp',
+	'PipelineManager.cpp',
+	'AmbientLightPackage.cpp',
+	'Config.cpp',
+	'ImportFEMLFilePackage.cpp',
+	'PipelineMiddleLayer.cpp',
+	'AnimationCutterLayer.cpp',
+	'DataManager.cpp',
+	'ImportSAMLFilePackage.cpp',
+	'RemoveCharacterPackage.cpp',
+	'AnimationGenerationLayer.cpp',
+	'DirectionalLightPackage.cpp',
+	'IntensityInterpolator.cpp',
+	'RemoveDirectionalLightPackage.cpp',
+	'AudioTools.cpp',
+	'EngineManager.cpp',
+	'InvalidTimingException.cpp',       
+	'RemoveObjectPackage.cpp',
+	'AudioTrack.cpp',
+	'ExpressionLibrary.cpp',
+	'RenderingLayer.cpp',
+	'BehaviorLibrary.cpp',
+	'EyeAnimation.cpp',
+	'MessageParser.cpp',
+	'SAMLParser.cpp',
+	'BodyAnimation.cpp',
+	'EyeGazeGenerator.cpp',
+	'NetworkLayer.cpp',
+	'BodyAnimationLibrary.cpp',
+	'EyePosition.cpp',
+	'CameraControlPackage.cpp',
+	'FEMLParser.cpp',
+	'Observer.cpp',
+	'main.cpp',
+	'Character.cpp',
+	'FKKeyFrame.cpp',
+	'ObserverKeyFrame.cpp',
+	'CharacterData.cpp',
+	'FKPerformance.cpp',
+	'Package.cpp',
+	'CharacterDataPackage.cpp',
+	'FKTrack.cpp',
+	'PackageQueue.cpp',
+]
+
+#import SCons.Tool
+#print dir(SCons.Tool.)
+env = conf.Finish()
+
+
+env.Program(sourceList)
+
+

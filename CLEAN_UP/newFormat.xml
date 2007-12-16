@@ -1,0 +1,263 @@
+<Package>
+	<Length>20</Length> <!-- Das durch dieses Paket abgedeckte Zeitintervall (Länge in Sekunden) -->
+	
+	
+	<!--
+		Interne System-Kommandos:
+		Szenenwechsel, Beenden des Programmes und aehnliches
+	-->
+	<SystemCommands/> <!-- TODO -->
+
+	
+	
+	<!-- 
+		Hier wuerden dann Kommandos, die die Szene betreffen, folgen. 
+		Dies koennen z.B. Modifikation der Lichtverhaeltnisse, Steuerung der Kamera,
+		Ein- und ausblenden von Objekten (Moebel etc) usw. sein.
+	 -->
+	<SceneControl>
+		<AddCharacter>
+			<Name>Elfriede</Name>
+			<ModelName>robot.mesh</ModelName>
+			<Position>
+				<X>40</X>
+				<Y>-50</Y>
+				<Z>20</Z>
+			</Position>
+			<Orientation>
+				<X>0</X>
+				<Y>0</Y>
+				<Z>1</Z>
+			</Orientation>
+			<Scale>1.3</Scale>
+			<FEMLFile src="test.feml"/>
+		</AddCharacter>
+	</SceneControl>
+
+
+
+	<!--
+		Hier werden die Charactere angesteuert:
+			- Setzen der Emotionen
+			- Viseme
+			- Sonstige Gesichtsanimation
+			- Körperanimation (vordefinierte)
+			- Körperanimation (inline per Vorwaerts-Kinematik)
+			
+			TODO: ActionScript starten
+	-->
+	<CharacterControl>
+		<Character>
+			<Name>Robbie</Name><!--MUST-Tag-->
+			
+			<Emotions>
+				<Emotion>
+					<Name>anger</Name>
+					<Time>2.4</Time>
+					<Intensity>1</Intensity>
+				</Emotion>
+				<Emotion>
+					<Name>anger</Name>
+					<Time>3.1</Time>
+					<Intensity>0.8</Intensity>
+				</Emotion>
+				<Emotion>
+					<Name>anger</Name>
+					<Time>3.3</Time>
+					<Intensity>1</Intensity>
+				</Emotion>
+				<Emotion>
+					<Name>joy</Name>
+					<Time>3.1</Time>
+					<Intensity>0</Intensity>
+				</Emotion>
+				<Emotion>
+					<Name>joy</Name>
+					<Time>3.5</Time>
+					<Intensity>1</Intensity>
+				</Emotion>
+				<Emotion>
+					<Name>joy</Name>
+					<Time>4</Time>
+					<Intensity>0</Intensity>
+				</Emotion>
+				<Emotion>
+					<Name>anger</Name>
+					<Time>4.1</Time>
+					<Intensity>0.8</Intensity>
+				</Emotion>
+				<Emotion>
+					<Name>anger</Name>
+					<Time>5.7</Time>
+					<Intensity>0</Intensity>
+				</Emotion>
+				<Emotion>
+					<Name>sadness</Name>
+					<Time>5</Time>
+					<Intensity>0</Intensity>
+				</Emotion>
+				<Emotion>
+					<Name>sadness</Name>
+					<Time>6.3</Time>
+					<Intensity>0.6</Intensity>
+				</Emotion>
+				<Emotion>
+					<Name>sadness</Name>
+					<Time>7.3</Time>
+					<Intensity>0</Intensity>
+				</Emotion>
+			</Emotions>
+		
+		
+			<FacialAnimation> <!-- Etwas an AFML angeleht, aber doch auch wieder anders -->
+				<!-- Kanal 1: Gesichtsausdrücke werden aus Emotionen erzeugt. Die Emotionen werden weiter oben definiert (siehe Emotions) -->
+			
+				<!-- ===== Kanal 2: "Kontrollierte Mimik ==== -->
+				<ExpressionsTrack name="ControlledFacialExpression">
+					<Expression> <!-- Der Inhalt des Expression-Tag ist nun doch anders, als bei AML: flachere Hierarchie und einfacher -->
+						<Time>0</Time><!-- Zeitpunkt der Expression relativ zu Beginn des Paketes -->
+						<Name>MAD_O</Name><!-- Name der FacialExpression in der BehaviorLibrary -->
+						<Intensity>1</Intensity><!-- Intensität der FacialExpression (default=1) -->
+					</Expression>
+				</ExpressionsTrack>
+			
+				<!-- ===== Kanal 3: Viseme & Sprache ==== -->
+				<!-- 
+					Vorerst werden hier die Viseme mit Timing-Informationen und Intensität eingegeben. Später
+					soll eine text2Speech-Engine an in die Character-Animation-Engine integriert werden.
+					Weiterhin ist für die Zukunft angedacht, dass automatisch Gesten zur Sprache erzeugt werden sollen.
+					Dafür müssen dann allerdings auch Informationen an die Character-Animation-Engine geliefert werden,
+					die über die Viseme hinaus gehen.
+					Wahrscheinlich wird zu dem Zeitpunkt das Input-Format nochmal einer größeren Änderung unterzogen werden
+					müssen - zumindest der Bereich, der mit Visemen und Sprache zu tun hat.
+					Bis dahin wird dies genauso behandelt, wie die kontrollierte Mimik.
+				-->
+				<ExpressionsTrack name="Speach">
+					<Expression>
+						<Name>VISEME_NEUTRAL</Name>
+						<Time>3</Time>
+						<!-- optional: <Intensity>1</Intensity>-->
+					</Expression>
+					<Expression>
+						<Name>VISEME_A</Name>
+						<Time>3.3</Time>
+					</Expression>
+					<Expression>
+						<Name>VISEME_L</Name>
+						<Time>3.6</Time>
+					</Expression>
+					<Expression>
+						<Name>VISEME_O</Name>
+						<Time>3.9</Time>
+					</Expression>
+					<Expression>
+						<Name>VISEME_NEUTRAL</Name>
+						<Time>4.5</Time>
+					</Expression>
+					<Expression>
+						<Name>VISEME_NEUTRAL</Name>
+						<Time>6</Time>
+					</Expression>
+					<Expression>
+						<Name>VISEME_A</Name>
+						<Time>6.3</Time>
+					</Expression>
+					<Expression>
+						<Name>VISEME_L</Name>
+						<Time>6.6</Time>
+					</Expression>
+					<Expression>
+						<Name>VISEME_O</Name>
+						<Time>6.9</Time>
+					</Expression>
+					<Expression>
+						<Name>VISEME_NEUTRAL</Name>
+						<Time>7.5</Time>
+					</Expression>
+					
+					<Expression>
+						<Name>VISEME_NEUTRAL</Name>
+						<Time>14</Time>
+					</Expression>
+					<Expression>
+						<Name>VISEME_A</Name>
+						<Time>14.3</Time>
+					</Expression>
+					<Expression>
+						<Name>VISEME_L</Name>
+						<Time>14.6</Time>
+					</Expression>
+					<Expression>
+						<Name>VISEME_O</Name>
+						<Time>14.9</Time>
+					</Expression>
+					<Expression>
+						<Name>VISEME_NEUTRAL</Name>
+						<Time>15.5</Time>
+					</Expression>
+
+				</ExpressionsTrack>
+			</FacialAnimation>
+			
+			<BodyAnimation>
+				<PredefinedAnimation> <!-- An ABML angelehnt, leicht modifiziert und deutlich erweitert -->
+					<Name>Walk</Name> <!-- Name der Animation in der BehaviorLibrary. Heißt in ABML FileName-->
+					<StartTime>0</StartTime><!-- Zu welchem Zeitpunkt (ab start des Paketes) soll die Animation mit einem Fadein gestartet werden. An ABML angeleht-->
+					<EndTime>10</EndTime><!-- Gibt es in ABML nicht -->
+					<Speed>1.5</Speed> <!-- Eine Zahl als Faktor (default=1); ABML hat hier nur die Unterscheidung {normal/slow/fast} -->
+					<Intensity>0.8</Intensity> <!-- Intensität der Animation (Alpha-Wert): normalerweise zw. 0 und 1 (default=1) -->
+					<FadeinTime>0.7</FadeinTime> <!-- Anzahl der Sekunden, die für den Fadein verwendet werden (default=0.5) -->
+					<FadeoutTime>1</FadeoutTime> <!-- Anzahl der Sekunden, die für den Fadeout verwendet werden (default=0.5) -->
+					<OffsetTime>0</OffsetTime> <!-- Der Versatz, mit welchem die Animation gestartet werden soll.
+													Damit kann also direkt in die Mitte der Animation gesprungen werden (default=0) -->
+				</PredefinedAnimation>
+			
+			
+			
+				<InlineAnimation>
+					<StartTime>5</StartTime><!-- Zu welchem Zeitpunkt (ab start des Paketes) soll die Animation mit einem Fadein gestartet werden. An ABML angeleht-->
+					<EndTime>28</EndTime><!-- Gibt es in ABML nicht -->
+					<Speed>2.3</Speed> <!-- Eine Zahl als Faktor (default=1); ABML hat hier nur die Unterscheidung {normal/slow/fast} -->
+					<Intensity>1</Intensity> <!-- Intensität der Animation (Alpha-Wert): normalerweise zw. 0 und 1 (default=1) -->
+					<FadeinTime>0.1</FadeinTime> <!-- Anzahl der Sekunden, die für den Fadein verwendet werden (default=0.5) -->
+					<FadeoutTime>0.7</FadeoutTime> <!-- Anzahl der Sekunden, die für den Fadeout verwendet werden (default=0.5) -->
+					<OffsetTime>1</OffsetTime> <!-- ?!? MACHT DAS BEI INLINE_ANIMATIONEN ÜBERHAUPT SINN?!?
+													Der Versatz, mit welchem die Animation gestartet werden soll.
+													Damit kann also direkt in die Mitte der Animation gesprungen werden (default=0) -->
+					<AnimationDefinition>
+						<Length>24</Length>
+						<AnimationTrack>
+							<BoneName>Joint7</BoneName>
+							<KeyFrame>
+								<Time>0</Time>
+								<Rotation w="1" x="0" y="0" z="0"/>
+							</KeyFrame>
+							<KeyFrame>
+								<Time>1</Time>
+								<Rotation w="1" x="1" y="0" z="0"/>
+							</KeyFrame>
+							<KeyFrame>
+								<Time>3.5</Time>
+								<Rotation w="0.5" x="0" y="0" z="0"/>
+							</KeyFrame>
+							<KeyFrame>
+								<Time>5</Time>
+								<Rotation w="1" x="0" y="1" z="0"/>
+							</KeyFrame>
+							<KeyFrame>
+								<Time>10</Time>
+								<Rotation w="0.5" x="1" y="0" z="1"/>
+							</KeyFrame>
+							<KeyFrame>
+								<Time>20</Time>
+								<Rotation w="0.3" x="0" y="1" z="1"/>
+							</KeyFrame>
+						</AnimationTrack>
+					</AnimationDefinition>
+				</InlineAnimation>
+				
+				
+			</BodyAnimation>
+		</Character>
+	</CharacterControl>
+</Package>

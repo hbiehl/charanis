@@ -1,0 +1,42 @@
+<SAML>
+	<AnimationDefinition>
+		<Name>action_bow</Name>
+		<Length>3.4</Length>
+		
+		<Priority>20</Priority>
+		<Groups>
+			<Group>body</Group>
+		</Groups>
+		
+		<AnimationTrack>
+			<BoneName>Joint10</BoneName>
+				<KeyFrame>
+					<Time>0</Time>
+					<Rotation>
+						<W>1</W>
+						<X>0</X>
+						<Y>0</Y>
+						<Z>0</Z>
+					</Rotation>
+				</KeyFrame>
+				<KeyFrame>
+				<Time>2.1</Time>
+				<Rotation>
+					<W>0.6</W>
+					<X>0</X>
+					<Y>0</Y>
+					<Z>-1</Z>
+				</Rotation>
+			</KeyFrame>
+			<KeyFrame>
+				<Time>3.4</Time>
+				<Rotation>
+					<W>1</W>
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Rotation>
+			</KeyFrame>
+		</AnimationTrack>
+	</AnimationDefinition>
+</SAML>
