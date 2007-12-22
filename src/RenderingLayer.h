@@ -13,10 +13,12 @@
 #include "SDL/SDL.h"
 #include "Ogre/Ogre.h"
 #include "Ogre/OgreFrameListener.h"
-#include "Ogre/OgreEventListeners.h" 
-#include "Ogre/OgreKeyEvent.h"
+//#include "Ogre/OgreEventListeners.h" 
+//#include "Ogre/OgreKeyEvent.h"
 #include "Ogre/OgreStringConverter.h"
 #include "Ogre/OgreTextAreaOverlayElement.h"
+
+#include "OIS.h"
 
 
 #include "CharacterMap.h"
@@ -58,12 +60,16 @@ class EngineManager;
  */
 
 class RenderingLayer 
-		: public Ogre::FrameListener, public Ogre::KeyListener, public Ogre::MouseMotionListener, public PipelineLayer {
+		: public Ogre::FrameListener, public OIS::KeyListener, public OIS::MouseListener, public PipelineLayer {
 	private:
-		Ogre::EventProcessor* eventProcessor;
-		Ogre::InputReader* inputReader;
+		//Ogre::EventProcessor* eventProcessor;
+		//Ogre::InputReader* inputReader;
 		Ogre::RenderWindow* renderWindow;
 		EngineManager* engineManager;
+		
+		OIS::InputManager *inputManager;
+		OIS::Mouse *mouse;
+		OIS::Keyboard *keyboard;
 		
 		Observer* observer;
 		
@@ -129,13 +135,20 @@ class RenderingLayer
 		
 		bool processUnbufferedMouseInput(const Ogre::FrameEvent& evt);
 						
-		void keyClicked(Ogre::KeyEvent* e);
-		void keyPressed(Ogre::KeyEvent* e); 
-		void keyReleased(Ogre::KeyEvent* e);
+		//void keyClicked(Ogre::KeyEvent* e);
+		//void keyPressed(Ogre::KeyEvent* e); 
+		//void keyReleased(Ogre::KeyEvent* e);
+		bool keyPressed(const OIS::KeyEvent &evt);
+		bool keyReleased(const OIS::KeyEvent &evt);
 		
-		void mouseMoved(Ogre::MouseEvent *e);
-		void mouseDragged(Ogre::MouseEvent *e);
-		void mouseDragMoved(Ogre::MouseEvent *e);
+		//void mouseMoved(Ogre::MouseEvent *e);
+		//void mouseDragged(Ogre::MouseEvent *e);
+		//void mouseDragMoved(Ogre::MouseEvent *e);
+		// MouseListener
+		bool mouseMoved(const OIS::MouseEvent &evt);
+		bool mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID);
+		bool mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID);
+	
 };
 
 } // end of namespace
