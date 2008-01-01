@@ -18,6 +18,7 @@
 
 #include "OIS.h"
 
+#include "CharanisInfoPanel.h"
 
 #include "CharacterMap.h"
 #include "Character.h"
@@ -81,9 +82,8 @@ class RenderingLayer
 		
 		Ogre::Entity *facialEntity;
 		
-		
-		Ogre::TextAreaOverlayElement* timeTextArea;
-		Ogre::TextAreaOverlayElement* characterTextArea;
+		CharanisInfoPanel* infoPanel;
+
 		
 		Ogre::Radian cameraRotX, cameraRotY;
 		const Ogre::Real MOUSE_SPEED;

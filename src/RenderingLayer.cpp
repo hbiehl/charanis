@@ -144,55 +144,7 @@ void RenderingLayer::initialize() { //Ogre::SceneType sceneType) {
 	
 	Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();
 	
-	Ogre::OverlayManager& overlayManager = Ogre::OverlayManager::getSingleton();
-
-	// Create a panel
-	Ogre::OverlayContainer* panel = static_cast<Ogre::OverlayContainer*>(
-		Ogre::OverlayManager::getSingleton().createOverlayElement("Panel", "PanelName"));
-	panel->setMetricsMode(Ogre::GMM_PIXELS);
-	panel->setPosition(10, 10);
-	panel->setDimensions(100, 100);
-
-
-	// Create a text area
-	timeTextArea = static_cast<Ogre::TextAreaOverlayElement*>(
-		Ogre::OverlayManager::getSingleton().createOverlayElement("TextArea", "TimeTextArea"));
-	timeTextArea->setMetricsMode(Ogre::GMM_PIXELS);
-	timeTextArea->setPosition(10, 10);
-	timeTextArea->setDimensions(80, 30);
-	timeTextArea->setCaption("0");
-	//timeTextArea->setHorizontalAlignment(Ogre::GHA_RIGHT);
-	timeTextArea->setCharHeight(20);
-	timeTextArea->setFontName("StarWars");
-	timeTextArea->setColourBottom(Ogre::ColourValue(0.8, 0, 0));
-	timeTextArea->setColourTop(Ogre::ColourValue(1, 0.7, 0));
-
-
-
-	characterTextArea = static_cast<Ogre::TextAreaOverlayElement*>(
-		Ogre::OverlayManager::getSingleton().createOverlayElement("TextArea", "CharacterTextArea"));
-	characterTextArea->setMetricsMode(Ogre::GMM_PIXELS);
-	characterTextArea->setPosition(10, 50);
-	characterTextArea->setDimensions(80, 100);
-	characterTextArea->setCaption("---");
-	//timeTextArea->setHorizontalAlignment(Ogre::GHA_RIGHT);
-	characterTextArea->setCharHeight(20);
-	characterTextArea->setFontName("StarWars");
-	characterTextArea->setColourBottom(Ogre::ColourValue(0.8, 0, 0));
-	characterTextArea->setColourTop(Ogre::ColourValue(1, 0.7, 0));
-
-	
-
-	// Create an overlay, and add the panel
-	Ogre::Overlay* overlay = Ogre::OverlayManager::getSingleton().create("OverlayName");
-	overlay->add2D(panel);
-
-	// Add the text area to the panel
-	panel->addChild(timeTextArea);
-	panel->addChild(characterTextArea);
-
-	// Show the overlay
-	overlay->show();
+	infoPanel = new CharanisInfoPanel();
 	
 	//Ogre::MaterialManager::getSingleton().setDefaultTextureFiltering(Ogre::TFO_TRILINEAR);
 	//Ogre::MaterialManager::getSingleton().setDefaultAnisotropy(1);
@@ -355,16 +307,12 @@ bool RenderingLayer::removeObject(std::string objectName) {
 
 
 void RenderingLayer::updateCharacterStats() {
-	std::string caption = "";
-	for (CharacterMap::iterator it = characterMap->begin(); it != characterMap->end(); it++) {
-		caption += it->first + "\n";
-	}
-	characterTextArea->setCaption(caption);
+	infoPanel->updateCharacterStats(*characterMap);
 }
 
 
 void RenderingLayer::updateTimeStats(long time) {
-	timeTextArea->setCaption(Ogre::StringConverter::toString(time));
+	infoPanel->updateTimeStats(time);
 }
 
 
