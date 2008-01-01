@@ -23,8 +23,6 @@
 #include "Config.h"
 
 
-//#include "RenderingLayer.h"
-
 #include "AddCharacterPackage.h"
 #include "RemoveCharacterPackage.h"
 #include "PipelineManager.h"
@@ -50,7 +48,6 @@ class EngineManager {
 		NetworkLayer* networkLayer;
 		RenderingLayer* renderingLayer;
 		
-		//Config* config;
 		
 		PipelineManager* pipelineManager;
 		
@@ -58,7 +55,6 @@ class EngineManager {
 		EngineManager();
 		~EngineManager();
 		
-		//Config* getConfig();
 		DataManager* getDataManager();
 		RenderingLayer* getRenderingLayer();
 		

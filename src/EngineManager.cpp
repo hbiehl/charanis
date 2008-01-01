@@ -14,7 +14,6 @@
 
 #include "OpenAL/al.h"
 #include "OpenAL/alc.h"
-//#include "OpenAL/alut.h" // Problem mit XCode-Update
 
 namespace Charanis {
 
@@ -52,42 +51,18 @@ EngineManager::EngineManager() {
 	
 	std::cout << "INIT..." << std::endl;
 	// Init openAL
-	//alutInit(0, NULL); // Problem mit XCode-Update
-	
-	// ----- workaround BEGIN
-	ALCdevice* alcDevice = alcOpenDevice(NULL);
-	ALCcontext* alcContext = NULL;
-	if (alcDevice) { // TODO: do something, if an error occured!
-		alcContext = alcCreateContext(alcDevice,NULL); 
-		alcMakeContextCurrent(alcContext);
-	}
-	// ----- workaround END
-	
+	alutInit(0, NULL); 
 	
 	// Clear Error Code (so we can catch any new errors)
-	alGetError(); // Problem mit XCode-Update
-	
+	alGetError();
 	
 		
 	networkLayer->run();
 	renderingLayer->run();
 
 
-
-
 	std::cout << "Cleaning..." << std::endl;
-	//alutExit(); // Problem mit XCode-Update
-	
-	// ----- workaround BEGIN
-	alcMakeContextCurrent(NULL);
-	if (alcContext) {
-		alcDestroyContext(alcContext); 
-	}
-	if (alcDevice) {
-		alcCloseDevice(alcDevice);
-	}
-	// ----- workaround END
-
+	alutExit(); 
 
 	std::cout << "===== Constructor EngineManager DONE ====" << std::endl;
 }
@@ -107,18 +82,11 @@ EngineManager::~EngineManager() {
 	// TODO: stop renderingLayer-Thread
 	delete renderingLayer;
 	
-
 	delete dataManager;
 	
-	//delete config;
 	std::cout << "===== Destructor EngineManager DONE ====" << std::endl;
 }
 
-
-
-/*Config* EngineManager::getConfig() {
-	return config;
-}*/
 
 
 
