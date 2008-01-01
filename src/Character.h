@@ -111,6 +111,12 @@ class Character {
 		std::map<Ogre::Real, AudioTrack*> audioTrackMap;
 		
 		
+		// Helper methods for initialization
+		void addEyes(const std::string& meshName);
+		void createFacialAnimations(Ogre::MeshPtr& facialMesh);
+		
+		void printBones();
+		void printMeshes();
 		
 	public:
 		Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNode, std::string meshName, DataManager* dm, std::string name, Ogre::Real scale=1);

@@ -20,79 +20,34 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	this->dataManager = dm;
 	
 	facialNode = NULL;
-	facialEntity = NULL;
-	//dataManager->addCharacter(name); // this ist now done by the EngineManager
-	
+	facialEntity = NULL;	
 	
 	BehaviorLibrary* bl = dataManager->getBehaviorLibrary(name);
 	
 	// create the entity
 	entity = sceneManager->createEntity(name, meshName);
-	
-	
-	
-	
+	// ... and add it to the scene
 	sceneNode = parentNode->createChildSceneNode(name+"Node");
 	sceneNode->attachObject(entity);
 	sceneNode->setScale(scale, scale, scale);
 	
 
 	// set some parameters of the entity
-	//entity->setDisplaySkeleton(true);
-	//sceneNode->showBoundingBox(true);
 	entity->setCastShadows(true);
-	//entity->setCastShadows(false);
 	entity->getSkeleton()->setBlendMode(Ogre::ANIMBLEND_CUMULATIVE);
 	
 	
-	/*========== AUGEN EINFUEGEN ===============*/
-	//entity->getSkeleton()->getBone("Joint12")->createChild(18, Ogre::Vector3(10, 130, 0));
-	//entity->getSkeleton()->getBone("Joint12")->createChild(19, Ogre::Vector3(-10, 130, 0));
+	// add Eyes to the model
+	addEyes(meshName);
 	
-	if (meshName == "robot.mesh") {
-		Ogre::Bone* bone = entity->getSkeleton()->createBone("l_eyeball_joint", 18);
-		entity->getSkeleton()->getBone("Joint12")->addChild(bone);
-		bone->translate(Ogre::Vector3(0, 30, -10));
-		bone->rotate(Ogre::Vector3(0,1,0), Ogre::Radian(Ogre::Degree(90)));
-		bone->setInitialState();
-		leftEyeEntity = sceneManager->createEntity(name+"_LEYE", "BlueEye.mesh");
-		leftEyeEntity->setCastShadows(true);
-		Ogre::TagPoint* tp = entity->attachObjectToBone("l_eyeball_joint", leftEyeEntity);
-		tp->setScale(2, 2, 2);
-		
-		
-		bone = entity->getSkeleton()->createBone("r_eyeball_joint", 19);
-		entity->getSkeleton()->getBone("Joint12")->addChild(bone);
-		bone->translate(Ogre::Vector3(0, 30, 10));
-		bone->rotate(Ogre::Vector3(0,1,0), Ogre::Radian(Ogre::Degree(90)));
-		bone->setInitialState();
-		rightEyeEntity = sceneManager->createEntity(name+"_REYE", "BlueEye.mesh");
-		rightEyeEntity->setCastShadows(true);
-		tp = entity->attachObjectToBone("r_eyeball_joint", rightEyeEntity);
-		tp->setScale(2, 2, 2);
-	} else {
-		leftEyeEntity = NULL;
-		rightEyeEntity = NULL;
-	}
+	
+	// output some helpful information about the model
+	printBones();
+	printMeshes();
 	
 	
 	
-	
-	std::cout << "Skeleton of Character " << name << ":" << std::endl;
-	Ogre::Skeleton::BoneIterator boneIt = entity->getSkeleton()->getBoneIterator();
-	while (boneIt.hasMoreElements()) {
-		Ogre::Bone* bone = boneIt.getNext();
-		std::cout << "----- " << bone->getName() << " ("<< bone->getHandle() << ")" << std::endl;
-	}
-	
-	std::cout << "Meshes of Character " << name << ":" << std::endl;
-	Ogre::Mesh::SubMeshIterator subMeshIt = entity->getMesh()->getSubMeshIterator();
-	while (subMeshIt.hasMoreElements()) {
-		Ogre::SubMesh* subMesh = subMeshIt.getNext();
-		std::cout << "----- " << subMesh->getMaterialName() << std::endl;
-	}
-	
-	
+	// add the skeleton animations of the model to BehaviourLibrary
 	std::cout << "Available Animations for Character " << name << ":" << std::endl;
 	Ogre::AnimationStateIterator it = entity->getAllAnimationStates()->getAnimationStateIterator();
 	while (it.hasMoreElements()) {
@@ -105,17 +60,19 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	
 	
 	
-	
-	
-	
 	ExpressionLibrary* expressionLibrary = bl->getExpressionLibrary();
 	StringIntMap* poseMapping = expressionLibrary->getPoseMapping();
+	
+	
 	
 	std::string faceMeshName = name+"Face.mesh";
 	
 	Ogre::MeshPtr origMesh = Ogre::MeshManager::getSingleton().load("facial.mesh", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 	Ogre::MeshPtr newMesh = origMesh->clone(faceMeshName);
-	
+
+
+
+	// add the poses of the model (vertex morph targets) to BehaviourLibrary/ExpressionLibrary	
 	for (int i=0; i<newMesh->getPoseCount(); i++) {
 		Ogre::Pose* pose = newMesh->getPose(i);
 		std::cout << "Adding Pose " << pose->getName() << " at index " << i << std::endl;
@@ -123,97 +80,14 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	}
 	
 	
+
+	createFacialAnimations(newMesh);
 	
-	// some Random Test....
-	/*
-	boost::mt19937 rng;
-	rng.seed(static_cast<unsigned int>(std::time(0)));
-	boost::uniform_int<> six(6,10);
-	boost::uniform_int<> hundred(0,100);
-	
-	boost::variate_generator<boost::mt19937, boost::uniform_int<> > die(rng, six);
-	boost::variate_generator<boost::mt19937, boost::uniform_int<> > d100(rng, hundred);
-	
-	
-	// END Random Test
-	
-	int au1 = die();
-	int au2 = die();
-	int au3 = die();
-	
-	
-	Ogre::Animation* anim = newMesh->createAnimation("manual", 30);
-	Ogre::VertexAnimationTrack* track = anim->createVertexTrack(4, Ogre::VAT_POSE);
-	
-	Ogre::VertexPoseKeyFrame* kf = track->createVertexPoseKeyFrame(0);
-	kf->updatePoseReference(au1,0);
-	kf->updatePoseReference(au2,0);
-	kf->updatePoseReference(au3,1);
-	kf = track->createVertexPoseKeyFrame(2);
-	kf->updatePoseReference(au1,1);
-	kf->updatePoseReference(au2,0);
-	kf->updatePoseReference(au3,0);
-	kf = track->createVertexPoseKeyFrame(5);
-	kf->updatePoseReference(au1,0);
-	kf->updatePoseReference(au2,1);
-	kf->updatePoseReference(au3,0);
-	kf = track->createVertexPoseKeyFrame(8);
-	kf->updatePoseReference(au1,1);
-	kf = track->createVertexPoseKeyFrame(9);
-	kf->updatePoseReference(au1,0);
-	kf = track->createVertexPoseKeyFrame(10);
-	kf->updatePoseReference(au1,1);
-	kf = track->createVertexPoseKeyFrame(12);
-	kf->updatePoseReference(au1,0);
-	kf = track->createVertexPoseKeyFrame(14);
-	kf->updatePoseReference(au1,1);
-	kf = track->createVertexPoseKeyFrame(16);
-	kf->updatePoseReference(au1,0);
-	kf = track->createVertexPoseKeyFrame(18);
-	kf->updatePoseReference(au1,1);
-	kf = track->createVertexPoseKeyFrame(20);
-	kf->updatePoseReference(au1,0);
-	kf = track->createVertexPoseKeyFrame(22);
-	kf->updatePoseReference(au1,1);
-	kf = track->createVertexPoseKeyFrame(24);
-	kf->updatePoseReference(au1,0);
-	kf = track->createVertexPoseKeyFrame(26);
-	kf->updatePoseReference(au1,1);
-	*/
 
 
-	
-	//==== Emotionen-Animationen und die KeyFrames anlegen
-	for (int i=0; i<EMOTION_END; i++) {
-		std::stringstream animationNameStream;
-		std::string animationName;
-		animationNameStream << "emotion_" << i;
-		animationNameStream >> animationName;
-		
-		Ogre::Animation* emotionAnim = newMesh->createAnimation(animationName, 0);
-		Ogre::VertexAnimationTrack* emotionTrack = emotionAnim->createVertexTrack(4, Ogre::VAT_POSE);
-		emotionKeyFrameMap[EmotionType(i)] = emotionTrack->createVertexPoseKeyFrame(0);
-		
-		for (StringIntMap::iterator it = poseMapping->begin(); it!=poseMapping->end(); it++) {
-			emotionKeyFrameMap[EmotionType(i)]->addPoseReference(it->second, 0);
-		}
-	}
-
-	//==== Sprach-Animation anlegen
-	Ogre::Animation* speechAnim = newMesh->createAnimation("speech", 0);
-	Ogre::VertexAnimationTrack* speechTrack = speechAnim->createVertexTrack(4, Ogre::VAT_POSE);
-	speechKeyFrame = speechTrack->createVertexPoseKeyFrame(0);
-	
-	// neutralen Gesichtsausdruck als Start anlegen
-	speechExpressionMap[0] = new CharacterExpression(0, bl->getExpression("neutral"), 1);
-
-
-	//==== Controlled Animation anlegen
-	Ogre::Animation* controlledExpressionAnim = newMesh->createAnimation("controlledExpression", 0);
-	Ogre::VertexAnimationTrack* controlledExpressionTrack = controlledExpressionAnim->createVertexTrack(4, Ogre::VAT_POSE);
-	controlledExpressionKeyFrame = controlledExpressionTrack->createVertexPoseKeyFrame(0);
-	
-	controlledExpressionMap[0] = new CharacterExpression(0, bl->getExpression("neutral"), 1);
+	// Binde Gesicht in Szene ein (derzeit noetig, da Modell kein eigenes Gesicht beinhaltet)
+	facialEntity = sceneManager->createEntity(name+"Face", faceMeshName);
+	facialEntity->setCastShadows(false);
 	
 
 	// Sage: "Hallo"
@@ -247,8 +121,7 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 		speechExpressionMap[16.5] = bl->getExpression("neutral");
 	}
 	*/
-	facialEntity = sceneManager->createEntity(name+"Face", faceMeshName);
-	facialEntity->setCastShadows(false);
+	
 	
 	/*
 	if (name=="Robbie") {
@@ -289,18 +162,6 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 		facialNode->setScale(0.2, 0.2, 0.2);
 		facialNode->attachObject(facialEntity);
 	}
-
-	
-	
-	
-	
-	
-	
-	
-		
-	
-	
-	
 	
 
 	
@@ -386,7 +247,7 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	
 	currentAudioTrack = NULL;
 	
-	
+	// play an audioTrack to test if audio is working. TODO: These lines need to be removed for release
 	std::string filename = "../../../../CLEAN_UP/sound_engine.wav";
 	if (name=="Robbie") {
 		filename = "../../../../CLEAN_UP/sound_electric.wav";
@@ -515,6 +376,95 @@ Character::~Character() {
 
 
 
+void Character::addEyes(const std::string& meshName) {
+	/*========== AUGEN EINFUEGEN ===============*/
+	if (meshName == "robot.mesh") {
+		Ogre::Bone* bone = entity->getSkeleton()->createBone("l_eyeball_joint", 18);
+		entity->getSkeleton()->getBone("Joint12")->addChild(bone);
+		bone->translate(Ogre::Vector3(0, 30, -10));
+		bone->rotate(Ogre::Vector3(0,1,0), Ogre::Radian(Ogre::Degree(90)));
+		bone->setInitialState();
+		leftEyeEntity = sceneManager->createEntity(name+"_LEYE", "BlueEye.mesh");
+		leftEyeEntity->setCastShadows(true);
+		Ogre::TagPoint* tp = entity->attachObjectToBone("l_eyeball_joint", leftEyeEntity);
+		tp->setScale(2, 2, 2);
+		
+		
+		bone = entity->getSkeleton()->createBone("r_eyeball_joint", 19);
+		entity->getSkeleton()->getBone("Joint12")->addChild(bone);
+		bone->translate(Ogre::Vector3(0, 30, 10));
+		bone->rotate(Ogre::Vector3(0,1,0), Ogre::Radian(Ogre::Degree(90)));
+		bone->setInitialState();
+		rightEyeEntity = sceneManager->createEntity(name+"_REYE", "BlueEye.mesh");
+		rightEyeEntity->setCastShadows(true);
+		tp = entity->attachObjectToBone("r_eyeball_joint", rightEyeEntity);
+		tp->setScale(2, 2, 2);
+	} else {
+		leftEyeEntity = NULL;
+		rightEyeEntity = NULL;
+	}
+}
+
+
+void Character::createFacialAnimations(Ogre::MeshPtr& newMesh) {
+	//Ogre::Mesh* newMesh = facialMesh;
+	BehaviorLibrary* bl = dataManager->getBehaviorLibrary(name);
+	StringIntMap* poseMapping = bl->getExpressionLibrary()->getPoseMapping();
+	
+	//==== Emotionen-Animationen und die KeyFrames anlegen
+	for (int i=0; i<EMOTION_END; i++) {
+		std::stringstream animationNameStream;
+		std::string animationName;
+		animationNameStream << "emotion_" << i;
+		animationNameStream >> animationName;
+		
+		Ogre::Animation* emotionAnim = newMesh->createAnimation(animationName, 0);
+		Ogre::VertexAnimationTrack* emotionTrack = emotionAnim->createVertexTrack(4, Ogre::VAT_POSE);
+		emotionKeyFrameMap[EmotionType(i)] = emotionTrack->createVertexPoseKeyFrame(0);
+		
+		StringIntMap::iterator it = poseMapping->begin();
+		for (; it!=poseMapping->end(); it++) {
+			emotionKeyFrameMap[EmotionType(i)]->addPoseReference(it->second, 0);
+		}
+	}
+
+	//==== Sprach-Animation anlegen
+	Ogre::Animation* speechAnim = newMesh->createAnimation("speech", 0);
+	Ogre::VertexAnimationTrack* speechTrack = speechAnim->createVertexTrack(4, Ogre::VAT_POSE);
+	speechKeyFrame = speechTrack->createVertexPoseKeyFrame(0);
+	
+	// neutralen Gesichtsausdruck als Start anlegen
+	speechExpressionMap[0] = new CharacterExpression(0, bl->getExpression("neutral"), 1);
+
+
+	//==== Controlled Animation anlegen
+	Ogre::Animation* controlledExpressionAnim = newMesh->createAnimation("controlledExpression", 0);
+	Ogre::VertexAnimationTrack* controlledExpressionTrack = controlledExpressionAnim->createVertexTrack(4, Ogre::VAT_POSE);
+	controlledExpressionKeyFrame = controlledExpressionTrack->createVertexPoseKeyFrame(0);
+	
+	controlledExpressionMap[0] = new CharacterExpression(0, bl->getExpression("neutral"), 1);
+}
+
+
+void Character::printBones() {
+	std::cout << "Skeleton of Character " << name << ":" << std::endl;
+	Ogre::Skeleton::BoneIterator boneIt = entity->getSkeleton()->getBoneIterator();
+	while (boneIt.hasMoreElements()) {
+		Ogre::Bone* bone = boneIt.getNext();
+		std::cout << "----- " << bone->getName() << " ("<< bone->getHandle() << ")" << std::endl;
+	}
+}
+
+void Character::printMeshes() {
+	// just output some useful info: all meshes of the character
+	std::cout << "Meshes of Character " << name << ":" << std::endl;
+	Ogre::Mesh::SubMeshIterator subMeshIt = entity->getMesh()->getSubMeshIterator();
+	while (subMeshIt.hasMoreElements()) {
+		Ogre::SubMesh* subMesh = subMeshIt.getNext();
+		std::cout << "----- " << subMesh->getMaterialName() << std::endl;
+	}
+}
+
 
 
 void Character::importFEMLFile(std::string fileName) {
@@ -551,20 +501,17 @@ void Character::importSAMLFile(std::string fileName) {
 void Character::playAudioTrack(AudioTrack* track) {
 	std::cout << "Character::playAudioTrack(..) BEGIN" << std::endl;
 	int error;
-	std::cout << "Character::playAudioTrack(..)   ---  A" << std::endl;
 	alSourceStop(audioSource[0]);
 	std::cout << "Character::playAudioTrack(AudioTrack* track)   -   alSourceStop(audioSource[0]);" << alGetError()  << std::endl;
 	
 
 	std::cout << "Attaching Source..." << std::endl;
-	
 	alSourcei(audioSource[0], AL_BUFFER, track->getBuffer());
 	if ((error = alGetError()) != AL_NO_ERROR) {
 		std::cout << "alSourcei : " <<  error << std::endl;
 		exit(0);
 	}
 	
-	std::cout << "Character::playAudioTrack(..)   ---  B" << std::endl;
 	if (currentAudioTrack != NULL) {
 		//alSourceUnqueueBuffers(audioSource[0], 1, currentAudioTrack->getBuffer());
 		delete currentAudioTrack;
@@ -572,10 +519,8 @@ void Character::playAudioTrack(AudioTrack* track) {
 	currentAudioTrack = track;
 	
 	
-	std::cout << "Character::playAudioTrack(..)   ---  C" << std::endl;
 	alSourcei(audioSource[0], AL_LOOPING, AL_FALSE);
 	std::cout << "Character::playAudioTrack(AudioTrack* track)   -   alSourcei(audioSource[0], AL_LOOPING, AL_FALSE);" << alGetError()  << std::endl;
-	
 	
 	
 	alSourcePlay(audioSource[0]);
@@ -761,16 +706,14 @@ void Character::composeAnimations(std::string newAnimationName, std::vector<Ogre
 void Character::addFKPerformance(FKPerformance* performance) {
 	std::cout << "addFKPerformance - BEGIN" << std::endl;
 	
-	
+	// create Animation out of FKPerformance
 	Ogre::Animation* anim = performance->createOgreAnimation(entity);
 	entity->refreshAvailableAnimationState();
 	
-	//entity->getAnimationState(anim->getName())->setEnabled(true);
-	//CharacterPerformance* cp = new CharacterPerformance(name, "MANUAL_TEST_ANIMATION", 0, performance->getLength());
-	//cp->setManualPerformance(true);
 	addPerformance(performance->getCharacterPerformance());
 	std::cout << "addFKPerformance - END" << std::endl;
 }
+
 
 void Character::addFKPerformances(FKPerformanceVector* performanceVec) {
 	std::cout << "Character::addFKPerformances() BEGIN" << std::endl;
