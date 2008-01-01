@@ -115,14 +115,6 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	
 	Ogre::MeshPtr origMesh = Ogre::MeshManager::getSingleton().load("facial.mesh", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 	Ogre::MeshPtr newMesh = origMesh->clone(faceMeshName);
-	for (int i=0; i<origMesh->getPoseCount(); i++) {
-		Ogre::Pose* origPose = origMesh->getPose(i);
-		Ogre::Pose* newPose = newMesh->createPose(origPose->getTarget(), origPose->getName());
-		Ogre::Pose::VertexOffsetIterator it = origPose->getVertexOffsetIterator();
-		while (it.hasMoreElements()) {
-			newPose->addVertex(it.peekNextKey(), it.getNext());
-		}
-	}
 	
 	for (int i=0; i<newMesh->getPoseCount(); i++) {
 		Ogre::Pose* pose = newMesh->getPose(i);
