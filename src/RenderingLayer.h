@@ -13,8 +13,6 @@
 #include "SDL/SDL.h"
 #include "Ogre/Ogre.h"
 #include "Ogre/OgreFrameListener.h"
-//#include "Ogre/OgreEventListeners.h" 
-//#include "Ogre/OgreKeyEvent.h"
 #include "Ogre/OgreStringConverter.h"
 #include "Ogre/OgreTextAreaOverlayElement.h"
 
@@ -62,8 +60,6 @@ class EngineManager;
 class RenderingLayer 
 		: public Ogre::FrameListener, public OIS::KeyListener, public OIS::MouseListener, public PipelineLayer {
 	private:
-		//Ogre::EventProcessor* eventProcessor;
-		//Ogre::InputReader* inputReader;
 		Ogre::RenderWindow* renderWindow;
 		EngineManager* engineManager;
 		
@@ -126,24 +122,18 @@ class RenderingLayer
 		
 		void updateTimeStats(long time);
 		void updateCharacterStats();
-		//void updateListener();
 	
 		void run();
 	
 		bool frameStarted(const Ogre::FrameEvent& evt);
 		bool frameEnded(const Ogre::FrameEvent& evt);
 		
+
 		bool processUnbufferedMouseInput(const Ogre::FrameEvent& evt);
-						
-		//void keyClicked(Ogre::KeyEvent* e);
-		//void keyPressed(Ogre::KeyEvent* e); 
-		//void keyReleased(Ogre::KeyEvent* e);
+
 		bool keyPressed(const OIS::KeyEvent &evt);
 		bool keyReleased(const OIS::KeyEvent &evt);
 		
-		//void mouseMoved(Ogre::MouseEvent *e);
-		//void mouseDragged(Ogre::MouseEvent *e);
-		//void mouseDragMoved(Ogre::MouseEvent *e);
 		// MouseListener
 		bool mouseMoved(const OIS::MouseEvent &evt);
 		bool mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID);

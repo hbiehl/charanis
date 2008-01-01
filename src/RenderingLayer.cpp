@@ -37,17 +37,6 @@ RenderingLayer::RenderingLayer(EngineManager* em, DataManager* dm, const std::st
 	root->addFrameListener(this);
 	
 	
-	/*
-	eventProcessor = new Ogre::EventProcessor();
-	eventProcessor->initialise(root->getAutoCreatedWindow());
-	eventProcessor->addKeyListener(this);
-	eventProcessor->addMouseMotionListener(this);
-	eventProcessor->startProcessingEvents();
-	
-	inputReader = eventProcessor->getInputReader();
-	*/
-	
-	
 	
 	std::cout << "INITIALIZING OIS" << std::endl;
 	OIS::ParamList pl;
@@ -79,16 +68,27 @@ RenderingLayer::RenderingLayer(EngineManager* em, DataManager* dm, const std::st
 
 RenderingLayer::~RenderingLayer() {
 	std::cout << "===== Destructor of RenderLoop BEGIN =====" << std::endl;
-	//delete eventProcessor;
-	//inputReader = NULL;
-	// TODO: INPUTSYSTEM AUFR€UMEN!!!
-	
+
+
+	// Charaktere aufrŠumen
 	CharacterMap::iterator it;
 	for (it = characterMap->begin(); it!=characterMap->end(); it++) {
 		std::cout << "deleting character " << (*it).first << std::endl;
 		delete (*it).second;
 	}
 	characterMap->clear();
+
+
+	// OIS aufrŠumen
+	if (inputManager) {
+		inputManager->destroyInputObject( mouse );
+		inputManager->destroyInputObject( keyboard );
+
+		OIS::InputManager::destroyInputSystem(inputManager);
+		inputManager = 0;
+	}
+	
+
 	
 	delete root;
 	
@@ -517,7 +517,6 @@ void RenderingLayer::run() {
 
 bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 	//std::cout << "frame started" << std::endl;
-	//inputReader->capture();
 	keyboard->capture();
 	mouse->capture();
 	
@@ -613,7 +612,6 @@ bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 	
 	
 	// exit on ESC
-	//if(inputReader->isKeyDown(OIS::KC_ESCAPE))  {
 	if(keyboard->isKeyDown(OIS::KC_ESCAPE))  {
 		std::cout << "BEENDE CHARACTER_PILELINES" << std::endl;
 		engineManager->stop();
@@ -622,7 +620,6 @@ bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 	}
 	
 	
-	//if (inputReader->isKeyDown(Ogre::KC_F)) {
 	if (keyboard->isKeyDown(OIS::KC_F)) {
 		std::string name = "FatMan";
 		if (sceneManager->hasEntity(name)) {
@@ -635,41 +632,29 @@ bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 	
 	
 	for (CharacterMap::iterator it = getCharacterMap()->begin(); it != getCharacterMap()->end(); it++) {
-		//it->second->perform(evt.timeSinceLastFrame);
 		it->second->perform();
 	}
 
 
-/*
-	if (inputReader->isKeyDown(Ogre::KC_P)) {
-		getCharacter("Robbie")->addAudioTrack(new AudioTrack("../../sound_electric.wav", time));
-		//getCharacter("Robbie")->playAudioTrack(new AudioTrack("../../sound_electric.wav", time));
-	}
-*/
-
-	//if (inputReader->isKeyDown(Ogre::KC_SPACE)) {
 	if (keyboard->isKeyDown(OIS::KC_SPACE)) {
 		getCharacter("Robbie")->walkPath(evt.timeSinceLastFrame);
 	}
 	
 	
 	// Camera Movement
-	//if (inputReader->isKeyDown(Ogre::KC_W)) {
 	if (keyboard->isKeyDown(OIS::KC_W)) {
 		observer->moveRelative(Ogre::Vector3(0, 0, -1)*25*evt.timeSinceLastFrame);
 	}
-	//if (inputReader->isKeyDown(Ogre::KC_S)) {
 	if (keyboard->isKeyDown(OIS::KC_S)) {
 		observer->moveRelative(Ogre::Vector3(0, 0, 1)*25*evt.timeSinceLastFrame);
 	}
-	//if (inputReader->isKeyDown(Ogre::KC_A)) {
 	if (keyboard->isKeyDown(OIS::KC_A)) {
 		observer->moveRelative(Ogre::Vector3(-1, 0, 0)*25*evt.timeSinceLastFrame);
 	}
-	//if (inputReader->isKeyDown(Ogre::KC_D)) {
 	if (keyboard->isKeyDown(OIS::KC_D)) {
 		observer->moveRelative(Ogre::Vector3(1, 0, 0)*25*evt.timeSinceLastFrame);
 	}
+	
 	
 	//observer->calcCurrentPosition();
 	observer->yaw(cameraRotX);
@@ -689,35 +674,19 @@ bool RenderingLayer::frameEnded(const Ogre::FrameEvent& evt) {
 
 
 bool RenderingLayer::processUnbufferedMouseInput(const Ogre::FrameEvent& evt) {
-	//std::cout << "!!! MOUSE  |" << inputReader->getMouseRelativeX() << "|" << inputReader->getMouseRelativeY() << std::endl;
-	
+	const OIS::MouseState &ms = mouse->getMouseState();
+
+	cameraRotX = Ogre::Degree(-ms.X.rel * MOUSE_SPEED);
+	cameraRotY = Ogre::Degree(-ms.Y.rel * MOUSE_SPEED);
 	return true;
 }
 
 
-
-
-
-//void RenderingLayer::keyClicked(Ogre::KeyEvent* e) {}
-//void RenderingLayer::keyPressed(Ogre::KeyEvent* e) {}
-//void RenderingLayer::keyReleased(Ogre::KeyEvent* e) {}
 bool RenderingLayer::keyPressed(const OIS::KeyEvent &evt) {}
 bool RenderingLayer::keyReleased(const OIS::KeyEvent &evt) {}
 
-//void RenderingLayer::mouseMoved(Ogre::MouseEvent *e) {
-//	cameraRotX = Ogre::Degree(- e->getRelX() * MOUSE_SPEED);
-//	cameraRotY = Ogre::Degree(- e->getRelY() * MOUSE_SPEED);
-//}
-//
-//void RenderingLayer::mouseDragged(Ogre::MouseEvent *e) {}
-//void RenderingLayer::mouseDragMoved(Ogre::MouseEvent *e) {}
 
-bool RenderingLayer::mouseMoved(const OIS::MouseEvent &evt) {
-	//TODO !!!!!!
-	//cameraRotX = Ogre::Degree(- evt.getRelX() * MOUSE_SPEED);
-	//cameraRotY = Ogre::Degree(- evt.getRelY() * MOUSE_SPEED);
-}
-
+bool RenderingLayer::mouseMoved(const OIS::MouseEvent &evt) {}
 bool RenderingLayer::mousePressed(const OIS::MouseEvent &evt, OIS::MouseButtonID) {}
 bool RenderingLayer::mouseReleased(const OIS::MouseEvent &evt, OIS::MouseButtonID) {}
 } // end of namespace
