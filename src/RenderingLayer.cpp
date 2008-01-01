@@ -49,7 +49,7 @@ RenderingLayer::RenderingLayer(EngineManager* em, DataManager* dm, const std::st
 
 	inputManager = OIS::InputManager::createInputSystem( pl );
 
-	//Create all devices (We only catch joystick exceptions here, as, most people have Key/Mouse)
+	//Create all devices
 	bool bufferedKeys=false;
 	bool bufferedMouse=false;
 	keyboard = static_cast<OIS::Keyboard*>(inputManager->createInputObject( OIS::OISKeyboard, bufferedKeys ));
@@ -152,7 +152,6 @@ void RenderingLayer::initialize() { //Ogre::SceneType sceneType) {
 	panel->setMetricsMode(Ogre::GMM_PIXELS);
 	panel->setPosition(10, 10);
 	panel->setDimensions(100, 100);
-	//panel->setMaterialName("Examples/RustySteel"); // Optional background material
 
 
 	// Create a text area
@@ -164,9 +163,7 @@ void RenderingLayer::initialize() { //Ogre::SceneType sceneType) {
 	timeTextArea->setCaption("0");
 	//timeTextArea->setHorizontalAlignment(Ogre::GHA_RIGHT);
 	timeTextArea->setCharHeight(20);
-	//timeTextArea->setFontName("IronMaiden");
 	timeTextArea->setFontName("StarWars");
-	//timeTextArea->setFontName("Ogre");
 	timeTextArea->setColourBottom(Ogre::ColourValue(0.8, 0, 0));
 	timeTextArea->setColourTop(Ogre::ColourValue(1, 0.7, 0));
 
@@ -180,9 +177,7 @@ void RenderingLayer::initialize() { //Ogre::SceneType sceneType) {
 	characterTextArea->setCaption("---");
 	//timeTextArea->setHorizontalAlignment(Ogre::GHA_RIGHT);
 	characterTextArea->setCharHeight(20);
-	//timeTextArea->setFontName("IronMaiden");
 	characterTextArea->setFontName("StarWars");
-	//timeTextArea->setFontName("Ogre");
 	characterTextArea->setColourBottom(Ogre::ColourValue(0.8, 0, 0));
 	characterTextArea->setColourTop(Ogre::ColourValue(1, 0.7, 0));
 
@@ -257,7 +252,6 @@ void RenderingLayer::setupScene() {
 
 	// Create an entity (the floor)
 	Ogre::Entity *floorEnt = sceneManager->createEntity("floor", "FloorPlane");
-	//floorEnt->setMaterialName("Examples/RustySteel");
 	floorEnt->setMaterialName("Examples/Rockwall");
 	floorEnt->setCastShadows(false);
 	sceneManager->getRootSceneNode()->attachObject(floorEnt);
@@ -267,141 +261,6 @@ void RenderingLayer::setupScene() {
 	
 	// Sky
 	sceneManager->setSkyDome(true, "Examples/CloudySky", 5, 8);
-	
-	
-	/*
-	Ogre::SceneNode *eyeNode = sceneManager->getRootSceneNode()->createChildSceneNode("eyeNode");
-	eyeNode->setPosition(30, 0, -30);
-	eyeNode->setScale(10, 10, 10);
-	Ogre::Entity* eyeEntity = sceneManager->createEntity("LEYE", "BlueEye.mesh");
-	eyeNode->attachObject(eyeEntity);
-	eyeEntity->setCastShadows(true);
-*/
-	
-	//addObject("Trashbin", "Trashbin.mesh", new Ogre::Vector3(0,-50,0), new Ogre::Quaternion(0.5, 1, 0, 0));
-	
-	
-	/*
-	// Robbie the robot
-	Character* robbie = addCharacter("Robbie", "robot.mesh", Ogre::Vector3(0, -50, 0), Ogre::Vector3(1,0,-1));
-	BehaviorLibrary* behaviorLib = dataManager->getBehaviorLibrary(robbie->getName());
-	FacialExpression* exp = new FacialExpression("neutral");
-	behaviorLib->addExpression(exp);
-	
-	exp = new FacialExpression("joy");
-	exp->setWeight(AU_1, 1.0);
-	behaviorLib->addExpression(exp);
-	
-	exp = new FacialExpression("sadness");
-	exp->setWeight(AU_2, 1.0);
-	behaviorLib->addExpression(exp);
-	
-	
-	addCharacter("Herrmann", "robot.mesh", Ogre::Vector3(-80, -50, -40), Ogre::Vector3(1,0,-0.3));
-	//addCharacter("Quentin", "ninja.mesh", Ogre::Vector3(40, -50, 10), Ogre::Vector3(-1,0,0.5), 0.2);
-	
-	
-	//addCharacter("Fleur", "Plane.008.mesh", Ogre::Vector3(-40, 50, 20), Ogre::Vector3(0,-1,0)); // OK
-	addCharacter("MyHuman", "Mesh.mesh", Ogre::Vector3(-40, 0, 20), Ogre::Vector3(0,-1,0)); // OK
-	
-	
-	//addCharacter("Blendo", "Plane.003.mesh", Ogre::Vector3(-40, 0, 20), Ogre::Vector3(0,-1,0));
-	//addCharacter("Vamp", "Mesh.001.mesh", Ogre::Vector3(-40, 0, 20), Ogre::Vector3(0,-1,0));
-	
-	
-	
-	//addCharacter("Swimmer", "Plane.003.mesh", Ogre::Vector3(-40, 50, 20), Ogre::Vector3(0,-1,0));
-	
-	
-	
-	//addCharacter("Man", "cuerpo.mesh", Ogre::Vector3(-40, 0, 20), Ogre::Vector3(0,-1,0), 20);
-	//addCharacter("Man", "male.mesh", Ogre::Vector3(-40, 50, 20), Ogre::Vector3(0,-1,0));
-	
-	
-	
-	//addCharacter("Joe", "jaiqua.mesh", Ogre::Vector3(-40, -50, 30), Ogre::Vector3(-1,0,0.5), 2);
-	//addCharacter("Harald", "fish.mesh", Ogre::Vector3(70, -50, -30), Ogre::Vector3(-1,0,0), 10);
-	
-
-	
-	// ===== BEGIN Test Facial Animation ===============================================================
-	unsigned short poseIndexes[18] = { 1, 2, 3, 4, 7, 8, 6, 5, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18};
-	Ogre::MeshPtr mesh = Ogre::MeshManager::getSingleton().load("facial.mesh", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-	//mesh->clone("firstFaceTest.mesh", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-	//mesh = Ogre::MeshManager::getSingleton().load("firstFaceTest.mesh", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-	
-	for (int i=0; i<mesh->getPoseCount(); i++) {
-		Ogre::Pose* pose = mesh->getPose(i);
-		std::cout << "*************************************************** POSE " << i << ": " << pose->getName() << std::endl;
-	}
-	for (int i=0; i<mesh->getNumSubMeshes(); i++) {
-		Ogre::SubMesh* subMesh = mesh->getSubMesh(i);
-		std::cout << ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SubMesh " << i << ": " << subMesh->getMaterialName() << std::endl;
-	}
-	
-	
-	Ogre::Animation* anim = mesh->createAnimation("manual", 6);
-	Ogre::VertexAnimationTrack* track = anim->createVertexTrack(4, Ogre::VAT_POSE);
-	//Ogre::VertexPoseKeyFrame* manualKeyFrame = track->createVertexPoseKeyFrame(0);
-	// create pose references, initially zero
-	FacialExpression neutralExpr = FacialExpression("neutral");
-	FacialExpression joyExpr = FacialExpression("joy");
-	joyExpr.setWeight(AU_1, 1.0);
-	FacialExpression sadnessExpr = FacialExpression("sadness");
-	sadnessExpr.setWeight(AU_2, 1.0);
-	
-	
-	neutralExpr.createKeyFrame(track, 0);
-	joyExpr.createKeyFrame(track, 1);
-	sadnessExpr.createKeyFrame(track, 3);
-
-	
-	facialEntity = sceneManager->createEntity("Facial", "facial.mesh");
-	facialEntity->setCastShadows(false);
-	Ogre::SceneNode *facialNode = sceneManager->getRootSceneNode()->createChildSceneNode("facialNode");
-	facialNode->attachObject(facialEntity);
-	facialNode->setPosition(30, 0, -30);
-	
-	//facialEntity->getAnimationState("manual")->setLoop(false);
-	
-	facialEntity->getAnimationState("manual")->setEnabled(true);
-	facialEntity->getAnimationState("manual")->setTimePosition(0);
-	
-	facialEntity->getAnimationState("Speak")->setEnabled(true);
-	// ===== END TEST ==================================================================================
-	
-	*/
-	
-	// add WayPoint to Robbie
-	/*
-	robbie->addWayPoint(Ogre::Vector3(90, -50, 20));
-	Ogre::Entity* ent = sceneManager->createEntity("wp1", "robot.mesh");
-	Ogre::SceneNode *node = sceneManager->getRootSceneNode()->createChildSceneNode("wp1Node");
-	node->attachObject(ent);
-	node->setScale(0.1, 0.1, 0.1);
-	node->setPosition(90, -50, 20);
-	
-	robbie->addWayPoint(Ogre::Vector3(30, -50, -260));
-	ent = sceneManager->createEntity("wp2", "robot.mesh");
-	node = sceneManager->getRootSceneNode()->createChildSceneNode("wp2Node");
-	node->attachObject(ent);
-	node->setScale(0.1, 0.1, 0.1);
-	node->setPosition(30, -50, -260);
-	
-	robbie->addWayPoint(Ogre::Vector3(120, -50, -290));
-	ent = sceneManager->createEntity("wp3", "robot.mesh");
-	node = sceneManager->getRootSceneNode()->createChildSceneNode("wp3Node");
-	node->attachObject(ent);
-	node->setScale(0.1, 0.1, 0.1);
-	node->setPosition(120, -50, -290);
-	
-	robbie->addWayPoint(Ogre::Vector3(-30, -50, -50));
-	ent = sceneManager->createEntity("wp4", "robot.mesh");
-	node = sceneManager->getRootSceneNode()->createChildSceneNode("wp4Node");
-	node->attachObject(ent);
-	node->setScale(0.1, 0.1, 0.1);
-	node->setPosition(-30, -50, -50);
-	*/
 }
 
 
