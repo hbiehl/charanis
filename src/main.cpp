@@ -7,52 +7,11 @@
  *
  */
 
-//#include <iostream>
-//#include <string>
-//#include <deque>
-//#include <cmath>
-//
+
 #include "SDL/SDL.h"
-//#include "SDL/SDL_thread.h"
-//
-//#include "Ogre/Ogre.h" 
-//#include "Ogre/OgreFrameListener.h" 
-//#include "Ogre/OgreEventListeners.h" 
-//#include "Ogre/OgreKeyEvent.h" 
 
 
-//#include "FEMLParser.h"
-
-//#include <OSTypes>
-
-//#include <libkern/OSTypes.h>
-/*
-#include <stdarg.h>
-#include <stdint.h>
-#include <stddef.h>
-#include <unistd.h>
-#include <cstdio>
-#include <cstdlib>
-#include <cstddef>
-
-#include <machine/types.h>
-
-extern "C" {
-	#include <sys/types.h>
-	#include <sys/stat.h>
-	#include <sys/cdefs.h>
-}*/
-/*
-typedef unsigned short Uint8;
-typedef unsigned int Uint16;
-typedef unsigned long Uint32;
-typedef unsigned long Uint64;
-*/
 #include "EngineManager.h"
-
-
-//using namespace Ogre; 
-
 
 
 
@@ -70,12 +29,6 @@ INT WINAPI WinMain(HINSTANCE hInst, HINSTANCE, LPSTR strCmdLine, INT)
 int main(int argc, char **argv) 
 #endif
 {
-
-	//FEMLParser parser = FEMLParser("../../");
-	//parser.parseFile("test.feml");
-
-
-
 	Charanis::EngineManager em = Charanis::EngineManager();
 	return 0;
 }
