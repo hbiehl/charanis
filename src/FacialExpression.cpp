@@ -44,11 +44,6 @@ void FacialExpression::fillKeyFrame(Ogre::VertexPoseKeyFrame* kf, StringIntMap* 
 	for (StringIntMap::iterator it=poseMapping->begin(); it!=poseMapping->end(); it++) {
 		kf->updatePoseReference(it->second, weight*poseWeightMap[it->first]);
 	}
-	/*
-	for (int i=0; i<AU_END; i++) {
-		kf->updatePoseReference(i, weight*actionUnitWeight[i]);
-	}
-	*/
 }
 
 Ogre::VertexPoseKeyFrame* FacialExpression::createKeyFrame(Ogre::VertexAnimationTrack* track, StringIntMap* poseMapping, Ogre::Real time) {
@@ -56,11 +51,6 @@ Ogre::VertexPoseKeyFrame* FacialExpression::createKeyFrame(Ogre::VertexAnimation
 	for (StringIntMap::iterator it=poseMapping->begin(); it!=poseMapping->end(); it++) {
 		kf->updatePoseReference(it->second, poseWeightMap[it->first]);
 	}
-	/*
-	for (int i=0; i<AU_END; i++) {
-		kf->updatePoseReference(i, actionUnitWeight[i]);
-	}
-	*/
 	return kf;
 }
 

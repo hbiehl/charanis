@@ -24,12 +24,6 @@ RenderingLayer::RenderingLayer(EngineManager* em, DataManager* dm, const std::st
 	dataManager = dm;
 	engineManager = em,
 	
-	/*
-	std::cout << "======== RANDOM TEST ==========" << std::endl;
-	for (int i=0; i<=100; i++) {
-		std::cout << i << ". " << dm->randomAlpha() << std::endl;
-	}
-	*/
 	
 	loadResources("../../../../cfg/resources.cfg");
 	initialize();
@@ -209,7 +203,7 @@ void RenderingLayer::setupScene() {
 	sceneManager->getRootSceneNode()->attachObject(floorEnt);
 
 	// Fog
-	// sceneMgr->setFog(Ogre::FOG_EXP2);
+	//sceneManager->setFog(Ogre::FOG_EXP2);
 	
 	// Sky
 	sceneManager->setSkyDome(true, "Examples/CloudySky", 5, 8);
@@ -442,11 +436,6 @@ bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 		it->second->perform();
 	}
 
-/*
-	if (keyboard->isKeyDown(OIS::KC_SPACE)) {
-		getCharacter("Robbie")->walkPath(evt.timeSinceLastFrame);
-	}
-*/	
 	
 	// Camera Movement
 	if (keyboard->isKeyDown(OIS::KC_W)) {

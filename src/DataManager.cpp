@@ -30,24 +30,13 @@ DataManager::DataManager() : engineTime(0) , manualAnimationId(0) {
 
 DataManager::~DataManager() {
 	std::cout << "§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ DataManager::~DataManager() - BEGIN" << std::endl;
-	/*
-	for (CharacterDataMap::iterator it = characterDataMap.begin(); it!=characterDataMap.end(); it++) {
-		delete it->second;
-	}
-	characterDataMap.clear();
-	*/
+
 	while (characterDataMap.size() > 0) {
 		delete characterDataMap.begin()->second;
 		characterDataMap.erase(characterDataMap.begin()->first);
 	}
 	
-	
-	/*
-	for (BehaviorLibraryMap::iterator it = behaviorLibMap.begin(); it!=behaviorLibMap.end(); it++) {
-		delete it->second;
-	}
-	behaviorLibMap.clear();
-	*/
+
 	while (behaviorLibMap.size()>0) {
 		delete behaviorLibMap.begin()->second;
 		behaviorLibMap.erase(behaviorLibMap.begin()->first);

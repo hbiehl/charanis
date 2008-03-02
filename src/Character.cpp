@@ -23,6 +23,8 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	facialEntity = NULL;	
 	
 	BehaviorLibrary* bl = dataManager->getBehaviorLibrary(name);
+	ExpressionLibrary* expressionLibrary = bl->getExpressionLibrary();
+	StringIntMap* poseMapping = expressionLibrary->getPoseMapping();
 	
 	// create the entity
 	entity = sceneManager->createEntity(name, meshName);
@@ -37,8 +39,17 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	entity->getSkeleton()->setBlendMode(Ogre::ANIMBLEND_CUMULATIVE);
 	
 	
+	// ======================= only needed because hacky model ===============
 	// add Eyes to the model
 	addEyes(meshName);
+
+	// add the face =============== only neede because of hacky model
+	std::string faceMeshName = name+"Face.mesh";
+	
+	Ogre::MeshPtr origMesh = Ogre::MeshManager::getSingleton().load("facial.mesh", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+	Ogre::MeshPtr newMesh = origMesh->clone(faceMeshName);
+	
+	
 	
 	
 	// output some helpful information about the model
@@ -52,25 +63,11 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	Ogre::AnimationStateIterator it = entity->getAllAnimationStates()->getAnimationStateIterator();
 	while (it.hasMoreElements()) {
 		Ogre::AnimationState* animState = it.getNext();
-		std::cout << "----- " << animState->getAnimationName() << std::endl;
 		bl->addBodyAnimation(new BodyAnimation(animState->getAnimationName()));
 	}
-	
 	bl->printBodyAnimations();
 	
 	
-	
-	ExpressionLibrary* expressionLibrary = bl->getExpressionLibrary();
-	StringIntMap* poseMapping = expressionLibrary->getPoseMapping();
-	
-	
-	
-	std::string faceMeshName = name+"Face.mesh";
-	
-	Ogre::MeshPtr origMesh = Ogre::MeshManager::getSingleton().load("facial.mesh", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-	Ogre::MeshPtr newMesh = origMesh->clone(faceMeshName);
-
-
 
 	// add the poses of the model (vertex morph targets) to BehaviourLibrary/ExpressionLibrary	
 	for (int i=0; i<newMesh->getPoseCount(); i++) {
@@ -78,9 +75,6 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 		std::cout << "Adding Pose " << pose->getName() << " at index " << i << std::endl;
 		expressionLibrary->addPoseMapping(pose->getName(), i);
 	}
-	
-	
-
 	createFacialAnimations(newMesh);
 	
 
@@ -90,48 +84,8 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	facialEntity->setCastShadows(false);
 	
 
-	// Sage: "Hallo"
-	/*
-	if (name!="Robbie") {
-		speechExpressionMap[4] = bl->getExpression("neutral");
-		speechExpressionMap[4.3] = bl->getExpression("VISEME_A");
-		speechExpressionMap[4.6] = bl->getExpression("VISEME_L");
-		speechExpressionMap[4.9] = bl->getExpression("VISEME_O");
-		speechExpressionMap[5.5] = bl->getExpression("neutral");
-		
-		speechExpressionMap[7] = bl->getExpression("neutral");
-		speechExpressionMap[7.3] = bl->getExpression("VISEME_A");
-		speechExpressionMap[7.6] = bl->getExpression("VISEME_L");
-		speechExpressionMap[7.9] = bl->getExpression("VISEME_O");
-		speechExpressionMap[8.5] = bl->getExpression("neutral");
-	 
-		
-		
-		speechExpressionMap[10] = bl->getExpression("neutral");
-		speechExpressionMap[10.3] = bl->getExpression("VISEME_A");
-		speechExpressionMap[10.6] = bl->getExpression("VISEME_L");
-		speechExpressionMap[10.9] = bl->getExpression("VISEME_O");
-		speechExpressionMap[11.5] = bl->getExpression("neutral");
 
-
-		speechExpressionMap[15] = bl->getExpression("neutral");
-		speechExpressionMap[15.3] = bl->getExpression("VISEME_A");
-		speechExpressionMap[15.6] = bl->getExpression("VISEME_L");
-		speechExpressionMap[15.9] = bl->getExpression("VISEME_O");
-		speechExpressionMap[16.5] = bl->getExpression("neutral");
-	}
-	*/
 	
-	
-	/*
-	if (name=="Robbie") {
-		facialEntity->getAnimationState("manual")->setEnabled(true);
-	} else {
-		facialEntity->getAnimationState("manual")->setEnabled(false);
-	}
-	facialEntity->getAnimationState("manual")->setLoop(true);
-	facialEntity->getAnimationState("manual")->setTimePosition(0);
-	*/
 	
 	
 	for (int i=0; i<EMOTION_END; i++) {
@@ -164,65 +118,7 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	}
 	
 
-	
-	/*
-	Ogre::Skeleton::BoneIterator it = entity->getSkeleton()->getBoneIterator(); 
-	while (it.hasMoreElements()) {
-		Ogre::Bone* bone = it.getNext();
-		std::cout << "BONE: " << bone->getName() << " (" << bone->getHandle() << ")" << std::endl;
-	}
-	*/
-	
-	/*
-	// Create and Compose Animations
-	Ogre::Animation* anim;
-	
-	Ogre::NodeAnimationTrack* animTrack;
-	Ogre::TransformKeyFrame* kf;
-	
-	try {
-		entity->getSkeleton()->getAnimation("BendKnee");
-		std::cout << "!!!!!!!!!!! ANIMATION BendKnee ALREADY EXISTS" << std::endl;
-	} catch (...) {
-		std::cout << "!!!!!!!!!!! CREATING ANIMATION BendKnee" << std::endl;
-		anim = entity->getSkeleton()->createAnimation("BendKnee", 1);
-		animTrack = anim->createNodeTrack(entity->getSkeleton()->getBone("Joint7")->getHandle(), entity->getSkeleton()->getBone("Joint7"));
-		kf = animTrack->createNodeKeyFrame(0);
-		kf->setRotation(Ogre::Quaternion(1, 0, 0, 0));
-		kf = animTrack->createNodeKeyFrame(0.5);
-		kf->setRotation(Ogre::Quaternion(1, 0, 0, -0.5));
-		kf = animTrack->createNodeKeyFrame(1);
-		kf->setRotation(Ogre::Quaternion(1, 0, 0, 0));
-	}
-	
-	
-	try {
-		entity->getSkeleton()->getAnimation("LiftLeg");
-		std::cout << "!!!!!!!!!!! ANIMATION LiftLeg ALREADY EXISTS" << std::endl;
-	} catch (...) {
-		std::cout << "!!!!!!!!!!! CREATING ANIMATION LiftLeg" << std::endl;
-		anim = entity->getSkeleton()->createAnimation("LiftLeg", 1.5);
-		animTrack = anim->createNodeTrack(entity->getSkeleton()->getBone("Joint6")->getHandle(), entity->getSkeleton()->getBone("Joint6"));
-		kf = animTrack->createNodeKeyFrame(0.5);
-		kf->setRotation(Ogre::Quaternion(1, 0, 0, 0));
-		kf = animTrack->createNodeKeyFrame(1);
-		kf->setRotation(Ogre::Quaternion(1, 0, 0, 0.5));
-		kf->setScale(Ogre::Vector3(2, 1, 1));
-		kf = animTrack->createNodeKeyFrame(1.5);
-		kf->setRotation(Ogre::Quaternion(1, 0, 0, 0));
-	}
-	
-	try {
-		entity->getSkeleton()->getAnimation("LiftLeg_combined");
-		std::cout << "!!!!!!!!!!! ANIMATION LiftLeg_combined ALREADY EXISTS" << std::endl;
-	} catch (...) {
-		std::cout << "!!!!!!!!!!! CREATING ANIMATION LiftLeg_combined" << std::endl;
-		std::vector<Ogre::Animation*> animVec;
-		animVec.push_back(entity->getSkeleton()->getAnimation("BendKnee"));
-		animVec.push_back(entity->getSkeleton()->getAnimation("LiftLeg"));
-		composeAnimations("LiftLeg_combined", animVec);
-	}
-	*/
+
 	
 
 	
