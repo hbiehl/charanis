@@ -442,11 +442,11 @@ bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 		it->second->perform();
 	}
 
-
+/*
 	if (keyboard->isKeyDown(OIS::KC_SPACE)) {
 		getCharacter("Robbie")->walkPath(evt.timeSinceLastFrame);
 	}
-	
+*/	
 	
 	// Camera Movement
 	if (keyboard->isKeyDown(OIS::KC_W)) {

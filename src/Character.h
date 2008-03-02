@@ -130,8 +130,6 @@ class Character {
 		void setPosition(const Ogre::Vector3 pos);
 		Ogre::Vector3 getPosition();
 		
-		void composeAnimations(std::string newAnimationName, Ogre::Animation* anim1, Ogre::Animation* anim2);
-		void composeAnimations(std::string newAnimationName, std::vector<Ogre::Animation*> animVec);
 		
 		void addFKPerformance(FKPerformance* performance);
 		void addFKPerformances(FKPerformanceVector* performanceVec);
@@ -139,7 +137,6 @@ class Character {
 		void addPerformance(CharacterPerformance* performance);
 		void addPerformances(CharacterPerformanceVector* performanceVec);
 		
-		//void addSpeechExpression(Ogre::Real time, FacialExpression* exp);
 		void addSpeechExpression(CharacterExpression* exp);
 		void addSpeechExpressions(TimedExpressionMap* expressionMap);
 		
@@ -154,15 +151,8 @@ class Character {
 		
 		void perform();
 		
-
-		
-		void addWayPoint(const Ogre::Vector3 pos);
-		Ogre::Vector3 getNextWayPoint();
-		
 		void setDirection(const Ogre::Vector3 direction);
 		void rotate(const Ogre::Vector3 dir, const Ogre::Real timeSinceLastFrame);
-
-		void walkPath(const Ogre::Real timeSinceLastFrame);
 };
 
 } // end of namespace

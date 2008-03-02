@@ -560,149 +560,6 @@ Ogre::Vector3 Character::getPosition() {
 
 
 
-
-
-
-void Character::composeAnimations(std::string newAnimationName, Ogre::Animation* anim1, Ogre::Animation* anim2) {
-	Ogre::Real length = std::max(anim1->getLength(), anim2->getLength());
-	Ogre::Animation* combinedAnim = entity->getSkeleton()->createAnimation(newAnimationName, length);
-	
-	Ogre::Skeleton::BoneIterator boneIt = entity->getSkeleton()->getBoneIterator(); 
-	while (boneIt.hasMoreElements()) {
-		Ogre::Bone* bone = boneIt.getNext();
-		
-		Ogre::NodeAnimationTrack* animTrack1 = NULL;
-		Ogre::NodeAnimationTrack* animTrack2 = NULL;
-		try {
-			animTrack1 = anim1->getNodeTrack(bone->getHandle());
-		} catch (...) {
-			// nothing to do
-		}
-		
-		try {
-			animTrack2 = anim2->getNodeTrack(bone->getHandle());
-		} catch (...) {
-			// nothing to do
-		}
-		
-		
-		if ((animTrack1 != NULL) && (animTrack2 != NULL)) {
-			Ogre::NodeAnimationTrack* combinedAnimTrack = combinedAnim->createNodeTrack(bone->getHandle());
-			
-			if (animTrack1 != NULL) {
-				for (int i=0; i < animTrack1->getNumKeyFrames(); i++) {
-					Ogre::TransformKeyFrame* kf1 = animTrack1->getNodeKeyFrame(i);
-					Ogre::Real time = kf1->getTime();
-					Ogre::TransformKeyFrame* combinedKf = combinedAnimTrack->createNodeKeyFrame(time);
-					
-					if (animTrack2 != NULL) {
-						Ogre::TransformKeyFrame* kf2;
-						animTrack2->getInterpolatedKeyFrame(time, kf2);
-					
-						combinedKf->setRotation(kf1->getRotation() * kf2->getRotation());
-						combinedKf->setTranslate(kf1->getTranslate() + kf2->getTranslate());
-						combinedKf->setScale(kf1->getScale() * kf2->getScale());
-					} else {
-						combinedKf->setRotation(kf1->getRotation());
-						combinedKf->setTranslate(kf1->getTranslate());
-						combinedKf->setScale(kf1->getScale());
-					}
-				}
-			}
-			if (animTrack2 != NULL) {
-				for (int i=0; i < animTrack2->getNumKeyFrames(); i++) {
-					Ogre::TransformKeyFrame* kf2 = animTrack2->getNodeKeyFrame(i);
-					Ogre::Real time = kf2->getTime();
-					Ogre::TransformKeyFrame* combinedKf = combinedAnimTrack->createNodeKeyFrame(time);
-					
-					if (animTrack1 != NULL) {
-						Ogre::TransformKeyFrame* kf1;
-						animTrack1->getInterpolatedKeyFrame(time, kf1);
-					
-						combinedKf->setRotation(kf1->getRotation() * kf2->getRotation());
-						combinedKf->setTranslate(kf1->getTranslate() + kf2->getTranslate());
-						combinedKf->setScale(kf1->getScale() * kf2->getScale());
-					} else {
-						combinedKf->setRotation(kf2->getRotation());
-						combinedKf->setTranslate(kf2->getTranslate());
-						combinedKf->setScale(kf2->getScale());
-					}
-				}
-			}
-		}
-	}
-	entity->refreshAvailableAnimationState();
-}
-
-
-
-void Character::composeAnimations(std::string newAnimationName, std::vector<Ogre::Animation*> animVec) {
-	Ogre::Real length = 0;
-	for (int i=0; i<animVec.size(); i++) {
-		length = std::max(length, animVec[i]->getLength());
-	}
-	
-	Ogre::Animation* combinedAnim = entity->getSkeleton()->createAnimation(newAnimationName, length);
-	
-	std::cout << "Animation " << newAnimationName << " created" << std::endl;
-	
-	Ogre::Skeleton::BoneIterator boneIt = entity->getSkeleton()->getBoneIterator(); 
-	while (boneIt.hasMoreElements()) {
-		Ogre::Bone* bone = boneIt.getNext();
-		
-		// Create all Keyframes
-		for (int i=0; i<animVec.size(); i++) {
-			try {
-				Ogre::NodeAnimationTrack* animTrack= animVec[i]->getNodeTrack(bone->getHandle());
-				
-				Ogre::NodeAnimationTrack* combinedAnimTrack = NULL;
-				try {
-					combinedAnimTrack = combinedAnim->getNodeTrack(bone->getHandle());
-				} catch (...) {
-					combinedAnimTrack = combinedAnim->createNodeTrack(bone->getHandle());
-				}
-				
-				
-				for (int j=0; j<animTrack->getNumKeyFrames(); j++) {
-					Ogre::TransformKeyFrame* kf = animTrack->getNodeKeyFrame(j);
-					Ogre::Real time = kf->getTime();
-					
-					//Ogre::TransformKeyFrame* combinedKf = 
-					combinedAnimTrack->createNodeKeyFrame(time);
-				}
-			} catch (...) {
-				// nothing to do
-			}
-		}
-		
-		try {
-			Ogre::NodeAnimationTrack* combinedAnimTrack = combinedAnim->getNodeTrack(bone->getHandle());
-			for (int j=0; j<combinedAnimTrack->getNumKeyFrames(); j++) {
-				Ogre::TransformKeyFrame* combinedKf = combinedAnimTrack->getNodeKeyFrame(j);
-				for (int k=0; k<animVec.size(); k++) {
-					try {
-						//Ogre::TransformKeyFrame* kf;
-						Ogre::TransformKeyFrame* kf = new Ogre::TransformKeyFrame(NULL, 0);
-						Ogre::NodeAnimationTrack* track = animVec[k]->getNodeTrack(bone->getHandle());
-						
-						track->getInterpolatedKeyFrame(combinedKf->getTime(), kf);
-						combinedKf->setRotation(combinedKf->getRotation() * ((Ogre::TransformKeyFrame*) kf)->getRotation());
-						combinedKf->setTranslate(combinedKf->getTranslate() + ((Ogre::TransformKeyFrame*) kf)->getTranslate());
-						combinedKf->setScale(combinedKf->getScale() * ((Ogre::TransformKeyFrame*) kf)->getScale());
-					} catch (...) {
-						// nothing to do
-					}
-				}
-			}
-		} catch (...) {
-			// nothing to do
-		}
-	}
-	entity->refreshAvailableAnimationState();
-}
-
-
-
 void Character::addFKPerformance(FKPerformance* performance) {
 	std::cout << "addFKPerformance - BEGIN" << std::endl;
 	
@@ -736,11 +593,6 @@ void Character::addPerformances(CharacterPerformanceVector* performanceVec) {
 }
 
 
-/*
-void Character::addSpeechExpression(Ogre::Real time, FacialExpression* exp) {
-	speechExpressionMap[time] = exp;
-}
-*/
 void Character::addSpeechExpression(CharacterExpression* exp) {
 	speechExpressionMap[exp->getTime()] = exp;
 }
@@ -805,10 +657,6 @@ void Character::playAnimations() {
 				
 				Ogre::AnimationStateIterator asIt = entity->getAllAnimationStates()->getAnimationStateIterator();
 				while (asIt.hasMoreElements()) {
-					//Ogre::AnimationState* animState = asIt.getNext();
-					//if (!entity->getSkeleton->hasAnimation(animState->getAnimationName()) && !entity->)
-					
-					
 					Ogre::AnimationState* animState = asIt.getNext();
 					std::cout << "----- " << animState->getAnimationName() << std::endl;
 				}
@@ -1065,16 +913,6 @@ void Character::perform() {
 }
 
 
-void Character::addWayPoint(const Ogre::Vector3 pos) {
-	waypointQueue.push_back(pos);
-}
-
-
-
-
-Ogre::Vector3 Character::getNextWayPoint() {
-	return waypointQueue.front();
-}
 
 
 
@@ -1106,53 +944,5 @@ void Character::rotate(const Ogre::Vector3 dir, const Ogre::Real timeSinceLastFr
 	sceneNode->rotate(Ogre::Vector3::UNIT_Y, Ogre::Degree(degrees), Ogre::Node::TS_LOCAL);
 }
 
-
-
-
-
-
-void Character::walkPath(const Ogre::Real timeSinceLastFrame) {
-	if (waypointQueue.empty()) {
-		return; // No Waypoints in Queue => nothing to do
-	}
-	
-	Ogre::Vector3 waypoint = waypointQueue.front();
-	Ogre::Vector3 curPos = sceneNode->getWorldPosition();
-	
-	if ( (waypoint - curPos).length() < DISTANCE_TOLERANCE ) {
-		std::cout << "Waypoint reached!!!" << std::endl;
-		// bereits am wayPoint angekommen
-		// => aktuellen WayPoint aus der Schlange entfernen und nochmal walkPath aufrufen() - also zum nächsten WayPoint laufen
-		waypointQueue.pop_front();
-		return walkPath(timeSinceLastFrame);
-	} else {
-		// noch was zu laufen
-		
-		// in die richtige Richtung drehen
-		Ogre::Vector3 dir = waypoint - curPos;
-		//std::cout << sceneNode->getWorldOrientation().xAxis() << "->" << dir << std::endl;
-		
-		
-		//if (! dir.directionEquals(sceneNode->getWorldOrientation().xAxis(), Ogre::Degree(5))) {
-		if (abs(sceneNode->getWorldOrientation().xAxis().getRotationTo(dir).getYaw().valueDegrees()) >= 2) {
-			return rotate(dir, timeSinceLastFrame);
-		}
-		sceneNode->setDirection(dir, Ogre::Node::TS_PARENT, Ogre::Vector3::UNIT_X);
-		
-		// laufen
-		Ogre::Real distance = 50 * timeSinceLastFrame;
-		if (distance > dir.length()) // soll nicht zu weit laufen
-			distance = dir.length();
-		
-		sceneNode->translate(Ogre::Vector3(distance, 0, 0), Ogre::Node::TS_LOCAL);
-		Ogre::AnimationState *animState = entity->getAnimationState("Walk");
-		if (!animState->getEnabled()) {
-			entity->getSkeleton()->reset();
-			animState->setEnabled(true);
-		} else {
-			animState->addTime(timeSinceLastFrame);
-		}
-	}
-}
 
 } // end of namespace
