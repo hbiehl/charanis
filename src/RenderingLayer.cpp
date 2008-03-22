@@ -375,8 +375,9 @@ bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 				(*characterMap)[package->getCharacterName()]->importSAMLFile(package->getFileName());
 			} else if (pkg->getType()==Package::CHARACTER_SOUND_PACKAGE_TYPE) {
 				CharacterSoundPackage* package = (CharacterSoundPackage*) pkg;
-				std::string path = dataManager->getConfig()->getSoundDirectory();//"../../";
-				getCharacter(package->getCharacterName())->addAudioTrack(new AudioTrack(path+package->getFileName(), package->getStartTime()));
+				std::stringstream pathStream;
+				pathStream << dataManager->getConfig()->getSoundDirectory() << "/" << package->getFileName();				
+				getCharacter(package->getCharacterName())->addAudioTrack(new AudioTrack(pathStream.str(), package->getStartTime()));
 			} else if (pkg->getType()==Package::ADD_OBJECT_PACKAGE_TYPE) {
 				AddObjectPackage* package = (AddObjectPackage*) pkg;
 				addObject(package->getObjectName(), package->getMeshName(), package->getPosition(), package->getOrientation(), package->getScale());
