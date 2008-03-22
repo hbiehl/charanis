@@ -148,6 +148,10 @@ class Character {
 		void addAudioTrack(Charanis::AudioTrack* track);
 		
 		void playAnimations();
+		void dropUnusedAnimations();
+		void doEmotionalExpression(Ogre::Real engineTime);
+		void doSpeechExpression(Ogre::Real engineTime);
+		void doControlledExpression(Ogre::Real engineTime);
 		
 		void perform();
 		

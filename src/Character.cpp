@@ -591,21 +591,7 @@ void Character::playAnimations() {
 
 
 
-
-
-
-void Character::perform() {
-	//std::cout << "<<<<<<< Character.perform >>>>>>>>>>>>>" << std::endl;
-	//totalTime+= timeSinceLastFrame;
-	
-	Ogre::Real engineTime = dataManager->getEngineTime();
-	
-	
-	// Skelett-Animation abspielen
-	playAnimations();
-	
-	
-	// === unnötige AnimationStates löschen ===
+void Character::dropUnusedAnimations() {
 	//	AnimationStates, für welche weder eine Skelett- noch eine Mesh-Animation vorliegt, werden nicht mehr benötigt 
 	//	und können daher gelöscht werden.
 	Ogre::AnimationStateIterator animStateIt = entity->getAllAnimationStates()->getAnimationStateIterator();
@@ -618,11 +604,9 @@ void Character::perform() {
 			std::cout << "DONE" << std::endl;
 		}
 	}
-	
-	
-	
-	// ======= Gesichtsausdruck aus den Emotionen des Charakters erzeugen ======
-	//std::cout << name << " " << totalTime << std::endl;
+}
+
+void Character::doEmotionalExpression(Ogre::Real engineTime) {
 	BehaviorLibrary* bl = dataManager->getBehaviorLibrary(name);
 	for (int i=0; i<EMOTION_END; i++) {
 		std::stringstream animationNameStream;
@@ -641,35 +625,18 @@ void Character::perform() {
 		// Ogre zum Aktualisieren des Meshes bringen
 		facialEntity->getAnimationState(animationName)->getParent()->_notifyDirty();
 	}
+}
 
+void Character::doSpeechExpression(Ogre::Real engineTime) {
+	BehaviorLibrary* bl = dataManager->getBehaviorLibrary(name);
 	
-	
-	// ======= Gesichtsanimation aus Visemen / der sprechende Charakter ======
-	TimedExpressionMap::iterator it = speechExpressionMap.begin();
-	Ogre::Real t0=0;
-	Ogre::Real t1=0;
-	// gehe bis zum ersten Zeitpunkt größer als der aktuellen Zeit
-	while (it!=speechExpressionMap.end()) {
-		if (it->first > engineTime) {
-			t1 = it->first;
-			break;
-		} else {
-			t0 = it->first;
-		}
-		
-		it++;
-	}
-	
-	if (t1==0) {
-		t1=t0;
-	}
-	
-	// veraltete Viseme aus der map löschen
-	while ((t0>0) && (speechExpressionMap.begin()->first < t0)) {
-		//std::cout << "REMOVING Expression " << speechExpressionMap.begin()->first << "   (curTime="<< totalTime <<")" << std::endl;
+	TimedExpressionMap::iterator it0, it1;
+	speechExpressionMap.getCurrentExpressions(it0, it1, engineTime);
+
+	// veraltete Gesichtsausdrücke löschen
+	while ((it0!=speechExpressionMap.end()) && (speechExpressionMap.begin() != it0)) {
 		speechExpressionMap.erase(speechExpressionMap.begin());
 	}
-	
 	
 	// zwischen den FacialExpression zum Zeitpunkt t0 und t1 linear interpolieren
 	Ogre::Real speechVolume = 1; // je lauter, desto höher die Gewichte der Visem-Posen
@@ -678,17 +645,17 @@ void Character::perform() {
 	} else if (name=="Quentin") {
 		speechVolume = 0.6;
 	}
+	// TODO: SpeechVolume wird gerade nicht mehr berücksichtigt!	
+
 	
-	// TODO: SpeechVolume wird gerade nicht mehr berücksichtigt!
-	
-	if (t1 == t0) {
-		speechExpressionMap[t0]->fillKeyFrame(speechKeyFrame, bl->getExpressionLibrary()->getPoseMapping());
+	if (it1 == speechExpressionMap.end()) {
+		it0->second->fillKeyFrame(speechKeyFrame, bl->getExpressionLibrary()->getPoseMapping());
 	} else {
-		Ogre::Real delta = (engineTime - t0) / (t1 - t0);
-		FacialExpression* fe0 = speechExpressionMap[t0]->getExpression();
-		Ogre::Real weight0 = speechExpressionMap[t0]->getWeight();
-		FacialExpression* fe1 = speechExpressionMap[t1]->getExpression();
-		Ogre::Real weight1 = speechExpressionMap[t1]->getWeight();
+		Ogre::Real delta = (engineTime - it0->first) / (it1->first - it0->first);
+		FacialExpression* fe0 = it0->second->getExpression();
+		Ogre::Real weight0 = it0->second->getWeight();
+		FacialExpression* fe1 = it1->second->getExpression();
+		Ogre::Real weight1 = it1->second->getWeight();
 		FacialExpression exp = FacialExpression("currentSpeech");
 		ExpressionLibrary* el = bl->getExpressionLibrary();
 		StringIntMap* poseMapping = el->getPoseMapping();
@@ -701,46 +668,33 @@ void Character::perform() {
 		exp.fillKeyFrame(speechKeyFrame, bl->getExpressionLibrary()->getPoseMapping(), speechVolume);
 	}
 	facialEntity->getAnimationState("speech")->getParent()->_notifyDirty();
+}
 
+
+
+
+void Character::doControlledExpression(Ogre::Real engineTime) {
+	BehaviorLibrary* bl = dataManager->getBehaviorLibrary(name);
 	
-	
-	// ======= Gesichtsanimation - kontrollierte Mimik ======
-	it = controlledExpressionMap.begin();
-	t0=0;
-	t1=0;
-	// gehe bis zum ersten Zeitpunkt größer als der aktuellen Zeit
-	while (it!=controlledExpressionMap.end()) {
-		if (it->first > engineTime) {
-			t1 = it->first;
-			break;
-		} else {
-			t0 = it->first;
-		}
-		
-		it++;
-	}
-	
-	if (t1==0) {
-		t1=t0;
-	}
+	TimedExpressionMap::iterator it0, it1;
+	controlledExpressionMap.getCurrentExpressions(it0, it1, engineTime);
 	
 	// veraltete Gesichtsausdrücke löschen
-	while ((t0>0) && (controlledExpressionMap.begin()->first < t0)) {
+	while ((it0!=controlledExpressionMap.end()) && (controlledExpressionMap.begin() != it0)) {
 		controlledExpressionMap.erase(controlledExpressionMap.begin());
 	}
-	
-	
+
 	// zwischen den FacialExpression zum Zeitpunkt t0 und t1 linear interpolieren
-	if (t1 == t0) {
-		controlledExpressionMap[t0]->fillKeyFrame(controlledExpressionKeyFrame, bl->getExpressionLibrary()->getPoseMapping());
+	if (it1 == controlledExpressionMap.end()) {
+		it0->second->fillKeyFrame(controlledExpressionKeyFrame, bl->getExpressionLibrary()->getPoseMapping());
 	} else {
 		Ogre::Real expressionWeight = 1;
 	
-		Ogre::Real delta = (engineTime - t0) / (t1 - t0);
-		FacialExpression* fe0 = controlledExpressionMap[t0]->getExpression();
-		FacialExpression* fe1 = controlledExpressionMap[t1]->getExpression();
-		Ogre::Real weight0 = controlledExpressionMap[t0]->getWeight();
-		Ogre::Real weight1 = controlledExpressionMap[t1]->getWeight();
+		Ogre::Real delta = (engineTime - it0->first) / (it1->first - it0->first);
+		FacialExpression* fe0 = it0->second->getExpression();
+		FacialExpression* fe1 = it1->second->getExpression();
+		Ogre::Real weight0 = it0->second->getWeight();
+		Ogre::Real weight1 = it1->second->getWeight();
 		FacialExpression exp = FacialExpression("controlledExpression");
 		
 		ExpressionLibrary* el = bl->getExpressionLibrary();		
@@ -754,8 +708,33 @@ void Character::perform() {
 		exp.fillKeyFrame(controlledExpressionKeyFrame, bl->getExpressionLibrary()->getPoseMapping(), expressionWeight);
 	}
 	facialEntity->getAnimationState("controlledExpression")->getParent()->_notifyDirty();
+}
+
+
+void Character::perform() {
+	//std::cout << "<<<<<<< Character.perform >>>>>>>>>>>>>" << std::endl;
+	//totalTime+= timeSinceLastFrame;
+	
+	Ogre::Real engineTime = dataManager->getEngineTime();
 	
 	
+	// Skelett-Animation abspielen
+	playAnimations();
+	
+	// === unnötige AnimationStates löschen ===
+	dropUnusedAnimations();
+	
+	
+	
+	// ======= Gesichtsausdruck aus den Emotionen des Charakters erzeugen ======
+	doEmotionalExpression(engineTime);
+	
+	// ======= Gesichtsanimation aus Visemen / der sprechende Charakter ======
+	doSpeechExpression(engineTime);
+	
+	// ======= Gesichtsanimation - kontrollierte Mimik ======
+	doControlledExpression(engineTime);
+		
 	
 	
 	
