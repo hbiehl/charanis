@@ -11,7 +11,11 @@
 #define FACIAL_EXPRESSION_H
 
 // dependency includes
-#include <Ogre/Ogre.h> // TODO
+#ifdef OSX
+    #include <Ogre/Ogre.h> // TODO
+#else
+    #include <Ogre.h> // TODO
+#endif
 
 // project includes
 #include "StringRealMap.h"

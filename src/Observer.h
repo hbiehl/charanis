@@ -12,7 +12,11 @@
 // std includes
 #include <string>
 // dependeny includes
-#include <Ogre/OgrePrerequisites.h>
+#include "SDL/SDL.h"
+    #include <Ogre/OgrePrerequisites.h>
+#else
+    #include <OgrePrerequisites.h>
+#endif
 
 
 namespace Ogre {

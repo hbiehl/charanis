@@ -8,7 +8,11 @@
  */
 #include "AmbientLightPackage.h"
 // dependency includes
-#include <Ogre/OgreColourValue.h>
+#ifdef OSX
+    #include <Ogre/OgreColourValue.h>
+#else
+    #include <OgreColourValue.h>
+#endif
 
 namespace Charanis {
 

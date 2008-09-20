@@ -11,8 +11,13 @@
 
 // std includes
 // dependeny includes
-#include <Ogre/Ogre.h>
-#include <Ogre/OgreFrameListener.h>
+#ifdef OSX
+    #include <Ogre/Ogre.h>
+    #include <Ogre/OgreFrameListener.h>
+#else
+    #include <Ogre.h>
+    #include <OgreFrameListener.h>
+#endif
 #include "OIS.h" // TODO: use framework!
 // project includes
 #include "CharacterMap.h"

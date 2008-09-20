@@ -11,8 +11,11 @@
 #ifndef OBSERVER_KEY_FRAME_H
 #define OBSERVER_KEY_FRAME_H
 
-
-#include "Ogre/Ogre.h"
+#ifdef OSX
+	#include <Ogre/Ogre.h>
+#else
+	#include <Ogre.h>
+#endif
 
 namespace Charanis {
 

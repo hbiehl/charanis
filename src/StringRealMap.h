@@ -15,7 +15,11 @@
 #include <string>
 
 // dependency includes
-#include <Ogre/OgrePrerequisites.h>
+#ifdef OSX
+    #include <Ogre/OgrePrerequisites.h>
+#else
+    #include <OgrePrerequisites.h>
+#endif
 
 namespace Charanis {
 	typedef std::map<std::string, Ogre::Real> StringRealMap;

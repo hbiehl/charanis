@@ -13,8 +13,14 @@
 // std includes
 #include <string>
 #include <vector>
+
 // dependency includes
-#include <Ogre/Ogre.h>
+#ifdef OSX
+    #include <Ogre/Ogre.h>
+#else
+    #include <Ogre.h>
+#endif
+
 // project includes
 #include "Parser.h"
 #include "Package.h"

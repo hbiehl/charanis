@@ -9,8 +9,13 @@
 
 #include "AudioTrack.h"
 
-#include <OpenAL/alc.h>
-#include <OpenAL/al.h>
+#ifdef OSX
+    #include <OpenAL/alc.h>
+    #include <OpenAL/al.h>
+#else
+    #include <AL/alc.h>
+    #include <AL/al.h>
+#endif
 
 namespace Charanis {
 
