@@ -39,7 +39,7 @@ class Parser {
 		Ogre::Real getRealAttribute(xercesc::DOMElement* element, std::string attribute);
 		int getIntAttribute(xercesc::DOMElement* element, std::string attribute);
 	
-		xercesc::DOMDocument* Parser::parseFile(std::string pathToFile);
+		xercesc::DOMDocument* parseFile(std::string pathToFile);
 		
 	public:
 		Parser();
