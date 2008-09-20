@@ -1,5 +1,15 @@
+# vim: set filetype=python:
+
 env = Environment()
 
+# Files removed
+#   ClientSocketList.cpp
+#   MainWindow.cpp
+#	NetworkThread.cpp
+#	TestServer.cpp
+#	moc_ClientSocketList.cpp
+#	moc_MainWindow.cpp
+#	moc_NetworkThread.cpp
 srcs = Split("""
 		ActionLibrary.cpp
 		ActionScript.cpp
@@ -21,7 +31,6 @@ srcs = Split("""
 		CharacterPerformance.cpp
 		CharacterSoundPackage.cpp
 		CharanisInfoPanel.cpp
-		ClientSocketList.cpp
 		Config.cpp
 		DataManager.cpp
 		DirectionalLightPackage.cpp
@@ -43,13 +52,8 @@ srcs = Split("""
 		IntensityInterpolator.cpp
 		InvalidTimingException.cpp
 		main.cpp
-		MainWindow.cpp
 		MessageParser.cpp
-		moc_ClientSocketList.cpp
-		moc_MainWindow.cpp
-		moc_NetworkThread.cpp
 		NetworkLayer.cpp
-		NetworkThread.cpp
 		Observer.cpp
 		ObserverKeyFrame.cpp
 		Package.cpp
@@ -64,7 +68,6 @@ srcs = Split("""
 		RemoveObjectPackage.cpp
 		RenderingLayer.cpp
 		SAMLParser.cpp
-		TestServer.cpp
 		""")
 
 env.Append(CPPPATH=Split("""
