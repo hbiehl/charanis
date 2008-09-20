@@ -69,5 +69,6 @@ srcs = Split("""
 
 env.Append(CPPPATH=Split("""
 						/home/hbiehl/Ogre/ogrenew/OgreMain/include
+						/home/hbiehl/Ogre/ois/includes
 						"""))
 env.Program('test', srcs)
