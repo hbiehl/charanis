@@ -39,12 +39,16 @@ startTime(startTime) {
 	ALenum     format;
 	ALsizei    size;
 	ALsizei    freq;
-	//ALboolean  loop;
+	ALboolean  loop;
 	ALvoid*    data;
 
 /* ****Problem mit XCode-Update **/
 	ALbyte* file = (ALbyte*) filename.c_str();
+	#ifdef OSX
 	alutLoadWAVFile(file, &format, &data, &size, &freq);//, &loop);
+	#else
+	alutLoadWAVFile(file, &format, &data, &size, &freq, &loop);
+	#endif
 	//loadWAVFile(file, &format, &data, &size, &freq);//, &loop);
 	if ((error = alGetError()) != AL_NO_ERROR) {
 		std::cout << "alutLoadWAVFile : " << error << std::endl;

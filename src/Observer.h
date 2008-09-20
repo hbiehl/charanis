@@ -13,6 +13,7 @@
 #include <string>
 // dependeny includes
 #include "SDL/SDL.h"
+#ifdef OSX
     #include <Ogre/OgrePrerequisites.h>
 #else
     #include <OgrePrerequisites.h>

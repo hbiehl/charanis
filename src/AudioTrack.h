@@ -15,10 +15,11 @@
 // dependency includes
 #ifdef OSX
     #include <Ogre/OgrePrerequisites.h>
+    #include "alut.h" // TODO
 #else
     #include <OgrePrerequisites.h>
+	#include <AL/alut.h>
 #endif
-#include "alut.h" // TODO
 
 namespace Charanis {
 

@@ -96,7 +96,11 @@ ALuint AudioTools::loadALBuffer(std::string path) {
 		throw getALErrorString(result);
 
 	// Read in the wav data from file. Check that it loaded correctly.
+	#ifdef OSX
 	alutLoadWAVFile((ALbyte*) path.c_str(), &format, &data, &size, &freq);//, &loop);
+	#else	
+	alutLoadWAVFile((ALbyte*) path.c_str(), &format, &data, &size, &freq, &loop);
+	#endif
 
 	if ((result = alGetError()) != AL_NO_ERROR)
 		throw getALErrorString(result);
