@@ -2,6 +2,16 @@
 
 env = Environment()
 
+# where to look for includes
+#env.Append(CPPPATH=Split("""
+#        /home/hbiehl/Ogre/ogrenew_v1-4-4/OgreMain/include
+#        /home/hbiehl/Ogre/ois/includes
+#        """))
+env.Append(CPPPATH=Split("""
+        /usr/local/include/OGRE
+        /usr/local/include/OIS
+        """))
+
 # Files removed
 #   ClientSocketList.cpp
 #   MainWindow.cpp
@@ -70,8 +80,25 @@ srcs = Split("""
 		SAMLParser.cpp
 		""")
 
-env.Append(CPPPATH=Split("""
-						/home/hbiehl/Ogre/ogrenew/OgreMain/include
-						/home/hbiehl/Ogre/ois/includes
-						"""))
+#env.Append(LIBPATH=Split("""
+#        #/home/hbiehl/Ogre/ogrenew_v1-4-4/OgreMain/src/.libs/
+#        """))
+
+
+# all libraries needed
+libs = Split("""
+        libxerces-c
+        libalut
+        libboost_thread
+        libOgreMain
+        libOIS
+        libSDL
+        libSDL_net
+        """)
+
+env.Append(LIBS=libs)
+
+
+
 env.Program('test', srcs)
+
