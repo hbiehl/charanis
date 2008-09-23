@@ -24,6 +24,13 @@
 
 namespace Charanis {
 
+namespace {
+#ifdef OSX
+    const std::string RESOURCES_CFG_PATH("../../../../cfg/resources.cfg");
+#else
+    const std::string RESOURCES_CFG_PATH("../cfg/resources.cfg");
+#endif
+}; // end of anonymous namespace
 
 RenderingLayer::RenderingLayer(EngineManager* em, DataManager* dm, const std::string &pluginFileName, const std::string &configFileName, const std::string &logFileName) 
 : PipelineLayer(dm, "RenderLoop"), MOUSE_SPEED(1.5) {
@@ -36,7 +43,7 @@ RenderingLayer::RenderingLayer(EngineManager* em, DataManager* dm, const std::st
 	engineManager = em,
 	
 	
-	loadResources("../../../../cfg/resources.cfg");
+	loadResources(RESOURCES_CFG_PATH);
 	initialize();
 	setupScene();
 	root->addFrameListener(this);

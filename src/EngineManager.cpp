@@ -29,6 +29,14 @@
 #include "RenderingLayer.h"
 
 
+namespace {
+#ifdef OSX
+    const std::string CFG_PATH("../../../../cfg/");
+#else
+    const std::string CFG_PATH("../cfg/");
+#endif
+}; // end of anonymous namespace
+
 namespace Charanis {
 
 EngineManager::EngineManager() {
@@ -39,7 +47,7 @@ EngineManager::EngineManager() {
 	dataManager = new DataManager();
 	
 	networkLayer = new NetworkLayer(this);
-	renderingLayer = new RenderingLayer(this, dataManager, "../../../../cfg/plugins.cfg", "../../../../cfg/ogre.cfg", "ogre.log");
+	renderingLayer = new RenderingLayer(this, dataManager, CFG_PATH+"plugins.cfg", CFG_PATH+"ogre.cfg", "ogre.log");
 	PackageQueue* queue = renderingLayer->getInputQueue();
 	if (queue == NULL) {
 		queue = new PackageQueue(NULL, renderingLayer);

@@ -80,9 +80,9 @@ srcs = Split("""
 		SAMLParser.cpp
 		""")
 
-#env.Append(LIBPATH=Split("""
-#        #/home/hbiehl/Ogre/ogrenew_v1-4-4/OgreMain/src/.libs/
-#        """))
+env.Append(LIBPATH=Split("""
+        /usr/local/lib
+        """))
 
 
 # all libraries needed
