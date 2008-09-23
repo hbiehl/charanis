@@ -18,45 +18,41 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	this->name = name;
 	this->sceneManager = sceneManager;
 	this->dataManager = dm;
-	
-	facialNode = NULL;
-	facialEntity = NULL;	
-	
+		
 	BehaviorLibrary* bl = dataManager->getBehaviorLibrary(name);
 	ExpressionLibrary* expressionLibrary = bl->getExpressionLibrary();
 	StringIntMap* poseMapping = expressionLibrary->getPoseMapping();
-	
+
+	facialEntity = NULL;
+	std::string myPrivateMeshName = name +"_"+ meshName;
+	Ogre::MeshPtr origMesh = Ogre::MeshManager::getSingleton().load(meshName, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
+	Ogre::MeshPtr characterMesh = origMesh->clone(myPrivateMeshName);
+
+	// add the poses of the model (vertex morph targets) to BehaviourLibrary/ExpressionLibrary	
+	for (int i=0; i<characterMesh->getPoseCount(); i++) {
+		Ogre::Pose* pose = characterMesh->getPose(i);
+		std::cout << "Adding Pose " << pose->getName() << " at index " << i << std::endl;
+		expressionLibrary->addPoseMapping(pose->getName(), i);
+	}
+	createFacialAnimations(characterMesh);
+	//entity->_initialise(true);
+
 	// create the entity
-	entity = sceneManager->createEntity(name, meshName);
+	entity = sceneManager->createEntity(name, myPrivateMeshName);
+	entity->setCastShadows(true); // TODO: workaround because of too low shadow buffer (too many vertices)
 	// ... and add it to the scene
 	sceneNode = parentNode->createChildSceneNode(name+"Node");
-	sceneNode->attachObject(entity);
 	sceneNode->setScale(scale, scale, scale);
+	sceneNode->attachObject(entity);
 	
-
 	// set some parameters of the entity
-	entity->setCastShadows(true);
+	//entity->setCastShadows(true);
 	entity->getSkeleton()->setBlendMode(Ogre::ANIMBLEND_CUMULATIVE);
-	
-	
-	// ======================= only needed because hacky model ===============
-	// add Eyes to the model
-	addEyes(meshName);
+	facialEntity = entity; //TODO temporary hack
 
-	// add the face =============== only neede because of hacky model
-	std::string faceMeshName = name+"Face.mesh";
-	
-	Ogre::MeshPtr origMesh = Ogre::MeshManager::getSingleton().load("facial.mesh", Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
-	Ogre::MeshPtr newMesh = origMesh->clone(faceMeshName);
-	
-	
-	
-	
 	// output some helpful information about the model
 	printBones();
 	printMeshes();
-	
-	
 	
 	// add the skeleton animations of the model to BehaviourLibrary
 	std::cout << "Available Animations for Character " << name << ":" << std::endl;
@@ -67,27 +63,7 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	}
 	bl->printBodyAnimations();
 	
-	
-
-	// add the poses of the model (vertex morph targets) to BehaviourLibrary/ExpressionLibrary	
-	for (int i=0; i<newMesh->getPoseCount(); i++) {
-		Ogre::Pose* pose = newMesh->getPose(i);
-		std::cout << "Adding Pose " << pose->getName() << " at index " << i << std::endl;
-		expressionLibrary->addPoseMapping(pose->getName(), i);
-	}
-	createFacialAnimations(newMesh);
-	
-
-
-	// Binde Gesicht in Szene ein (derzeit noetig, da Modell kein eigenes Gesicht beinhaltet)
-	facialEntity = sceneManager->createEntity(name+"Face", faceMeshName);
-	facialEntity->setCastShadows(false);
-	
-
-
-	
-	
-	
+	/*
 	for (int i=0; i<EMOTION_END; i++) {
 		std::stringstream animationNameStream;
 		std::string animationName;
@@ -103,26 +79,9 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	
 	facialEntity->getAnimationState("controlledExpression")->setEnabled(true);
 	facialEntity->getAnimationState("controlledExpression")->setTimePosition(0);
-
+	*/
 	
-	
-	if (meshName == "robot.mesh") {
-		Ogre::TagPoint* facialTagPoint = entity->attachObjectToBone("Joint12", facialEntity);
-		facialTagPoint->setScale(0.3, 0.3, 0.3);
-		facialTagPoint->rotate(Ogre::Vector3(0,1,0), Ogre::Degree(90));
-		facialTagPoint->translate(5, -10, 0);
-	} else {
-		facialNode = sceneManager->getRootSceneNode()->createChildSceneNode(name+"FaceNode");
-		facialNode->setScale(0.2, 0.2, 0.2);
-		facialNode->attachObject(facialEntity);
-	}
-	
-
-
-	
-
-	
-	
+	// ----------- Audio Stuff ----------
 	// Ein OpenAL-Audio-Source generieren...
 	std::cout << "OpenAL: Generating Source..." << std::endl;
 
@@ -138,9 +97,6 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	std::cout << "Character::Character   -   alSourcef(audioSource[0], AL_REFERENCE_DISTANCE, refDist);" << alGetError()  << std::endl;
 	
 	
-
-	
-	
 	currentAudioTrack = NULL;
 	
 	// play an audioTrack to test if audio is working. TODO: These lines need to be removed for release
@@ -150,69 +106,6 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	}
 	playAudioTrack(new AudioTrack(filename, 0));
 	
-	
-	
-	
-	// EXPORTING THE NEW SKELETON
-	/*
-	if (name=="Robbie") {
-		Ogre::SkeletonSerializer skeletonSerializer = Ogre::SkeletonSerializer();
-		skeletonSerializer.exportSkeleton(entity->getSkeleton(), "complete_model.skeleton");
-	
-		Ogre::Entity* leye = sceneManager->getEntity(name+"_LEYE");
-		Ogre::Mesh::SubMeshIterator it = leye->getMesh()->getSubMeshIterator();
-		int itNo = 1;
-		while (it.hasMoreElements()) {
-		//Ogre::Mesh::SubMeshNameMap nameMap = leye->getMesh()->getSubMeshNameMap();
-		//for (Ogre::Mesh::SubMeshNameMap::iterator it = nameMap.begin(); it!=nameMap.end(); it++){
-			//std::string subMeshName = it->first;
-			//Ogre::SubMesh* orig = leye->getMesh()->getSubMesh(it->second);
-			std::string subMeshName;
-			std::stringstream subMeshNameStream;
-			subMeshNameStream << "l_" << itNo++;
-			subMeshNameStream >> subMeshName;
-			Ogre::SubMesh* orig = it.getNext();
-			
-			//Ogre::Vector3* bonePos = entity->getSkeleton()->getBone("l_eyeball_joint")->_getDerivedPosition();
-			
-			Ogre::SubMesh* newSubMesh = entity->getMesh()->createSubMesh("l_"+subMeshName);
-			newSubMesh->useSharedVertices = false;
-			newSubMesh->vertexData = orig->vertexData->clone();
-			newSubMesh->indexData = orig->indexData->clone();
-			newSubMesh->setMaterialName(orig->getMaterialName());
-			
-			unsigned short boneHandle = entity->getSkeleton()->getBone("l_eyeball_joint")->getHandle();
-			int vertexNo = newSubMesh->vertexData->vertexStart;
-			int maxVertexNo = vertexNo + newSubMesh->vertexData->vertexCount;
-			while (vertexNo < maxVertexNo) {
-				Ogre::VertexBoneAssignment vba;
-				vba.vertexIndex = vertexNo++;
-				vba.boneIndex = boneHandle;
-				vba.weight = 1;
-				newSubMesh->addBoneAssignment(vba);
-			}
-		}
-		
-		
-		//std::cout << "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    LISTING THE SUB_MESHES" << std::endl;
-		//nameMap = entity->getMesh()->getSubMeshNameMap();
-		//for (Ogre::Mesh::SubMeshNameMap::iterator it = nameMap.begin(); it!=nameMap.end(); it++){
-		//	std::cout << "---------" << it->first << std::endl;
-		//}
-		//std::cout << "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX    DONE" << std::endl;
-		
-		
-		Ogre::MeshSerializer meshSerializer = Ogre::MeshSerializer();
-		meshSerializer.exportMesh(entity->getMesh().get(), "complete_model.mesh");
-		
-		
-	}
-	*/
-	
-
-	
-	//totalTime = 0;
-	//lastFrameDeprecatedCheck = 0;
 	std::cout << "===== Constructor Character ("<< name << ") DONE ====" << std::endl;
 }
 
@@ -232,6 +125,16 @@ Character::~Character() {
 	
 	
 	if (entity->getMesh()->getName() == "robot.mesh") {
+		entity->detachObjectFromBone(facialEntity->getName());
+		
+		if (leftEyeEntity!=NULL) {
+			entity->detachObjectFromBone(leftEyeEntity->getName());
+		}
+		
+		if (leftEyeEntity!=NULL) {
+			entity->detachObjectFromBone(rightEyeEntity->getName());
+		}
+	} else if (entity->getMesh()->getName() == "Charanis.001.mesh") {
 		entity->detachObjectFromBone(facialEntity->getName());
 		
 		if (leftEyeEntity!=NULL) {
@@ -295,6 +198,27 @@ void Character::addEyes(const std::string& meshName) {
 		rightEyeEntity->setCastShadows(true);
 		tp = entity->attachObjectToBone("r_eyeball_joint", rightEyeEntity);
 		tp->setScale(2, 2, 2);
+	} else if (meshName == "Charanis.001.mesh") {
+		Ogre::Bone* bone = entity->getSkeleton()->createBone("l_eyeball_joint", 21);
+		entity->getSkeleton()->getBone("scullbase")->addChild(bone);
+		bone->translate(Ogre::Vector3(-1, 3, 0));
+		//bone->rotate(Ogre::Vector3(0,1,0), Ogre::Radian(Ogre::Degree(90)));
+		bone->setInitialState();
+		leftEyeEntity = sceneManager->createEntity(name+"_LEYE", "BlueEye.mesh");
+		leftEyeEntity->setCastShadows(true);
+		Ogre::TagPoint* tp = entity->attachObjectToBone("l_eyeball_joint", leftEyeEntity);
+		tp->setScale(0.2, 0.2, 0.2);
+		
+		
+		bone = entity->getSkeleton()->createBone("r_eyeball_joint", 22);
+		entity->getSkeleton()->getBone("scullbase")->addChild(bone);
+		bone->translate(Ogre::Vector3(1, 3, 0));
+		//bone->rotate(Ogre::Vector3(0,1,0), Ogre::Radian(Ogre::Degree(90)));
+		bone->setInitialState();
+		rightEyeEntity = sceneManager->createEntity(name+"_REYE", "BlueEye.mesh");
+		rightEyeEntity->setCastShadows(true);
+		tp = entity->attachObjectToBone("r_eyeball_joint", rightEyeEntity);
+		tp->setScale(0.2, 0.2, 0.2);
 	} else {
 		leftEyeEntity = NULL;
 		rightEyeEntity = NULL;
@@ -313,7 +237,7 @@ void Character::createFacialAnimations(Ogre::MeshPtr& newMesh) {
 		std::string animationName;
 		animationNameStream << "emotion_" << i;
 		animationNameStream >> animationName;
-		
+		std::cout << "creating animation " << animationName << std::endl;
 		Ogre::Animation* emotionAnim = newMesh->createAnimation(animationName, 0);
 		Ogre::VertexAnimationTrack* emotionTrack = emotionAnim->createVertexTrack(4, Ogre::VAT_POSE);
 		emotionKeyFrameMap[EmotionType(i)] = emotionTrack->createVertexPoseKeyFrame(0);
@@ -354,14 +278,12 @@ void Character::printBones() {
 void Character::printMeshes() {
 	// just output some useful info: all meshes of the character
 	std::cout << "Meshes of Character " << name << ":" << std::endl;
-	Ogre::Mesh::SubMeshIterator subMeshIt = entity->getMesh()->getSubMeshIterator();
-	while (subMeshIt.hasMoreElements()) {
-		Ogre::SubMesh* subMesh = subMeshIt.getNext();
-		std::cout << "----- " << subMesh->getMaterialName() << std::endl;
+	Ogre::Mesh::SubMeshNameMap m = entity->getMesh()->getSubMeshNameMap();
+	for (Ogre::Mesh::SubMeshNameMap::iterator it = m.begin(); it!=m.end(); it++) {
+		Ogre::SubMesh* subMesh = entity->getMesh()->getSubMesh(it->second);
+		std::cout << "----- "<< it->second << " name=" << it->first << " mat=" << subMesh->getMaterialName() << std::endl;
 	}
 }
-
-
 
 void Character::importFEMLFile(std::string fileName) {
 	std::cout << "Character::importFEMLFile("<<fileName<<")   Character=" << name << std::endl;
@@ -435,11 +357,6 @@ std::string Character::getName() {
 
 void Character::setPosition(const Ogre::Vector3 pos) {
 	sceneNode->setPosition(pos);
-	if (facialNode != NULL) {
-		facialNode->setPosition(pos[0], pos[1]+80, pos[2]);
-	}
-	
-	
 	float vec[3];
 	vec[0] = pos.x;
 	vec[1] = entity->getWorldBoundingBox().getMaximum().y; //pos.y;
@@ -592,6 +509,7 @@ void Character::playAnimations() {
 
 
 void Character::dropUnusedAnimations() {
+	std::cout << "Character::dropUnusedAnimations() name="<< name << "-BEGIN" << std::endl;
 	//	AnimationStates, für welche weder eine Skelett- noch eine Mesh-Animation vorliegt, werden nicht mehr benötigt 
 	//	und können daher gelöscht werden.
 	Ogre::AnimationStateIterator animStateIt = entity->getAllAnimationStates()->getAnimationStateIterator();
@@ -604,6 +522,7 @@ void Character::dropUnusedAnimations() {
 			std::cout << "DONE" << std::endl;
 		}
 	}
+	std::cout << "Character::dropUnusedAnimations() name="<< name << "-END" << std::endl;
 }
 
 void Character::doEmotionalExpression(Ogre::Real engineTime) {
@@ -727,13 +646,13 @@ void Character::perform() {
 	
 	
 	// ======= Gesichtsausdruck aus den Emotionen des Charakters erzeugen ======
-	doEmotionalExpression(engineTime);
+	//TODO doEmotionalExpression(engineTime);
 	
 	// ======= Gesichtsanimation aus Visemen / der sprechende Charakter ======
-	doSpeechExpression(engineTime);
+	//TODO doSpeechExpression(engineTime);
 	
 	// ======= Gesichtsanimation - kontrollierte Mimik ======
-	doControlledExpression(engineTime);
+	//TODO doControlledExpression(engineTime);
 		
 	
 	

@@ -14,7 +14,9 @@ namespace Charanis {
 HeadMovementGenerator::HeadMovementGenerator(DataManager* dataManager, std::string characterName) :
 Generator(dataManager, characterName, "HeadMovementGenerator") {
 	//boneName = "Joint10";
-	boneName = "Joint12";
+	//boneName = "Joint12";
+	//boneName = "scullbase";
+	boneName = "neck_u";
 	
 	lastQuaternion = new Ogre::Quaternion(1, 0, 0, 0);
 }

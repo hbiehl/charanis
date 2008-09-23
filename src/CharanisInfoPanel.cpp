@@ -30,7 +30,8 @@ CharanisInfoPanel::CharanisInfoPanel() {
 	timeTextArea->setCaption("0");
 	//timeTextArea->setHorizontalAlignment(Ogre::GHA_RIGHT);
 	timeTextArea->setCharHeight(20);
-	timeTextArea->setFontName("StarWars");
+	//timeTextArea->setFontName("StarWars");
+	timeTextArea->setFontName("Charanis");
 	timeTextArea->setColourBottom(Ogre::ColourValue(0.8, 0, 0));
 	timeTextArea->setColourTop(Ogre::ColourValue(1, 0.7, 0));
 
@@ -44,7 +45,8 @@ CharanisInfoPanel::CharanisInfoPanel() {
 	characterTextArea->setCaption("---");
 	//timeTextArea->setHorizontalAlignment(Ogre::GHA_RIGHT);
 	characterTextArea->setCharHeight(20);
-	characterTextArea->setFontName("StarWars");
+	//characterTextArea->setFontName("StarWars");
+	characterTextArea->setFontName("Charanis");
 	characterTextArea->setColourBottom(Ogre::ColourValue(0.8, 0, 0));
 	characterTextArea->setColourTop(Ogre::ColourValue(1, 0.7, 0));
 

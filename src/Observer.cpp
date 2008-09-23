@@ -25,7 +25,7 @@ Observer::Observer(DataManager* dataManager, Ogre::Root* root, Ogre::SceneManage
 	root->getAutoCreatedWindow()->addViewport(camera);
 	
 	
-	setPosition(Ogre::Vector3(0, 50, 140));
+	setPosition(Ogre::Vector3(0, 100, 240));
 	
 	//addKeyFrame(new ObserverKeyFrame(0, Ogre::Vector3(-40, 0, 140), /*Ogre::Vector3(0, 1, 0), Ogre::Vector3(0, 0, -1));*/Ogre::Quaternion()));
 	//addKeyFrame(new ObserverKeyFrame(6, Ogre::Vector3(40, 20, 140), /*Ogre::Vector3(1, 1, 0), Ogre::Vector3(0, 0, -1));*/Ogre::Quaternion(0.8, 1, 0, 0)));

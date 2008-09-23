@@ -75,7 +75,7 @@ class Character {
 		Ogre::SceneNode* sceneNode;
 		Ogre::Entity* entity;
 
-		Ogre::SceneNode* facialNode;
+		//Ogre::SceneNode* facialNode;
 		Ogre::Entity* leftEyeEntity;
 		Ogre::Entity* rightEyeEntity;
 		Ogre::Entity* facialEntity;
@@ -117,7 +117,7 @@ class Character {
 		
 		void printBones();
 		void printMeshes();
-		
+
 	public:
 		Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNode, std::string meshName, DataManager* dm, std::string name, Ogre::Real scale=1);
 		~Character();

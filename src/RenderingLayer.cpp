@@ -126,8 +126,9 @@ void RenderingLayer::initialize() { //Ogre::SceneType sceneType) {
 	
 	sceneManager = root->createSceneManager(sceneType, "GenericSceneManager");
 	//sceneManager->setShadowTechnique(Ogre::SHADOWTYPE_STENCIL_MODULATIVE);
-	sceneManager->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_MODULATIVE);
-	
+	//sceneManager->setShadowTechnique(Ogre::SHADOWTYPE_TEXTURE_MODULATIVE);
+	sceneManager->setShadowTechnique(Ogre::SHADOWTYPE_NONE);
+		
 	observer = new Observer(dataManager, root, sceneManager);
 	
 	
@@ -140,10 +141,10 @@ void RenderingLayer::initialize() { //Ogre::SceneType sceneType) {
 	
 	infoPanel = new CharanisInfoPanel();
 	
-	//Ogre::MaterialManager::getSingleton().setDefaultTextureFiltering(Ogre::TFO_TRILINEAR);
-	//Ogre::MaterialManager::getSingleton().setDefaultAnisotropy(1);
-	Ogre::MaterialManager::getSingleton().setDefaultTextureFiltering(Ogre::TFO_ANISOTROPIC);
-	Ogre::MaterialManager::getSingleton().setDefaultAnisotropy(8);
+	Ogre::MaterialManager::getSingleton().setDefaultTextureFiltering(Ogre::TFO_TRILINEAR);
+	Ogre::MaterialManager::getSingleton().setDefaultAnisotropy(1);
+	//Ogre::MaterialManager::getSingleton().setDefaultTextureFiltering(Ogre::TFO_ANISOTROPIC);
+	//Ogre::MaterialManager::getSingleton().setDefaultAnisotropy(8);
 	}
 
 
@@ -160,6 +161,7 @@ void RenderingLayer::addDirectionalLight(std::string lightName, Ogre::ColourValu
 		l->setSpecularColour(*specularColour);
 		l->setDirection(*direction);	
 		l->setCastShadows(true);
+		//l->setCastShadows(false);
 	}
 }
 
