@@ -2,7 +2,7 @@
 	<Host>localhost</Host>
 	<Port>9999</Port>
 	
-	<FEML-Dir>../CLEAN_UP</FEML-Dir>
-	<SAML-Dir>../CLEAN_UP</SAML-Dir>
-	<Sound-Dir>../CLEAN_UP</Sound-Dir>
+	<FEML-Dir>../CLEAN_UP/</FEML-Dir>
+	<SAML-Dir>../CLEAN_UP/</SAML-Dir>
+	<Sound-Dir>../CLEAN_UP/</Sound-Dir>
 </Config>

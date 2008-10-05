@@ -125,9 +125,9 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	currentAudioTrack = NULL;
 	
 	// play an audioTrack to test if audio is working. TODO: These lines need to be removed for release
-	std::string filename = "../../../../CLEAN_UP/sound_engine.wav";
+	std::string filename = "../CLEAN_UP/sound_engine.wav";
 	if (name=="Robbie") {
-		filename = "../../../../CLEAN_UP/sound_electric.wav";
+		filename = "../CLEAN_UP/sound_electric.wav";
 	}
 	playAudioTrack(new AudioTrack(filename, 0));
 	
