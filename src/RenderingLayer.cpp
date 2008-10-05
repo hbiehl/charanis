@@ -285,13 +285,18 @@ CharacterMap* RenderingLayer::getCharacterMap() {
 
 
 bool RenderingLayer::addObject(const std::string &objectName, const std::string &mesh, Ogre::Vector3* position, Ogre::Quaternion* orientation, Ogre::Real scale) {
+    std::cout << "RenderingLayer::addObject()  obj="<< objectName << "  mesh="<< mesh << "  pos="<< position << "  orient=" << orientation <<std::endl;
 	if (sceneManager->hasEntity(objectName)) {
 		// An Object with the given name allready exists!
 		return false;
 	} else {
+        std::cout << "RenderingLayer::addObject()   -  createEntity" << std::endl;
 		Ogre::Entity* entity = sceneManager->createEntity(objectName, mesh);//"FatMan.mesh");
+        std::cout << "RenderingLayer::addObject()   -  createChildSceneNode" << std::endl;
 		Ogre::SceneNode* sceneNode = sceneManager->getRootSceneNode()->createChildSceneNode(objectName+"Node");
+        std::cout << "RenderingLayer::addObject()   -  attachObject" << std::endl;
 		sceneNode->attachObject(entity);
+        std::cout << "RenderingLayer::addObject()   -  DONE" << std::endl;
 		sceneNode->setPosition(*position);
 		sceneNode->setOrientation(*orientation);
 		sceneNode->setScale(Ogre::Vector3(scale, scale, scale));
@@ -321,12 +326,16 @@ bool RenderingLayer::removeObject(std::string objectName) {
 
 
 void RenderingLayer::updateCharacterStats() {
+	std::cout << "RenderingLayer::updateCharacterStats - BEGIN" << std::endl;
 	infoPanel->updateCharacterStats(*characterMap);
+	std::cout << "RenderingLayer::updateCharacterStats - END" << std::endl;
 }
 
 
 void RenderingLayer::updateTimeStats(long time) {
+	std::cout << "RenderingLayer::updateTimeStats - BEGIN" << std::endl;
 	infoPanel->updateTimeStats(time);
+	std::cout << "RenderingLayer::updateTimeStats - END" << std::endl;
 }
 
 
@@ -337,7 +346,7 @@ void RenderingLayer::run() {
 
 
 bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
-	//std::cout << "frame started" << std::endl;
+	std::cout << "frame started" << std::endl;
 	keyboard->capture();
 	mouse->capture();
 	
@@ -360,7 +369,9 @@ bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 			std::cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << std::endl;
 			std::cout << "$$$$$$$$$$$$$$$$ RenderingLayer has received a package!!! $$$$$$$$$$$$$$$$" << std::endl;
 			std::cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << std::endl;
+			std::cout << "$$$ type="<< pkg->getType() << std::endl;
 			if (pkg->getType()==Package::CHARACTER_DATA_PACKAGE_TYPE) {
+                std::cout << "handling CharacterDataPackage..." << std::endl;
 				CharacterDataPackage* package = (CharacterDataPackage*) pkg;
 				
 				
@@ -382,6 +393,7 @@ bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 					(*characterMap)[characterName]->addControlledExpressions(package->getAllControlledExpressions());
 				}
 			} else if (pkg->getType()==Package::ADD_CHARACTER_PACKAGE_TYPE) {
+                std::cout << "handling AddCharacterPackage..." << std::endl;
 				AddCharacterPackage* package = (AddCharacterPackage*) pkg;
 				addCharacter(package->getCharacterName(), package->getMeshName(), package->getPosition(), package->getDirection(), package->getScale());
 			} else if (pkg->getType()==Package::REMOVE_CHARACTER_PACKAGE_TYPE) {
@@ -431,7 +443,7 @@ bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 			std::cout << "BBB" << std::endl;
 		}
 	}
-	
+	std::cout << "RenderingLayer::frameStarted -- handling of Packages done" << std::endl;
 	
 	// exit on ESC
 	if(keyboard->isKeyDown(OIS::KC_ESCAPE))  {
@@ -473,9 +485,11 @@ bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 	}
 	
 	
+	std::cout << "RenderingLayer::frameStarted -- camera movement / mouse" << std::endl;
 	//observer->calcCurrentPosition();
 	observer->yaw(cameraRotX);
 	observer->pitch(cameraRotY);
+	std::cout << "RenderingLayer::frameStarted -- camera movement / done" << std::endl;
 	
 	
 	return true;

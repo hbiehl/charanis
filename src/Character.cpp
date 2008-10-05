@@ -72,6 +72,16 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	//entity->setCastShadows(true);
 	entity->getSkeleton()->setBlendMode(Ogre::ANIMBLEND_CUMULATIVE);
 	facialEntity = entity; //TODO temporary hack
+	
+    std::cout << "Character::Character --"
+        << " ent="  << entity 
+        << " skel=" << entity->getSkeleton() 
+        << " node="<< sceneNode 
+        << std::endl;
+	
+	// ======================= only needed because hacky model ===============
+	// add Eyes to the model
+	//addEyes(meshName);
 
 	// output some helpful information about the model
 	printBones();
