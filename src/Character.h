@@ -65,7 +65,7 @@ class Character {
 		//Ogre::SceneNode* facialNode;
 		Ogre::Entity* leftEyeEntity;
 		Ogre::Entity* rightEyeEntity;
-		Ogre::Entity* facialEntity;
+		//Ogre::Entity* facialEntity;
 		
 		DataManager* dataManager;
 		

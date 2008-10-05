@@ -371,6 +371,7 @@ bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 			std::cout << "$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$" << std::endl;
 			std::cout << "$$$ type="<< pkg->getType() << std::endl;
 			if (pkg->getType()==Package::CHARACTER_DATA_PACKAGE_TYPE) {
+                /*
                 std::cout << "handling CharacterDataPackage..." << std::endl;
 				CharacterDataPackage* package = (CharacterDataPackage*) pkg;
 				
@@ -392,6 +393,7 @@ bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 					// Alle ControlledExpressions aus dem Datenpaket auslesen und in das Charakter-Objekt schieben				
 					(*characterMap)[characterName]->addControlledExpressions(package->getAllControlledExpressions());
 				}
+                */
 			} else if (pkg->getType()==Package::ADD_CHARACTER_PACKAGE_TYPE) {
                 std::cout << "handling AddCharacterPackage..." << std::endl;
 				AddCharacterPackage* package = (AddCharacterPackage*) pkg;
@@ -465,9 +467,9 @@ bool RenderingLayer::frameStarted(const Ogre::FrameEvent& evt) {
 		
 	
 	
-	for (CharacterMap::iterator it = getCharacterMap()->begin(); it != getCharacterMap()->end(); it++) {
-		it->second->perform();
-	}
+	//for (CharacterMap::iterator it = getCharacterMap()->begin(); it != getCharacterMap()->end(); it++) {
+	//	it->second->perform();
+	//}
 
 	
 	// Camera Movement
