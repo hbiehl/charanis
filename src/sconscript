@@ -2,6 +2,8 @@
 
 env = Environment()
 
+env.Append(CCFLAGS='-g')
+
 # where to look for includes
 #env.Append(CPPPATH=Split("""
 #        /home/hbiehl/Ogre/ogrenew_v1-4-4/OgreMain/include
