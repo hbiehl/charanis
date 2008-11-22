@@ -53,6 +53,8 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	// output some helpful information about the model
 	printBones();
 	printMeshes();
+	printMeshAnimations();
+	printAnimationStates();
 	
 	// add the skeleton animations of the model to BehaviourLibrary
 	std::cout << "Available Animations for Character " << name << ":" << std::endl;
@@ -282,6 +284,22 @@ void Character::printMeshes() {
 	for (Ogre::Mesh::SubMeshNameMap::iterator it = m.begin(); it!=m.end(); it++) {
 		Ogre::SubMesh* subMesh = entity->getMesh()->getSubMesh(it->second);
 		std::cout << "----- "<< it->second << " name=" << it->first << " mat=" << subMesh->getMaterialName() << std::endl;
+	}
+}
+
+void Character::printMeshAnimations() {
+	std::cout << "Mesh Animations of Character " << name << ":" << std::endl;
+	for (int i=0; i<entity->getMesh()->getNumAnimations(); i++) {
+		std::cout << "----- "<< i << " " << entity->getMesh()->getAnimation(i)->getName() << std::endl;
+	}
+}
+
+void Character::printAnimationStates() {
+	std::cout << "Animation States of Character " << name << ":" << std::endl;
+	Ogre::AnimationStateIterator it = entity->getAllAnimationStates()->getAnimationStateIterator();
+	while (it.hasMoreElements()) {
+		Ogre::AnimationState* animstate = it.getNext();
+		std::cout << "----- "<< animstate->getAnimationName() << std::endl;
 	}
 }
 

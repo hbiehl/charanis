@@ -117,7 +117,8 @@ class Character {
 		
 		void printBones();
 		void printMeshes();
-
+		void printMeshAnimations();
+		void printAnimationStates();
 	public:
 		Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNode, std::string meshName, DataManager* dm, std::string name, Ogre::Real scale=1);
 		~Character();
