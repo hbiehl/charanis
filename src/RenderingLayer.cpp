@@ -200,7 +200,7 @@ void RenderingLayer::setupScene() {
 
 	// Create an entity (the floor)
 	Ogre::Entity *floorEnt = sceneManager->createEntity("floor", "FloorPlane");
-	floorEnt->setMaterialName("Examples/Rockwall");
+	floorEnt->setMaterialName("Examples/GrassFloor");
 	floorEnt->setCastShadows(false);
 	sceneManager->getRootSceneNode()->attachObject(floorEnt);
 
