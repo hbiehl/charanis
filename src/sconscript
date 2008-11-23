@@ -102,5 +102,5 @@ env.Append(LIBS=libs)
 
 
 
-env.Program('test', srcs)
+env.Program('charanis', srcs)
 
