@@ -10,7 +10,7 @@
 #ifndef RENDERING_LAYER_H
 #define RENDERING_LAYER_H
 
-#include "SDL/SDL.h"
+
 #include "Ogre/Ogre.h"
 #include "Ogre/OgreFrameListener.h"
 #include "Ogre/OgreStringConverter.h"

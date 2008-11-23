@@ -15,7 +15,7 @@
 #include <string>
 
 
-#include "SDL/SDL.h"
+
 #include "DataManager.h"
 #include "PipelineMap.h"
 

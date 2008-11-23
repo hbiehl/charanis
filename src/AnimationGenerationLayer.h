@@ -10,7 +10,7 @@
 #ifndef ANIMATION_GENERATION_LAYER_H
 #define ANIMATION_GENERATION_LAYER_H
 
-#include "SDL/SDL.h"
+
 #include <Ogre/Ogre.h>
 
 #include <vector>

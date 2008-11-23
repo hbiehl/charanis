@@ -10,7 +10,7 @@
 #ifndef AMBIENT_LIGHT_PACKAGE_H
 #define AMBIENT_LIGHT_PACKAGE_H
 
-#include "SDL/SDL.h"
+
 #include "Ogre/Ogre.h"
 #include "Package.h"
 

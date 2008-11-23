@@ -10,7 +10,7 @@
 #ifndef GENERATOR_H
 #define GENERATOR_H
 
-#include "SDL/SDL.h"
+
 #include <climits>
 
 #include <string>

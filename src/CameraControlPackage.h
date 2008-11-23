@@ -10,7 +10,7 @@
 #ifndef CAMERA_CONTROL_PACKAGE_H
 #define CAMERA_CONTROL_PACKAGE_H
 
-#include "SDL/SDL.h"
+
 #include "Ogre/Ogre.h"
 #include "Package.h"
 

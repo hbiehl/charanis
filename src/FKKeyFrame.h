@@ -10,7 +10,7 @@
 #ifndef FK_KEY_FRAME_H
 #define FK_KEY_FRAME_H
 
-#include "SDL/SDL.h"
+
 #include "Ogre/Ogre.h"
 
 namespace Charanis {

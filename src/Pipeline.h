@@ -12,7 +12,7 @@
 
 #include <vector>
 
-#include "SDL/SDL.h"
+
 #include "CharacterDataPackage.h"
 #include "PipelineMiddleLayer.h"
 #include "PackageQueue.h"

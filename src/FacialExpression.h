@@ -11,7 +11,7 @@
 #define FACIAL_EXPRESSION_H
 
 #include <vector>
-#include "SDL/SDL.h"
+
 #include <Ogre/Ogre.h>
 
 #include "StringRealMap.h"

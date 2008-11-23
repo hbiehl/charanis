@@ -13,7 +13,7 @@
 #include <string>
 #include <iostream>
 
-#include "SDL/SDL.h"
+
 #include "ActionScriptMap.h"
 
 namespace Charanis {

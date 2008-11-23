@@ -14,7 +14,7 @@
 #include <iostream>
 #include <vector>
 
-#include "SDL/SDL.h"
+
 #include "Parser.h"
 
 #include "Ogre/OgreStringConverter.h"

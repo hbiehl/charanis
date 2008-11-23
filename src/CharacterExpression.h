@@ -10,7 +10,7 @@
 #ifndef CHARACTER_EXPRESSION_H
 #define CHARACTER_EXPRESSION_H
 
-#include "SDL/SDL.h"
+
 #include "FacialExpression.h"
 #include "StringIntMap.h"
 

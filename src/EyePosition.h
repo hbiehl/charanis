@@ -10,7 +10,7 @@
 #ifndef EYE_POSITION_H
 #define EYE_POSITION_H
 
-#include "SDL/SDL.h"
+
 #include "Ogre/Ogre.h"
 
 namespace Charanis {

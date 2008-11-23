@@ -25,7 +25,7 @@
 #include "OpenAL/alc.h"
 //#include "OpenAL/alut.h"
 
-#include "SDL/SDL.h"
+
 
 #include "Ogre/Ogre.h"
 #include "Ogre/OgreTagPoint.h"

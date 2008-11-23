@@ -10,7 +10,7 @@
 #ifndef PIPELINE_MIDDLE_LAYER_H
 #define PIPELINE_MIDDLE_LAYER_H
 
-#include "SDL/SDL.h"
+
 #include "PipelineLayer.h"
 
 

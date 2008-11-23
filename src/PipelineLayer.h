@@ -10,7 +10,7 @@
 #ifndef PIPELINE_LAYER_H
 #define PIPELINE_LAYER_H
 
-#include "SDL/SDL.h"
+
 
 #include <boost/thread/thread.hpp>
 #include <boost/bind.hpp>

@@ -8,7 +8,7 @@
  */
 
 
-#include "SDL/SDL.h"
+
 
 
 #include "EngineManager.h"

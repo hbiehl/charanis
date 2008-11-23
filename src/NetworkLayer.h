@@ -10,8 +10,6 @@
 #ifndef NETWORK_LAYER_H
 #define NETWORK_LAYER_H
 
-
-#include <SDL/SDL.h>
 #include <SDL_net/SDL_net.h>
 
 #include <Ogre/Ogre.h>

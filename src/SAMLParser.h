@@ -15,7 +15,7 @@
 #include <iostream>
 #include <vector>
 
-#include "SDL/SDL.h"
+
 #include "Parser.h"
 
 

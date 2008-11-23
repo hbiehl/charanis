@@ -10,7 +10,6 @@
 #ifndef AUDIO_TRACK_H
 #define AUDIO_TRACK_H
 
-#include "SDL/SDL.h"
 #include "Ogre/Ogre.h"
 
 #include "OpenAL/alc.h"

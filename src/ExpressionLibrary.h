@@ -16,7 +16,7 @@
 #include <string>
 
 
-#include "SDL/SDL.h"
+
 #include "FEMLParser.h"
 
 #include "EmotionTypes.h"

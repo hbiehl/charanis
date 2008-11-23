@@ -10,7 +10,7 @@
 #ifndef EYE_ANIMATION_H
 #define EYE_ANIMATION_H
 
-#include "SDL/SDL.h"
+
 #include "EyePosition.h"
 #include "TimedEyePositionMap.h"
 

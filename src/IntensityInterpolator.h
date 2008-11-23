@@ -14,7 +14,7 @@
 #include <cmath>
 #include <map>
 
-#include "SDL/SDL.h"
+
 #include "Ogre/Ogre.h"
 #include "InvalidTimingException.h"
 

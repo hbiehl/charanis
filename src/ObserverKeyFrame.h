@@ -11,7 +11,7 @@
 #ifndef OBSERVER_KEY_FRAME_H
 #define OBSERVER_KEY_FRAME_H
 
-#include "SDL/SDL.h"
+
 #include "Ogre/Ogre.h"
 
 namespace Charanis {

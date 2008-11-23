@@ -14,7 +14,7 @@
 
 #include <string>
 
-#include "SDL/SDL.h"
+
 #include "Ogre/Ogre.h"
 
 #include "Package.h"

@@ -11,7 +11,7 @@
 #define TIMED_EYE_POSITION_MAP_H
 
 #include <map>
-#include "SDL/SDL.h"
+
 #include "Ogre/Ogre.h"
 #include "EyePosition.h"
 

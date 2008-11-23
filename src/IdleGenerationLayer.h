@@ -10,7 +10,7 @@
 #ifndef IDLE_GENERATION_LAYER_H
 #define IDLE_GENERATION_LAYER_H
 
-#include "SDL/SDL.h"
+
 #include <Ogre/Ogre.h>
 
 #include "PipelineMiddleLayer.h"
