@@ -6,7 +6,6 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef PACKAGE_H
 #define PACKAGE_H
 

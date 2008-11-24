@@ -6,8 +6,9 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "Config.h"
+// project includes
+#include "Parser.h"
 
 namespace Charanis {
 

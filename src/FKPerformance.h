@@ -6,20 +6,26 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef FK_PERFORMANCE_H
 #define FK_PERFORMANCE_H
 
+// std includes
 #include <string>
-#include <map>
-
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
+// project includes
 #include "FKTrack.h"
 #include "FKTrackMap.h"
 
-#include "CharacterPerformance.h"
+namespace Ogre {
+class Animation;
+class Entity;
+} // end of namespace Ogre
 
 namespace Charanis {
 
+class CharacterPerformance;
+class FKTrack;
 
 /**
  * \brief Klasse zur Definition von Skelett-Animationen zur Laufzeit.

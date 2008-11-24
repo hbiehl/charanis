@@ -11,6 +11,7 @@
 #ifndef BODY_ANIMATION_H
 #define BODY_ANIMATION_H
 
+// std includes
 #include <string>
 
 namespace Charanis {

@@ -6,11 +6,16 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "PipelineMiddleLayer.h"
+// std includes
+#include <iostream>
+// dependency includes
+#include <boost/bind.hpp>
+// project includes
+#include "Package.h"
+#include "PackageQueue.h"
 
 namespace Charanis {
-
 
 PipelineMiddleLayer::PipelineMiddleLayer(DataManager* dm, std::string characterName, std::string layerName) 
 : PipelineLayer::PipelineLayer(dm, layerName) {

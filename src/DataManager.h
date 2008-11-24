@@ -6,26 +6,29 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef DATA_MANAGER_H
 #define DATA_MANAGER_H
 
+// std includes
 #include <map>
-
+#include <string>
+// dependency includes
 #include <boost/thread/thread.hpp>
-
 #include <boost/random.hpp>
-#include <boost/random/linear_congruential.hpp>
+//#include <boost/random/linear_congruential.hpp>
 #include <boost/random/uniform_int.hpp>
 #include <boost/random/uniform_real.hpp>
 #include <boost/random/variate_generator.hpp>
-
+#include <Ogre/OgrePrerequisites.h>
+// project includes
 #include "EmotionTypes.h"
-#include "CharacterData.h"
-#include "BehaviorLibrary.h"
-#include "Config.h"
+
 
 namespace Charanis {
+
+class BehaviorLibrary;
+class CharacterData;
+class Config;
 
 /**
  * \brief Zentrale Klasse zum Verwalten verschiedenster Daten.

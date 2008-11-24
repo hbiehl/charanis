@@ -9,6 +9,17 @@
 
 #include "Parser.h"
 
+// std includes
+#include <iostream>
+#include <vector>
+
+// dependency includes
+#include <Ogre/OgreStringConverter.h>
+#include <xercesc/sax/SAXException.hpp>
+#include <xercesc/util/PlatformUtils.hpp>
+
+
+
 namespace Charanis {
 
 Parser::Parser() {

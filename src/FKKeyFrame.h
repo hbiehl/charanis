@@ -6,16 +6,17 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef FK_KEY_FRAME_H
 #define FK_KEY_FRAME_H
 
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
 
-#include "Ogre/Ogre.h"
+namespace Ogre {
+class Quaternion;
+} // end of namespace Ogre
 
 namespace Charanis {
-
-
 
 /**
  * \brief Hilfsklasse der FKPerformance.

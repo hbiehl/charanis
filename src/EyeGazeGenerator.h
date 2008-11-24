@@ -10,7 +10,12 @@
 #ifndef EYE_GAZE_GENERATOR
 #define EYE_GAZE_GENERATOR
 
+// project includes
 #include "Generator.h"
+
+namespace Ogre {
+class Quaternion;
+}
 
 namespace Charanis {
 

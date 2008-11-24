@@ -6,8 +6,9 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "AmbientLightPackage.h"
+// dependency includes
+#include <Ogre/OgreColourValue.h>
 
 namespace Charanis {
 

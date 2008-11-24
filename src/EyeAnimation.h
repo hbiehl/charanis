@@ -6,12 +6,10 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef EYE_ANIMATION_H
 #define EYE_ANIMATION_H
 
-
-#include "EyePosition.h"
+// project includes
 #include "TimedEyePositionMap.h"
 
 namespace Charanis {

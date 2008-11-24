@@ -6,20 +6,17 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef CHARACTER_PERFORMANCE_H
 #define CHARACTER_PERFORMANCE_H
 
+// std includes
 #include <map>
 #include <string>
 
-
-#include "Ogre/Ogre.h"
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
 
 namespace Charanis {
-
-typedef std::map<std::string, Ogre::Real> CharacterPropertyMap;
-
 
 /**
  * \brief Repräsentation eines Skelettanimations-Kommandos.
@@ -31,7 +28,6 @@ typedef std::map<std::string, Ogre::Real> CharacterPropertyMap;
 class CharacterPerformance {
 	private:
 		std::string characterName;
-		
 		std::string animationName;
 		
 		Ogre::Real startTime;
@@ -43,15 +39,13 @@ class CharacterPerformance {
 		Ogre::Real fadeinTime;
 		Ogre::Real fadeoutTime;
 		Ogre::Real startOffsetTime;
-
 		
 		bool manualPerformance;
 		
+		typedef std::map<std::string, Ogre::Real> CharacterPropertyMap;		
 		CharacterPropertyMap properties;
 		
 	public:
-		
-
 		CharacterPerformance(std::string characterName, std::string animationName, Ogre::Real startTime, Ogre::Real endTime, Ogre::Real speedModifier=1);
 		CharacterPerformance(std::string characterName, std::string animationName, Ogre::Real startTime, Ogre::Real startOffsetTime, Ogre::Real fadeinTime, Ogre::Real endTime, Ogre::Real fadeoutTime, Ogre::Real speedModifier=1);
 
@@ -60,9 +54,6 @@ class CharacterPerformance {
 		void init(std::string characterName, std::string animationName, Ogre::Real startTime, Ogre::Real endTime, Ogre::Real speedModifier);
 		
 		std::string getCharacterName();
-		
-		
-		
 		
 		Ogre::Real getStartTime();
 		Ogre::Real getEndTime();

@@ -10,19 +10,15 @@
 #ifndef PIPELINE_LAYER_H
 #define PIPELINE_LAYER_H
 
-
-
-#include <boost/thread/thread.hpp>
-#include <boost/bind.hpp>
-#include <iostream>
+// std includes
 #include <string>
-
-#include "PackageQueue.h"
-#include "DataManager.h"
 
 //boost::mutex io_mutex;
 
 namespace Charanis {
+
+class DataManager;
+class PackageQueue;
 
 /**
  * \brief Eine Stufe einer Pipeline.

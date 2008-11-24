@@ -10,10 +10,11 @@
 #ifndef ACTION_LIBRARY_H
 #define ACTION_LIBRARY_H
 
-#include <string>
+// std includes
 #include <iostream>
+#include <string>
 
-
+// project includes
 #include "ActionScriptMap.h"
 
 namespace Charanis {

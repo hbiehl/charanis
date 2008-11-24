@@ -6,25 +6,17 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef IDLE_GENERATION_LAYER_H
 #define IDLE_GENERATION_LAYER_H
 
-
-#include <Ogre/Ogre.h>
-
+// project includes
 #include "PipelineMiddleLayer.h"
-#include "CharacterDataPackage.h"
-
 
 namespace Charanis {
 
 class IdleGenerationLayer : PipelineMiddleLayer {
 	private:
 		//Ogre::Real time;
-		
-		
-		
 		
 	protected:
 		void handlePackage(Package* package);

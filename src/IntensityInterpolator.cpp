@@ -6,8 +6,10 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "IntensityInterpolator.h"
+// project includes
+#include "InvalidTimingException.h"
+
 
 namespace Charanis {
 

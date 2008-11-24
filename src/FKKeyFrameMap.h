@@ -6,18 +6,17 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef FK_KEY_FRAME_MAP_H
 #define FK_KEY_FRAME_MAP_H
 
+// std includes
 #include <map>
-
-
-#include "Ogre/Ogre.h"
-
-#include "FKKeyFrame.h"
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
 
 namespace Charanis {
-	typedef std::map<Ogre::Real, FKKeyFrame*> FKKeyFrameMap;
+
+class FKKeyFrame;
+typedef std::map<Ogre::Real, FKKeyFrame*> FKKeyFrameMap;
 } // end of namespace
 #endif

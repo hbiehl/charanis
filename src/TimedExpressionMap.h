@@ -10,11 +10,13 @@
 #ifndef TIMED_EXPRESSION_MAP_H
 #define TIMED_EXPRESSION_MAP_H
 
+// std includes
 #include <map>
 #include <string>
-#include "CharacterExpression.h"
 
 namespace Charanis {
+	class CharacterExpression;
+
 	//typedef std::map<Ogre::Real, CharacterExpression*> TimedExpressionMap;
 	class TimedExpressionMap : public std::map<Ogre::Real, CharacterExpression*> {
 		public:

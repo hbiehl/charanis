@@ -11,28 +11,17 @@
 #ifndef SAML_PARSER_H
 #define SAML_PARSER_H
 
+// std includes
 #include <string>
-#include <iostream>
-#include <vector>
 
+// dependency includes
+#include <Ogre/OgreEntity.h>
 
+// project includes
 #include "Parser.h"
-
-
-#include "Ogre/Ogre.h"
-#include "Ogre/OgreStringConverter.h"
-//#include "FacialExpression.h"
 #include "BodyAnimationVector.h"
 
-#include <xercesc/util/PlatformUtils.hpp>
-#include <xercesc/dom/DOM.hpp>
-#include <xercesc/sax/SAXException.hpp>
-#include <xercesc/parsers/XercesDOMParser.hpp>
-
-
 namespace Charanis {
-
-//typedef std::vector<FacialExpression*> FacialExpressionVector;
 
 /**
  * \brief Parser zum Auswerten der SAML-Dateien.

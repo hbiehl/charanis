@@ -8,6 +8,13 @@
  */
 
 #include "PipelineLayer.h"
+// std includes
+#include <iostream>
+// dependency includes
+#include <boost/thread/thread.hpp>
+#include <boost/bind.hpp>
+// project includes
+#include "PackageQueue.h"
 
 namespace Charanis {
 

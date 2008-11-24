@@ -6,13 +6,15 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef CAMERA_CONTROL_PACKAGE_H
 #define CAMERA_CONTROL_PACKAGE_H
 
-
-#include "Ogre/Ogre.h"
+// project includes
 #include "Package.h"
+
+namespace Ogre {
+class Vector3;
+} // end of namespace Ogre
 
 namespace Charanis {
 

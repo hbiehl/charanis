@@ -6,8 +6,20 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "Observer.h"
+
+// dependency includes
+#include <Ogre/OgreCamera.h>
+#include <Ogre/OgreMath.h>
+#include <Ogre/OgreQuaternion.h>
+#include <Ogre/OgreRoot.h>
+#include <Ogre/OgreSceneManager.h>
+#include <Ogre/OgreVector3.h>
+#include <OpenAL/al.h>
+//#include <OpenAL/alc.h>
+// project inludes
+#include "DataManager.h"
+#include "ObserverKeyFrame.h"
 
 namespace Charanis {
 

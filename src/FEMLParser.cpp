@@ -9,6 +9,19 @@
 
 #include "FEMLParser.h"
 
+// std includes
+#include <iostream>
+
+// dependency includes
+//#include <Ogre/OgreStringConverter.h>
+#include <xercesc/util/PlatformUtils.hpp>
+#include <xercesc/dom/DOM.hpp>
+#include <xercesc/sax/SAXException.hpp>
+#include <xercesc/parsers/XercesDOMParser.hpp>
+
+// project includes
+#include "FacialExpression.h"
+
 namespace Charanis {
 
 FEMLParser::FEMLParser(std::string femlDir) 

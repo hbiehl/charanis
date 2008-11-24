@@ -6,13 +6,12 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
-
 #ifndef REMOVE_OBJECT_PACKAGE_H
 #define REMOVE_OBJECT_PACKAGE_H
 
+// std includes
 #include <string>
-
+// project includes
 #include "Package.h"
 
 namespace Charanis {

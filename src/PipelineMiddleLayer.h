@@ -6,15 +6,16 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef PIPELINE_MIDDLE_LAYER_H
 #define PIPELINE_MIDDLE_LAYER_H
 
-
 #include "PipelineLayer.h"
-
+// dependeny includes
+#include <boost/thread/thread.hpp>
 
 namespace Charanis {
+
+class Package;
 
 class PipelineMiddleLayer : public PipelineLayer {
 	private:

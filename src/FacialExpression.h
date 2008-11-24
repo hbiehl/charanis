@@ -10,10 +10,10 @@
 #ifndef FACIAL_EXPRESSION_H
 #define FACIAL_EXPRESSION_H
 
-#include <vector>
+// dependency includes
+#include <Ogre/Ogre.h> // TODO
 
-#include <Ogre/Ogre.h>
-
+// project includes
 #include "StringRealMap.h"
 #include "StringIntMap.h"
 

@@ -10,24 +10,17 @@
 #ifndef FEML_PARSER_H
 #define FEML_PARSER_H
 
+// std includes
 #include <string>
-#include <iostream>
 #include <vector>
 
-
+// project includes
 #include "Parser.h"
-
-#include "Ogre/OgreStringConverter.h"
-#include "FacialExpression.h"
-
-#include <xercesc/util/PlatformUtils.hpp>
-#include <xercesc/dom/DOM.hpp>
-#include <xercesc/sax/SAXException.hpp>
-#include <xercesc/parsers/XercesDOMParser.hpp>
 
 
 namespace Charanis {
 
+class FacialExpression;
 typedef std::vector<FacialExpression*> FacialExpressionVector;
 
 /**

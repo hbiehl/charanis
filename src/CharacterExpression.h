@@ -6,15 +6,21 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef CHARACTER_EXPRESSION_H
 #define CHARACTER_EXPRESSION_H
 
-
-#include "FacialExpression.h"
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
+// project includes
 #include "StringIntMap.h"
 
+namespace Ogre {
+class VertexPoseKeyFrame;
+} // end of namespace Ogre
+
 namespace Charanis {
+
+class FacialExpression;
 
 class CharacterExpression {
 	private:

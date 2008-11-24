@@ -6,15 +6,18 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef DIRECTIONAL_LIGHT_PACKAGE_H
 #define DIRECTIONAL_LIGHT_PACKAGE_H
 
+// std includes
 #include <string>
-
-
-#include "Ogre/Ogre.h"
+// project includes
 #include "Package.h"
+
+namespace Ogre {
+class ColourValue;
+class Vector3;
+} // end of namespace Ogre
 
 namespace Charanis {
 

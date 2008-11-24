@@ -12,6 +12,10 @@
 
 #include "Generator.h"
 
+namespace Ogre {
+class Quaternion;
+}
+
 namespace Charanis {
 
 /**

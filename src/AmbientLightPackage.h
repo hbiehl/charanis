@@ -10,9 +10,12 @@
 #ifndef AMBIENT_LIGHT_PACKAGE_H
 #define AMBIENT_LIGHT_PACKAGE_H
 
-
-#include "Ogre/Ogre.h"
+// project includes
 #include "Package.h"
+
+namespace Ogre {
+class ColourValue;
+} // end of namespace Ogre
 
 namespace Charanis {
 

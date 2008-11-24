@@ -8,6 +8,9 @@
  */
 
 #include "Generator.h"
+// std includes
+#include <iostream>
+#include <sstream>
 
 namespace Charanis {
 

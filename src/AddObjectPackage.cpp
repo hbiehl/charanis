@@ -6,8 +6,10 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "AddObjectPackage.h"
+// dependency includes
+#include <Ogre/OgreQuaternion.h>
+#include <Ogre/OgreVector3.h>
 
 namespace Charanis {
 

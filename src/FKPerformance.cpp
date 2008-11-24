@@ -6,8 +6,17 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "FKPerformance.h"
+// dependency includes
+#include <Ogre/OgreAnimation.h>
+#include <Ogre/OgreBone.h>
+#include <Ogre/OgreEntity.h>
+#include <Ogre/OgreSkeleton.h>
+#include <Ogre/OgreSkeletonInstance.h>
+// project includes
+#include "CharacterPerformance.h"
+#include "FKKeyFrame.h"
+#include "FKTrack.h"
 
 namespace Charanis {
 	

@@ -11,9 +11,9 @@
 #define EXPRESSION_VECTOR_H
 
 #include <vector>
-#include "FacialExpression.h"
 
 namespace Charanis {
+	class FacialExpression;
 	typedef std::vector<FacialExpression*> ExpressionVector;
 } // end of namespace
 

@@ -6,8 +6,11 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "CharacterPerformance.h"
+
+// std includes
+#include <iostream>
+
 
 namespace Charanis {
 

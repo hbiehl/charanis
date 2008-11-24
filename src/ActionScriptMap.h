@@ -10,12 +10,13 @@
 #ifndef ACTION_SCRIPT_MAP_H
 #define ACTION_SCRIPT_MAP_H
 
+// std includes
 #include <map>
 #include <string>
 
-#include "ActionScript.h"
-
 namespace Charanis {
+	class ActionScript;
+	
 	typedef std::map<std::string, ActionScript*> ActionScriptMap;
 } // end of namespace
 

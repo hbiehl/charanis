@@ -6,8 +6,9 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "CameraControlPackage.h"
+// dependency includes
+#include <Ogre/OgreVector3.h>
 
 namespace Charanis {
 

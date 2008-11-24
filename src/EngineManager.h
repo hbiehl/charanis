@@ -6,28 +6,24 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
-
-
 #ifndef ENGINGE_MANAGER_H
 #define ENGINGE_MANAGER_H
 
-
+// std includes
 #include <string>
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
 
 
-#include "Ogre/Ogre.h"
+namespace Ogre {
+class Vector3;
+} // end of namespace Ogre
 
-#include "DataManager.h"
-#include "Config.h"
-
-
-#include "AddCharacterPackage.h"
-#include "RemoveCharacterPackage.h"
-#include "PipelineManager.h"
 
 namespace Charanis {
 
+class PipelineManager;
+class DataManager;
 class RenderingLayer;
 class NetworkLayer;
 

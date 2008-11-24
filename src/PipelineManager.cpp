@@ -6,8 +6,17 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "PipelineManager.h"
+
+// project includes
+#include "AnimationCutterLayer.h"
+#include "AnimationGenerationLayer.h"
+#include "IdleGenerationLayer.h"
+#include "NetworkLayer.h"
+#include "PackageQueue.h"
+#include "Pipeline.h"
+#include "RenderingLayer.h"
+
 
 namespace Charanis {
 

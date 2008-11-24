@@ -6,20 +6,17 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef FK_TRACK_H
 #define FK_TRACK_H
 
+// std includes
 #include <string>
-#include <map>
-
-
-#include "Ogre/Ogre.h"
-
-#include "FKKeyFrame.h"
+// project includes
 #include "FKKeyFrameMap.h"
 
 namespace Charanis {
+
+class FKKeyFrame;
 
 /**
  * \brief Hilfsklasse der FKPerformance.

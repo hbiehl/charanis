@@ -10,11 +10,11 @@
 #ifndef AUDIO_TRACK_H
 #define AUDIO_TRACK_H
 
-#include "Ogre/Ogre.h"
-
-#include "OpenAL/alc.h"
-#include "OpenAL/al.h"
-#include "alut.h"
+// std includes
+#include <string>
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
+#include "alut.h" // TODO
 
 namespace Charanis {
 

@@ -10,17 +10,14 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-
+// std includes
 #include <string>
-#include <iostream>
-#include <vector>
 
-#include "Ogre/OgreStringConverter.h"
-
-#include <xercesc/util/PlatformUtils.hpp>
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
 #include <xercesc/dom/DOM.hpp>
-#include <xercesc/sax/SAXException.hpp>
-#include <xercesc/parsers/XercesDOMParser.hpp>
+#include <xercesc/parsers/XercesDOMParser.hpp> // TODO: any chance to remove this header?
+
 
 namespace Charanis {
 

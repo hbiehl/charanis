@@ -8,9 +8,29 @@
  */
 
 #include "MessageParser.h"
+// dependency includes
+#include <xercesc/framework/MemBufInputSource.hpp>
+#include <xercesc/sax/SAXException.hpp>
 
+// project includes
 #include "EngineManager.h"
-
+#include "DataManager.h"
+#include "FKPerformance.h"
+#include "FKTrack.h"
+#include "FKKeyFrame.h"
+// packages
+#include "AddObjectPackage.h"
+#include "AmbientLightPackage.h"
+#include "BehaviorLibrary.h"
+#include "CameraControlPackage.h"
+#include "CharacterDataPackage.h"
+#include "CharacterExpression.h"
+#include "CharacterSoundPackage.h"
+#include "DirectionalLightPackage.h"
+#include "ImportFEMLFilePackage.h"
+#include "ImportSAMLFilePackage.h"
+#include "RemoveObjectPackage.h"
+#include "RemoveDirectionalLightPackage.h"
 
 namespace Charanis {
 
@@ -44,10 +64,12 @@ Ogre::Vector3* MessageParser::getVector(xercesc::DOMElement* parentElement) {
 
 Ogre::Quaternion* MessageParser::getQuaternion(xercesc::DOMElement* parentElement) {
 	return new Ogre::Quaternion(
-		getRealContents((xercesc::DOMElement*) getNodeList(parentElement, "W")->item(0)),
-		getRealContents((xercesc::DOMElement*) getNodeList(parentElement, "X")->item(0)),
-		getRealContents((xercesc::DOMElement*) getNodeList(parentElement, "Y")->item(0)),
-		getRealContents((xercesc::DOMElement*) getNodeList(parentElement, "Z")->item(0))
+		Ogre::Degree(getRealContents((xercesc::DOMElement*) getNodeList(parentElement, "W")->item(0))),
+		Ogre::Vector3(
+			getRealContents((xercesc::DOMElement*) getNodeList(parentElement, "X")->item(0)),
+			getRealContents((xercesc::DOMElement*) getNodeList(parentElement, "Y")->item(0)),
+			getRealContents((xercesc::DOMElement*) getNodeList(parentElement, "Z")->item(0))
+		)
 	);
 }
 

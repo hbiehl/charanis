@@ -6,17 +6,21 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
-
 #ifndef ADD_OBJECT_PACKAGE_H
 #define ADD_OBJECT_PACKAGE_H
 
+// std includes
 #include <string>
-#include <vector>
-
-
-#include "Ogre/Ogre.h"
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
+// project includes
 #include "Package.h"
+
+namespace Ogre {
+class Quaternion;
+class Vector3;
+} // end of namespace Ogre
+
 
 namespace Charanis {
 

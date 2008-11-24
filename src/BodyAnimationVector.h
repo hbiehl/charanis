@@ -13,9 +13,9 @@
 #include <string>
 #include <vector>
 
-#include "BodyAnimation.h"
-
 namespace Charanis {
+	class BodyAnimation;
+	
 	typedef std::vector<BodyAnimation*> BodyAnimationVector;
 } // end of namespace
 

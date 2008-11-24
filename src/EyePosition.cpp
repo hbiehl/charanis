@@ -6,7 +6,6 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "EyePosition.h"
 
 namespace Charanis {

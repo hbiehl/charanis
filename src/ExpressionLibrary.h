@@ -11,22 +11,19 @@
 #ifndef EXPRESSION_LIBRARY_H
 #define EXPRESSION_LIBRARY_H
 
-
+// std includes
 #include <map>
 #include <string>
 
-
-
-#include "FEMLParser.h"
-
+// project includes
 #include "EmotionTypes.h"
-#include "FacialExpression.h"
 #include "ExpressionMap.h"
-#include "CharacterData.h"
 #include "StringIntMap.h"
 
 
 namespace Charanis {
+
+class FacialExpression;
 
 class ExpressionLibrary {
 	private:

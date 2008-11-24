@@ -6,8 +6,9 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "FKTrack.h"
+// project includes
+#include "FKKeyFrame.h"
 
 namespace Charanis {
 

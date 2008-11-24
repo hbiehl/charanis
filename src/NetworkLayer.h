@@ -10,19 +10,17 @@
 #ifndef NETWORK_LAYER_H
 #define NETWORK_LAYER_H
 
-#include <SDL_net/SDL_net.h>
-
-#include <Ogre/Ogre.h>
-
-#include "MessageParser.h"
+// std includes
+#include <map>
+#include <string>
+// project includes
 #include "PipelineMiddleLayer.h"
-#include "CharacterDataPackage.h"
 
-#include "DataManager.h"
 
 namespace Charanis {
 
 class EngineManager;
+class PackageQueue;
 
 typedef std::map<std::string, PackageQueue*> QueueMap;
 

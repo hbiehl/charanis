@@ -11,13 +11,13 @@
 #ifndef BODY_ANIMATION_MAP_H
 #define BODY_ANIMATION_MAP_H
 
-#include <string>
+// std includes
 #include <map>
-
-#include "BodyAnimation.h"
-
+#include <string>
 
 namespace Charanis {
+	class BodyAnimation;
+	
 	typedef std::map<std::string, BodyAnimation*> BodyAnimationMap;
 } // end of namespace
 

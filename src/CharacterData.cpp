@@ -6,8 +6,10 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "CharacterData.h"
+// project includes
+#include "IntensityInterpolator.h"
+
 
 namespace Charanis {
 

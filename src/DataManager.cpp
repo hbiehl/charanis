@@ -6,9 +6,14 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "DataManager.h"
-#include <limits.h>
+// std includes
+#include <limits>
+// project includes
+#include "BehaviorLibrary.h"
+#include "CharacterData.h"
+#include "Config.h"
+
 
 namespace Charanis {
 

@@ -6,17 +6,14 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
-
 #ifndef CHARACTER_SOUND_PACKAGE
 #define CHARACTER_SOUND_PACKAGE
 
-
+// std includes
 #include <string>
-
-
-#include "Ogre/Ogre.h"
-
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
+// project includes
 #include "Package.h"
 
 namespace Charanis {

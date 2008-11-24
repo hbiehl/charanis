@@ -6,8 +6,10 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "AnimationCutterLayer.h"
+
+// project includes
+#include "CharacterDataPackage.h"
 
 namespace Charanis {
 

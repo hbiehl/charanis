@@ -6,14 +6,12 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef ANIMATION_CUTTER_LAYER_H
 #define ANIMATION_CUTTER_LAYER_H
 
-
+// project includes
+#include "CharacterPerformanceVector.h"
 #include "PipelineMiddleLayer.h"
-#include "CharacterDataPackage.h"
-
 
 namespace Charanis {
 

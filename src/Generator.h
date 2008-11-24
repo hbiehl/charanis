@@ -10,17 +10,14 @@
 #ifndef GENERATOR_H
 #define GENERATOR_H
 
-
+// std includes
 #include <climits>
-
 #include <string>
-#include <iostream>
-
-
-#include "DataManager.h"
-#include "CharacterDataPackage.h"
 
 namespace Charanis {
+
+class CharacterDataPackage;
+class DataManager;
 
 /** 
  * \brief Basisklasse für Generatoren zur automatischen Animationserzeugung.

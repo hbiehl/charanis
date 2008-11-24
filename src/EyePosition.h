@@ -6,12 +6,11 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef EYE_POSITION_H
 #define EYE_POSITION_H
 
-
-#include "Ogre/Ogre.h"
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
 
 namespace Charanis {
 

@@ -6,9 +6,13 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "AnimationGenerationLayer.h"
-
+// std includes
+#include <iostream>
+// project includes
+#include "CharacterDataPackage.h"
+#include "EyeGazeGenerator.h"
+#include "HeadMovementGenerator.h"
 
 namespace Charanis {
 	

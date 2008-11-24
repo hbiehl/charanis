@@ -9,11 +9,13 @@
 #ifndef CHARANIS_INFO_PANEL_H
 #define CHARANIS_INFO_PANEL_H
 
-#include "Ogre/Ogre.h"
-#include "Ogre/OgreTextAreaOverlayElement.h"
-
-
+// project includes
 #include "CharacterMap.h"
+
+namespace Ogre {
+class OverlayContainer;
+class TextAreaOverlayElement;
+} // end of namespace Ogre
 
 namespace Charanis {
 

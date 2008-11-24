@@ -6,14 +6,21 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
-
-
 #include "EngineManager.h"
-#include "NetworkLayer.h"
 
-#include "OpenAL/al.h"
-#include "OpenAL/alc.h"
+// dependency includes
+#include <Ogre/OgreVector3.h>
+#include <OpenAL/al.h>
+#include <OpenAL/alc.h>
+#include "alut.h" // TODO
+// project includes
+#include "DataManager.h"
+#include "NetworkLayer.h"
+#include "PackageQueue.h"
+#include "Packages.h"
+#include "PipelineManager.h"
+#include "RenderingLayer.h"
+
 
 namespace Charanis {
 

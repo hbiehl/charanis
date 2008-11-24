@@ -6,8 +6,9 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "EyeAnimation.h"
+// project includes
+#include "EyePosition.h"
 
 namespace Charanis {
 

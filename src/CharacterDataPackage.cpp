@@ -6,8 +6,10 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "CharacterDataPackage.h"
+
+// project includes
+#include "CharacterExpression.h"
 
 namespace Charanis {
 

@@ -6,12 +6,12 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef CONFIG_H
 #define CONFIG_H
 
+// std includes
 #include <string>
-
+// project includes
 #include "Parser.h"
 
 namespace Charanis {

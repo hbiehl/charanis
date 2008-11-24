@@ -6,8 +6,9 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "CharacterExpression.h"
+// project includes
+#include "FacialExpression.h"
 
 namespace Charanis {
 

@@ -9,6 +9,9 @@
 
 #include "ActionLibrary.h"
 
+// project includes
+#include "ActionScript.h"
+
 namespace Charanis {
 
 ActionLibrary::ActionLibrary(std::string characterName) {

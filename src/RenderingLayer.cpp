@@ -6,10 +6,21 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "RenderingLayer.h"
-
+// std includes
+#include <iostream>
+// dependency includes
+#include <Ogre/Ogre.h>
+#include "alut.h" // TODO
+// project includes
+#include "Character.h"
+#include "CharanisInfoPanel.h"
+#include "Config.h"
+#include "DataManager.h"
 #include "EngineManager.h"
+#include "Observer.h"
+#include "PackageQueue.h"
+#include "Packages.h"
 
 namespace Charanis {
 
@@ -160,8 +171,8 @@ void RenderingLayer::addDirectionalLight(std::string lightName, Ogre::ColourValu
 		l->setDiffuseColour(*diffuseColour);
 		l->setSpecularColour(*specularColour);
 		l->setDirection(*direction);	
-		l->setCastShadows(true);
-		//l->setCastShadows(false);
+		//l->setCastShadows(true);
+		l->setCastShadows(false);
 	}
 }
 
@@ -187,7 +198,7 @@ void RenderingLayer::setupScene() {
 	setAmbientLight(new Ogre::ColourValue(0, 0, 0));
 
 	// Shadow
-	sceneManager->setShadowTechnique( Ogre::SHADOWTYPE_STENCIL_ADDITIVE );
+	//sceneManager->setShadowTechnique( Ogre::SHADOWTYPE_STENCIL_ADDITIVE );
 	
 	// FloorPlane
 	Ogre::Plane p;

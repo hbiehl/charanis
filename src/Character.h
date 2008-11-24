@@ -10,46 +10,29 @@
 #ifndef CHARACTER_H
 #define CHARACTER_H
 
-#include <iostream>
+// std includes
+#include <deque>
+#include <map>
 #include <string>
-#include <vector>
-#include <cmath>
-#include <cstdlib>
 
-#include <boost/random.hpp>
-#include <boost/random/linear_congruential.hpp>
-#include <boost/random/uniform_int.hpp>
-#include <boost/random/uniform_real.hpp>
-#include <boost/random/variate_generator.hpp>
+// dependency includes
+#include <OpenAL/alc.h>
+//#include <OpenAL/alut.h>
+#include <Ogre/Ogre.h>
 
-#include "OpenAL/alc.h"
-//#include "OpenAL/alut.h"
-
-
-
-#include "Ogre/Ogre.h"
-#include "Ogre/OgreTagPoint.h"
-#include "Ogre/OgreSkeletonSerializer.h"
-
-#include "EmotionTypes.h"
-#include "DataManager.h"
-#include "CharacterPerformance.h"
-#include "CharacterPerformanceVector.h"
-#include "CharacterPerformanceMap.h"
-#include "FKPerformance.h"
-#include "FKPerformanceVector.h"
-
-#include "FacialExpression.h"
+// project includes
+#include "AudioTrack.h"
 #include "CharacterExpression.h"
+#include "CharacterPerformanceVector.h"
+#include "EmotionTypes.h"
+#include "FKPerformanceVector.h"
 #include "TimedExpressionMap.h"
 
-#include "AudioTrack.h"
-
-#include "FEMLParser.h"
-#include "SAMLParser.h"
-#include "BodyAnimationVector.h"
-
 namespace Charanis {
+
+class DataManager;
+class CharacterPerformance;
+class FKPerformance;
 
 
 /**

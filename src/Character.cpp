@@ -9,6 +9,28 @@
 
 #include "Character.h"
 
+// std includes
+#include <iostream>
+#include <vector>
+#include <cmath>
+#include <cstdlib>
+
+// dependency includes
+#include <Ogre/OgreSkeletonSerializer.h>
+#include <Ogre/OgreTagPoint.h>
+
+// project includes
+#include "Config.h"
+#include "BehaviorLibrary.h"
+#include "BodyAnimation.h"
+#include "BodyAnimationVector.h"
+#include "CharacterPerformance.h"
+#include "DataManager.h"
+#include "ExpressionLibrary.h"
+#include "FacialExpression.h"
+#include "FKPerformance.h"
+#include "FEMLParser.h"
+#include "SAMLParser.h"
 
 namespace Charanis {
 
@@ -39,7 +61,7 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 
 	// create the entity
 	entity = sceneManager->createEntity(name, myPrivateMeshName);
-	entity->setCastShadows(true); // TODO: workaround because of too low shadow buffer (too many vertices)
+	entity->setCastShadows(false); // TODO: workaround because of too low shadow buffer (too many vertices)
 	// ... and add it to the scene
 	sceneNode = parentNode->createChildSceneNode(name+"Node");
 	sceneNode->setScale(scale, scale, scale);

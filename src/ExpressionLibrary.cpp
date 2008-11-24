@@ -9,6 +9,10 @@
 
 #include "ExpressionLibrary.h"
 
+// project includes
+#include "CharacterData.h" // TODO ??
+#include "FacialExpression.h"
+#include "FEMLParser.h"
 
 namespace Charanis {
 

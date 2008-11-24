@@ -6,8 +6,12 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "IdleGenerationLayer.h"
+
+// project includes
+#include "CharacterDataPackage.h"
+#include "DataManager.h"
+#include "PackageQueue.h"
 
 
 namespace Charanis {

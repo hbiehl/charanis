@@ -6,10 +6,12 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef FK_PERFORMANCE_MAP_H
 #define FK_PERFORMANCE_MAP_H
 
+// std includes
+#include <string>
+// project includes
 #include "FKPerformanceVector.h"
 
 namespace Charanis {

@@ -6,34 +6,21 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef PIPELINE_MANAGER_H
 #define PIPELINE_MANAGER_H
 
-#include <map>
-#include <set>
+// std includes
 #include <string>
-
-
-
-#include "DataManager.h"
+// project includes
 #include "PipelineMap.h"
 
 
-#include "Package.h"
-#include "PackageQueue.h"
-
-#include "NetworkLayer.h"
-#include "RenderingLayer.h"
-
-#include "PipelineLayer.h"
-#include "PipelineMiddleLayer.h"
-#include "IdleGenerationLayer.h"
-#include "AnimationGenerationLayer.h"
-#include "AnimationCutterLayer.h"
-
-
 namespace Charanis {
+
+class DataManager;
+class NetworkLayer;
+class RenderingLayer;
+class Pipeline;
 
 /**
  * \brief Verwaltung mehrerer Pipeline s.

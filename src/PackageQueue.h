@@ -6,29 +6,19 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
-
 #ifndef LAYER_CONNECTION_QUEUE
 #define LAYER_CONNECTION_QUEUE
 
-
-//#include "AnimationDataPackage.h"
-#include "Package.h"
-
-#include <time.h>
-
-//#include "SDL/SDL_thread.h"
-#include <boost/thread/thread.hpp>
-#include <boost/thread/condition.hpp>
-#include <boost/thread/xtime.hpp>
-#include <boost/thread/mutex.hpp>
-
+// std includes
 #include <deque>
-#include <iostream>
+// dependeny includes
+#include <boost/thread/thread.hpp>
+// project includes
 
 
 namespace Charanis {
 
+class Package;
 class PipelineLayer;
 
 /**

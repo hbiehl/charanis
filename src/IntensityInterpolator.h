@@ -6,17 +6,13 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef INTENSITY_INTERPOLATOR_H
 #define INTENSITY_INTERPOLATOR_H
 
-
-#include <cmath>
+// std includes
 #include <map>
-
-
-#include "Ogre/Ogre.h"
-#include "InvalidTimingException.h"
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
 
 
 namespace Charanis {

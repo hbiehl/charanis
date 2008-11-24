@@ -6,8 +6,10 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "FKKeyFrame.h"
+// dependency includes
+#include <Ogre/OgreQuaternion.h>
+
 
 namespace Charanis {
 

@@ -10,14 +10,14 @@
 #ifndef ACTION_SCRIPT_H
 #define ACTION_SCRIPT_H
 
+// std includes
 #include <string>
 #include <vector>
 
-#include "CharacterExpression.h"
-#include "CharacterPerformance.h"
-
-
 namespace Charanis {
+
+class CharacterExpression;
+class CharacterPerformance;
 
 class ActionScript {
 	private:

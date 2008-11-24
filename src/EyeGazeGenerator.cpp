@@ -8,6 +8,18 @@
  */
 
 #include "EyeGazeGenerator.h"
+// std includes
+#include <iostream>
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
+#include <Ogre/OgreQuaternion.h>
+#include <Ogre/OgreVector3.h>
+// project includes
+#include "CharacterDataPackage.h"
+#include "DataManager.h"
+#include "FKKeyFrame.h"
+#include "FKPerformance.h"
+#include "FKTrack.h"
 
 namespace Charanis {
 

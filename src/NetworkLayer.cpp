@@ -6,9 +6,20 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "NetworkLayer.h"
+
+// dependency includes
+#include <boost/thread/thread.hpp>
+#include <boost/bind.hpp>
+#include <SDL_net/SDL_net.h>
+// project includes
+#include "CharacterDataPackage.h"
+#include "Config.h"
+#include "DataManager.h"
 #include "EngineManager.h"
+#include "MessageParser.h"
+#include "PackageQueue.h"
+#include "RenderingLayer.h"
 
 
 namespace Charanis {

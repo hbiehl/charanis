@@ -6,8 +6,14 @@
  *  Copyright 2008 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "CharanisInfoPanel.h"
+
+// dependency includes
+#include <Ogre/OgreOverlay.h>
+#include <Ogre/OgreOverlayContainer.h>
+#include <Ogre/OgreOverlayManager.h>
+#include <Ogre/OgreStringConverter.h>
+#include <Ogre/OgreTextAreaOverlayElement.h>
 
 
 namespace Charanis {

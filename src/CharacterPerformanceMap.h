@@ -12,9 +12,7 @@
 
 
 namespace Charanis {
-
 typedef std::map<std::string, CharacterPerformanceVector*> CharacterPerformanceMap;
-
 } // end of namespace
 
 #endif

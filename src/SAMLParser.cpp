@@ -9,6 +9,17 @@
 
 #include "SAMLParser.h"
 
+// std includes
+#include <iostream>
+#include <vector>
+// dependeny includes
+#include <Ogre/Ogre.h>
+#include <xercesc/dom/DOM.hpp>
+#include <xercesc/parsers/XercesDOMParser.hpp>
+#include <xercesc/sax/SAXException.hpp>
+#include <xercesc/util/PlatformUtils.hpp>
+// project includes
+#include "BodyAnimation.h"
 
 namespace Charanis {
 

@@ -6,20 +6,21 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef CHARACTER_DATA_H
 #define CHARACTER_DATA_H
 
+// std includes
 #include <map>
-
+// dependency includes
 #include <boost/thread/thread.hpp>
-
-
-#include "IntensityInterpolator.h"
+#include <Ogre/OgrePrerequisites.h>
+//project includes
 #include "EmotionTypes.h"
 
+
 namespace Charanis {
-			
+
+class IntensityInterpolator;	
 	
 /**
  * \brief Verwaltung von Charakter-Eigenschaften wie Emotionen.

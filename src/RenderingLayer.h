@@ -6,44 +6,26 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef RENDERING_LAYER_H
 #define RENDERING_LAYER_H
 
-
-#include "Ogre/Ogre.h"
-#include "Ogre/OgreFrameListener.h"
-#include "Ogre/OgreStringConverter.h"
-#include "Ogre/OgreTextAreaOverlayElement.h"
-
-#include "OIS.h"
-
-#include "CharanisInfoPanel.h"
-
+// std includes
+// dependeny includes
+#include <Ogre/Ogre.h>
+#include <Ogre/OgreFrameListener.h>
+#include "OIS.h" // TODO: use framework!
+// project includes
 #include "CharacterMap.h"
-#include "Character.h"
-#include "FacialExpression.h"
-
 #include "PipelineLayer.h"
-#include "CharacterDataPackage.h"
-#include "CharacterSoundPackage.h"
-#include "AddCharacterPackage.h"
-#include "RemoveCharacterPackage.h"
-#include "ImportFEMLFilePackage.h"
-#include "ImportSAMLFilePackage.h"
-#include "CameraControlPackage.h"
-#include "AddObjectPackage.h"
-#include "RemoveObjectPackage.h"
-#include "AmbientLightPackage.h"
-#include "DirectionalLightPackage.h"
-#include "RemoveDirectionalLightPackage.h"
 
-#include "Observer.h"
+
 
 namespace Charanis {
 
+class Character;
+class CharanisInfoPanel;
 class EngineManager;
-
+class Observer;
 
 /**
  * \brief Die Hauptklasse der Ausgabeschicht.

@@ -6,31 +6,32 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef CHARACTER_DATA_PACKAGE
 #define CHARACTER_DATA_PACKAGE
 
+// std includes
 #include <map>
 #include <vector>
 #include <string>
 
-#include "Package.h"
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
 
+// project includes
+#include "CharacterExpressionMap.h"
 #include "CharacterPerformance.h"
 #include "CharacterPerformanceVector.h"
 #include "CharacterPerformanceMap.h"
 #include "ExpressionMap.h"
-#include "CharacterExpressionMap.h"
 #include "ExpressionVector.h"
+#include "EyeAnimation.h"
+#include "EyeAnimationVector.h"
+#include "FKPerformance.h"
 #include "FKPerformanceMap.h"
 #include "FKPerformanceVector.h"
-#include "FKPerformance.h"
-#include "EyeAnimationVector.h"
-#include "EyeAnimation.h"
-
+#include "Package.h"
 
 namespace Charanis {
-
 
 /**
  * \brief Paket zur Übertragung von Bewegungsinformationen der Charaktere zum RenderingLayer.

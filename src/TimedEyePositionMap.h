@@ -6,17 +6,17 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef TIMED_EYE_POSITION_MAP_H
 #define TIMED_EYE_POSITION_MAP_H
 
+// std includes
 #include <map>
-
-#include "Ogre/Ogre.h"
-#include "EyePosition.h"
+// dependency includes
+#include <Ogre/OgrePrerequisites.h>
 
 namespace Charanis {
-	typedef std::map<Ogre::Real, EyePosition*> TimedEyePositionMap;
+class EyePosition;
+typedef std::map<Ogre::Real, EyePosition*> TimedEyePositionMap;
 } // end of namespace
 
 #endif

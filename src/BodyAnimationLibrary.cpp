@@ -9,6 +9,12 @@
 
 #include "BodyAnimationLibrary.h"
 
+// std includes
+#include <iostream>
+
+// project includes
+#include "BodyAnimation.h"
+//#include "SAMLParser.h"
 
 namespace Charanis {
 

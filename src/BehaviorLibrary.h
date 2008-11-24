@@ -10,14 +10,13 @@
 #ifndef BEHAVIOR_LIBRARY_H
 #define BEHAVIOR_LIBRARY_H
 
-
+// std includes
 #include <string>
 
-#include "EmotionTypes.h"
-#include "ExpressionLibrary.h"
-#include "BodyAnimationLibrary.h"
+// project includes
 #include "ActionLibrary.h"
-#include "CharacterData.h"
+#include "BodyAnimationLibrary.h"
+#include "ExpressionLibrary.h"
 
 
 namespace Charanis {

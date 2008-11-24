@@ -11,9 +11,9 @@
 #ifndef EXPRESSION_MAP_H
 #define EXPRESSION_MAP_H
 
-#include "FacialExpression.h" 
-
 namespace Charanis {
+	class FacialExpression;
+	
 	typedef std::map<std::string, FacialExpression*> ExpressionMap;
 } // end of namespace
 

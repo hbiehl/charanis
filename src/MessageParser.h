@@ -10,20 +10,14 @@
 #ifndef MESSAGE_PARSER_H
 #define MESSAGE_PARSER_H
 
-#include <vector>
+// std includes
 #include <string>
-
-
-#include "Ogre/Ogre.h"
-
+#include <vector>
+// dependency includes
+#include <Ogre/Ogre.h>
+// project includes
 #include "Parser.h"
 #include "Package.h"
-#include "CharacterDataPackage.h"
-#include "CharacterSoundPackage.h"
-
-#include <xercesc/framework/MemBufInputSource.hpp>
-//#include "DataManager.h"
-
 
 namespace Charanis {
 

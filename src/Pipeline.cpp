@@ -6,8 +6,12 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "Pipeline.h"
+// project includes
+#include "CharacterDataPackage.h"
+#include "PackageQueue.h"
+#include "PipelineLayer.h"
+#include "PipelineMiddleLayer.h"
 
 namespace Charanis {
 

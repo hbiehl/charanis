@@ -6,8 +6,10 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "DirectionalLightPackage.h"
+// dependency includes
+#include <Ogre/OgreColourValue.h>
+#include <Ogre/OgreVector3.h>
 
 namespace Charanis {
 

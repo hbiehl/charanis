@@ -6,24 +6,28 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef OBSERVER_H
 #define OBSERVER_H
 
-
+// std includes
 #include <string>
+// dependeny includes
+#include <Ogre/OgrePrerequisites.h>
 
-#include "Ogre/Ogre.h"
-#include "OpenAL/alc.h"
-#include "OpenAL/al.h"
 
-//#include "OpenAL/alut.h"
-
-#include "DataManager.h"
-#include "ObserverKeyFrame.h"
-
+namespace Ogre {
+class Camera;
+class Quaternion;
+class Radian;
+class Root;
+class SceneManager;
+class Vector3;
+} // end of namespace Ogre
 
 namespace Charanis {
+
+class DataManager;
+class ObserverKeyFrame;
 
 /**
  * \brief Das Auge und Ohr in der Szene.

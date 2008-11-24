@@ -6,8 +6,12 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "FacialExpression.h"
+
+// std includes
+#include <iostream>
+// dependency includes
+#include <Ogre/OgreKeyFrame.h>
 
 namespace Charanis {
 

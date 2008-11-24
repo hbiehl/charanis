@@ -9,6 +9,9 @@
 
 #include "AudioTrack.h"
 
+#include <OpenAL/alc.h>
+#include <OpenAL/al.h>
+
 namespace Charanis {
 
 AudioTrack::AudioTrack(std::string filename, Ogre::Real startTime) :

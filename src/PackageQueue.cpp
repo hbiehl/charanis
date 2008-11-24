@@ -6,10 +6,16 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #include "PackageQueue.h"
 
+// std includes
+#include <iostream>
+// dependeny includes
+#include <boost/thread/xtime.hpp>
+// project includes
+#include "Package.h"
 #include "PipelineLayer.h"
+
 
 namespace Charanis {
 

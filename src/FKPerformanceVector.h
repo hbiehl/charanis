@@ -12,10 +12,11 @@
 
 #include <vector>
 
-#include "FKPerformance.h"
-
 namespace Charanis {
-	typedef std::vector<FKPerformance*> FKPerformanceVector;
+
+class FKPerformance;
+
+typedef std::vector<FKPerformance*> FKPerformanceVector;
 } // end of namespace
 
 #endif

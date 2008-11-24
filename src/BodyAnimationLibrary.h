@@ -10,13 +10,12 @@
 #ifndef ANIMATION_LIBRARY_H
 #define ANIMATION_LIBRARY_H
 
-
+// std incudes
 #include <map>
 #include <string>
-#include <iostream>
 
+// project includes
 #include "BodyAnimationMap.h"
-#include "SAMLParser.h"
 
 
 namespace Charanis {

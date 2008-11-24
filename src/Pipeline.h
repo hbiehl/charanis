@@ -6,19 +6,17 @@
  *  Copyright 2006 __MyCompanyName__. All rights reserved.
  *
  */
-
 #ifndef PIPELINE_H
 #define PIPELINE_H
 
+// std includes
+#include <string>
 #include <vector>
-
-
-#include "CharacterDataPackage.h"
-#include "PipelineMiddleLayer.h"
-#include "PackageQueue.h"
 
 namespace Charanis {
 
+class PipelineMiddleLayer;
+class PackageQueue;
 
 /** 
  * \brief Verwaltung einer Pipeline.
