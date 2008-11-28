@@ -119,7 +119,7 @@ BodyAnimationVector* SAMLParser::parseFile(Ogre::Entity* entity, std::string fil
 			
 			Ogre::Real length = getRealContents((xercesc::DOMElement*) getNodeList(animationDefinitionElement, "Length")->item(0));
 			Ogre::Real priority = getRealContents((xercesc::DOMElement*) getNodeList(animationDefinitionElement, "Priority")->item(0));
-			
+			// TODO: currently priority not used?!?
 			
 			
 			Ogre::Skeleton* skeleton = entity->getSkeleton();

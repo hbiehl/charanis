@@ -47,6 +47,7 @@ Ogre::Real CharacterData::getEmotion(EmotionType type, Ogre::Real time) {
 	if (emotionMap.find(type) != emotionMap.end()) {
 		return emotionMap[type]->getIntensity(time);
 	} else {
+		return 0;
 		// TODO: throw Exception 
 	}
 }

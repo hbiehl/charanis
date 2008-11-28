@@ -44,6 +44,7 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	BehaviorLibrary* bl = dataManager->getBehaviorLibrary(name);
 	ExpressionLibrary* expressionLibrary = bl->getExpressionLibrary();
 	StringIntMap* poseMapping = expressionLibrary->getPoseMapping();
+	// TODO: currently poseMapping not used?!?
 
 	facialEntity = NULL;
 	std::string myPrivateMeshName = name +"_"+ meshName;
@@ -419,6 +420,7 @@ void Character::addFKPerformance(FKPerformance* performance) {
 	// create Animation out of FKPerformance
 	Ogre::Animation* anim = performance->createOgreAnimation(entity);
 	entity->refreshAvailableAnimationState();
+	// TODO: currently variable anim not used?!?
 	
 	addPerformance(performance->getCharacterPerformance());
 	std::cout << "addFKPerformance - END" << std::endl;

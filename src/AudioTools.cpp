@@ -40,6 +40,7 @@ std::string AudioTools::getALErrorString(ALenum err) {
 			return std::string("AL_OUT_OF_MEMORY");
 			break;
 	};
+	return "Unknown AL Error";
 }
 
 
@@ -70,6 +71,7 @@ std::string AudioTools::getALCErrorString(ALenum err) {
 			return std::string("ALC_OUT_OF_MEMORY");
 			break;
 	};
+	return "Unknown ALC Error";
 }
 
 
@@ -81,7 +83,7 @@ ALuint AudioTools::loadALBuffer(std::string path) {
 	ALsizei size;
 	ALvoid* data;
 	ALsizei freq;
-	ALboolean loop;
+	//ALboolean loop;
 
 	// Buffer id and error checking variable.
 	ALuint buffer;

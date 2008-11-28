@@ -82,6 +82,7 @@ Ogre::Real CharacterPerformance::getProperty(std::string property) {
 	if (properties.find(property) != properties.end()) {
 		return properties[property];
 	} else {
+		return 0;
 		// Throw Exception: PropertyNotFoundException
 	}
 }
