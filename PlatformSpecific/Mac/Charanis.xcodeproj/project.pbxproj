@@ -141,7 +141,7 @@
 		8B30727309E93DAE006213A5 /* CharacterPerformance.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CharacterPerformance.cpp; sourceTree = "<group>"; };
 		8B309F1A0A9DB9A800348EF3 /* AddCharacterPackage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddCharacterPackage.h; sourceTree = "<group>"; };
 		8B309F1B0A9DB9A800348EF3 /* AddCharacterPackage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AddCharacterPackage.cpp; sourceTree = "<group>"; };
-		8B30A07D0A9DE26400348EF3 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = config.xml; path = ../../CLEAN_UP/config.xml; sourceTree = "<group>"; };
+		8B30A07D0A9DE26400348EF3 /* config.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = config.xml; path = ../../cfg/config.xml; sourceTree = "<group>"; };
 		8B30A0800A9DE2A400348EF3 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		8B30A0810A9DE2A400348EF3 /* Config.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Config.cpp; sourceTree = "<group>"; };
 		8B351B150B0495F90033E27F /* Generator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Generator.h; sourceTree = "<group>"; };
