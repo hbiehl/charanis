@@ -16,8 +16,13 @@
 #include <cstdlib>
 
 // dependency includes
-#include <Ogre/OgreSkeletonSerializer.h>
-#include <Ogre/OgreTagPoint.h>
+#ifdef OSX
+    #include <Ogre/OgreSkeletonSerializer.h>
+    #include <Ogre/OgreTagPoint.h>
+#else
+    #include <OgreSkeletonSerializer.h>
+    #include <OgreTagPoint.h>
+#endif
 
 // project includes
 #include "Config.h"

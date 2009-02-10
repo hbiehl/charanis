@@ -10,8 +10,13 @@
 // std includes
 #include <iostream>
 // dependency includes
-#include <Ogre/Ogre.h>
-#include "alut.h" // TODO
+#ifdef OSX
+    #include <Ogre/Ogre.h>
+    #include "alut.h" // TODO
+#else
+    #include <Ogre.h>
+    #include <AL/alut.h>
+#endif
 // project includes
 #include "Character.h"
 #include "CharanisInfoPanel.h"

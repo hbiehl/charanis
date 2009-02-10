@@ -11,7 +11,11 @@
 // std includes
 #include <iostream>
 // dependency includes
-#include <Ogre/OgreKeyFrame.h>
+#ifdef OSX
+    #include <Ogre/OgreKeyFrame.h>
+#else
+    #include <OgreKeyFrame.h>
+#endif
 
 namespace Charanis {
 

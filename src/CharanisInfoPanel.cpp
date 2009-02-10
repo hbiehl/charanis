@@ -9,12 +9,19 @@
 #include "CharanisInfoPanel.h"
 
 // dependency includes
-#include <Ogre/OgreOverlay.h>
-#include <Ogre/OgreOverlayContainer.h>
-#include <Ogre/OgreOverlayManager.h>
-#include <Ogre/OgreStringConverter.h>
-#include <Ogre/OgreTextAreaOverlayElement.h>
-
+#ifdef OSX
+    #include <Ogre/OgreOverlay.h>
+    #include <Ogre/OgreOverlayContainer.h>
+    #include <Ogre/OgreOverlayManager.h>
+    #include <Ogre/OgreStringConverter.h>
+    #include <Ogre/OgreTextAreaOverlayElement.h>
+#else
+    #include <OgreOverlay.h>
+    #include <OgreOverlayContainer.h>
+    #include <OgreOverlayManager.h>
+    #include <OgreStringConverter.h>
+    #include <OgreTextAreaOverlayElement.h>
+#endif
 
 namespace Charanis {
 

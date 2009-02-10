@@ -10,8 +10,13 @@
 #include "HeadMovementGenerator.h"
 
 // dependency includes
-#include <Ogre/OgreQuaternion.h>
-#include <Ogre/OgreVector3.h>
+#ifdef OSX
+    #include <Ogre/OgreQuaternion.h>
+    #include <Ogre/OgreVector3.h>
+#else
+    #include <OgreQuaternion.h>
+    #include <OgreVector3.h>
+#endif
 // project includes
 #include "CharacterDataPackage.h"
 #include "DataManager.h"

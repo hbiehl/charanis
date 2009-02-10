@@ -8,8 +8,11 @@
  */
 #include "FKKeyFrame.h"
 // dependency includes
-#include <Ogre/OgreQuaternion.h>
-
+#ifdef OSX
+    #include <Ogre/OgreQuaternion.h>
+#else
+    #include <OgreQuaternion.h>
+#endif
 
 namespace Charanis {
 

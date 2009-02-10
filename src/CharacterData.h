@@ -13,7 +13,11 @@
 #include <map>
 // dependency includes
 #include <boost/thread/thread.hpp>
-#include <Ogre/OgrePrerequisites.h>
+#ifdef OSX
+    #include <Ogre/OgrePrerequisites.h>
+#else
+    #include <OgrePrerequisites.h>
+#endif
 //project includes
 #include "EmotionTypes.h"
 

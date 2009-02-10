@@ -16,12 +16,13 @@
 #include <string>
 
 // dependency includes
-#include <OpenAL/alc.h>
 //#include <OpenAL/alut.h>
 #ifdef OSX
     #include <Ogre/Ogre.h>
+    #include <OpenAL/alc.h>
 #else
     #include <Ogre.h>
+    #include <AL/alc.h>
 #endif
 
 // project includes
@@ -65,7 +66,7 @@ class Character {
 		//Ogre::SceneNode* facialNode;
 		Ogre::Entity* leftEyeEntity;
 		Ogre::Entity* rightEyeEntity;
-		//Ogre::Entity* facialEntity;
+		Ogre::Entity* facialEntity;
 		
 		DataManager* dataManager;
 		

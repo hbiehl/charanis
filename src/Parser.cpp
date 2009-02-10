@@ -14,7 +14,11 @@
 #include <vector>
 
 // dependency includes
-#include <Ogre/OgreStringConverter.h>
+#ifdef OSX
+    #include <Ogre/OgreStringConverter.h>
+#else
+    #include <OgreStringConverter.h>
+#endif
 #include <xercesc/sax/SAXException.hpp>
 #include <xercesc/util/PlatformUtils.hpp>
 
