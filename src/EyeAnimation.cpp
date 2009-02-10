@@ -39,3 +39,4 @@ TimedEyePositionMap* EyeAnimation::getEyePositionMap() {
 }
 
 } // end of namespace
+

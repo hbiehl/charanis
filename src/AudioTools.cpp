@@ -83,7 +83,10 @@ ALuint AudioTools::loadALBuffer(std::string path) {
 	ALsizei size;
 	ALvoid* data;
 	ALsizei freq;
-	//ALboolean loop;
+    #ifdef OSX
+    #else	
+    ALboolean loop;
+    #endif
 
 	// Buffer id and error checking variable.
 	ALuint buffer;
@@ -96,7 +99,13 @@ ALuint AudioTools::loadALBuffer(std::string path) {
 		throw getALErrorString(result);
 
 	// Read in the wav data from file. Check that it loaded correctly.
+	#ifdef OSX
 	alutLoadWAVFile((ALbyte*) path.c_str(), &format, &data, &size, &freq);//, &loop);
+	#else
+    //alutLoadMemoryFromFile((ALbyte*) path.c_str(), &format, &size, &freq);
+    //alutLoadMemoryFromFile (const char *fileName, ALenum *format, ALsizei *size, ALfloat *frequency);
+	alutLoadWAVFile((ALbyte*) path.c_str(), &format, &data, &size, &freq, &loop);
+	#endif
 
 	if ((result = alGetError()) != AL_NO_ERROR)
 		throw getALErrorString(result);

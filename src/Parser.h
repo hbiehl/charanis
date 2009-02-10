@@ -14,7 +14,11 @@
 #include <string>
 
 // dependency includes
-#include <Ogre/OgrePrerequisites.h>
+#ifdef OSX
+    #include <Ogre/OgrePrerequisites.h>
+#else
+    #include <OgrePrerequisites.h>
+#endif
 #include <xercesc/dom/DOM.hpp>
 #include <xercesc/parsers/XercesDOMParser.hpp> // TODO: any chance to remove this header?
 
@@ -35,7 +39,7 @@ class Parser {
 		Ogre::Real getRealAttribute(xercesc::DOMElement* element, std::string attribute);
 		int getIntAttribute(xercesc::DOMElement* element, std::string attribute);
 	
-		xercesc::DOMDocument* Parser::parseFile(std::string pathToFile);
+		xercesc::DOMDocument* parseFile(std::string pathToFile);
 		
 	public:
 		Parser();

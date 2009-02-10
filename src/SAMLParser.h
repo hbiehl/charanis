@@ -15,11 +15,15 @@
 #include <string>
 
 // dependency includes
-#include <Ogre/OgreEntity.h>
+#ifdef OSX
+    #include <Ogre/OgreEntity.h>
+#else
+    #include <OgreEntity.h>
+#endif
 
 // project includes
-#include "Parser.h"
 #include "BodyAnimationVector.h"
+#include "Parser.h"
 
 namespace Charanis {
 

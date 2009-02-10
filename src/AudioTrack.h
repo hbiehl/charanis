@@ -13,8 +13,13 @@
 // std includes
 #include <string>
 // dependency includes
-#include <Ogre/OgrePrerequisites.h>
-#include "alut.h" // TODO
+#ifdef OSX
+    #include <Ogre/OgrePrerequisites.h>
+    #include "alut.h" // TODO
+#else
+    #include <OgrePrerequisites.h>
+	#include <AL/alut.h>
+#endif
 
 namespace Charanis {
 

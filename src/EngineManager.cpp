@@ -9,10 +9,17 @@
 #include "EngineManager.h"
 
 // dependency includes
-#include <Ogre/OgreVector3.h>
-#include <OpenAL/al.h>
-#include <OpenAL/alc.h>
-#include "alut.h" // TODO
+#ifdef OSX
+    #include <Ogre/OgreVector3.h>
+    #include <OpenAL/al.h>
+    #include <OpenAL/alc.h>
+    #include "alut.h" // TODO
+#else
+    #include <OgreVector3.h>
+    #include <AL/al.h>
+    #include <AL/alc.h>
+    #include <AL/alut.h>
+#endif
 // project includes
 #include "DataManager.h"
 #include "NetworkLayer.h"
@@ -21,6 +28,14 @@
 #include "PipelineManager.h"
 #include "RenderingLayer.h"
 
+
+namespace {
+#ifdef OSX
+    const std::string CFG_PATH("../../../../cfg/");
+#else
+    const std::string CFG_PATH("../cfg/");
+#endif
+}; // end of anonymous namespace
 
 namespace Charanis {
 
@@ -32,7 +47,7 @@ EngineManager::EngineManager() {
 	dataManager = new DataManager();
 	
 	networkLayer = new NetworkLayer(this);
-	renderingLayer = new RenderingLayer(this, dataManager, "../../../../cfg/plugins.cfg", "../../../../cfg/ogre.cfg", "ogre.log");
+	renderingLayer = new RenderingLayer(this, dataManager, CFG_PATH+"plugins.cfg", CFG_PATH+"ogre.cfg", "ogre.log");
 	PackageQueue* queue = renderingLayer->getInputQueue();
 	if (queue == NULL) {
 		queue = new PackageQueue(NULL, renderingLayer);

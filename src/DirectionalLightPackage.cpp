@@ -8,8 +8,14 @@
  */
 #include "DirectionalLightPackage.h"
 // dependency includes
-#include <Ogre/OgreColourValue.h>
-#include <Ogre/OgreVector3.h>
+#ifdef OSX
+    #include <Ogre/OgreColourValue.h>
+    #include <Ogre/OgreVector3.h>
+#else
+    #include <OgreColourValue.h>
+    #include <OgreVector3.h>
+#endif
+
 
 namespace Charanis {
 

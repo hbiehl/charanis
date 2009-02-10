@@ -14,6 +14,13 @@
 #include <map>
 #include <string>
 
+// dependency includes
+#ifdef OSX
+    #include <Ogre/OgrePrerequisites.h>
+#else
+    #include <OgrePrerequisites.h>
+#endif
+
 namespace Charanis {
 	class CharacterExpression;
 

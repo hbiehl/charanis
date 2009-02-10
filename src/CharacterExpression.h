@@ -10,7 +10,11 @@
 #define CHARACTER_EXPRESSION_H
 
 // dependency includes
-#include <Ogre/OgrePrerequisites.h>
+#ifdef OSX
+    #include <Ogre/OgrePrerequisites.h>
+#else
+    #include <OgrePrerequisites.h>
+#endif
 // project includes
 #include "StringIntMap.h"
 

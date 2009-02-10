@@ -16,9 +16,14 @@
 #include <string>
 
 // dependency includes
-#include <OpenAL/alc.h>
 //#include <OpenAL/alut.h>
-#include <Ogre/Ogre.h>
+#ifdef OSX
+    #include <Ogre/Ogre.h>
+    #include <OpenAL/alc.h>
+#else
+    #include <Ogre.h>
+    #include <AL/alc.h>
+#endif
 
 // project includes
 #include "AudioTrack.h"

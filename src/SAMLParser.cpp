@@ -13,7 +13,11 @@
 #include <iostream>
 #include <vector>
 // dependeny includes
-#include <Ogre/Ogre.h>
+#ifdef OSX
+    #include <Ogre/Ogre.h>
+#else
+    #include <Ogre.h>
+#endif
 #include <xercesc/dom/DOM.hpp>
 #include <xercesc/parsers/XercesDOMParser.hpp>
 #include <xercesc/sax/SAXException.hpp>

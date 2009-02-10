@@ -9,13 +9,23 @@
 #include "Observer.h"
 
 // dependency includes
-#include <Ogre/OgreCamera.h>
-#include <Ogre/OgreMath.h>
-#include <Ogre/OgreQuaternion.h>
-#include <Ogre/OgreRoot.h>
-#include <Ogre/OgreSceneManager.h>
-#include <Ogre/OgreVector3.h>
-#include <OpenAL/al.h>
+#ifdef OSX
+    #include <Ogre/OgreCamera.h>
+    #include <Ogre/OgreMath.h>
+    #include <Ogre/OgreQuaternion.h>
+    #include <Ogre/OgreRoot.h>
+    #include <Ogre/OgreSceneManager.h>
+    #include <Ogre/OgreVector3.h>
+    #include <OpenAL/al.h>
+#else
+    #include <OgreCamera.h>
+    #include <OgreMath.h>
+    #include <OgreQuaternion.h>
+    #include <OgreRoot.h>
+    #include <OgreSceneManager.h>
+    #include <OgreVector3.h>
+    #include <AL/al.h>
+#endif
 //#include <OpenAL/alc.h>
 // project inludes
 #include "DataManager.h"

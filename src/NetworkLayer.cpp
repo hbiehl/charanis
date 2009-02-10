@@ -11,7 +11,11 @@
 // dependency includes
 #include <boost/thread/thread.hpp>
 #include <boost/bind.hpp>
-#include <SDL_net/SDL_net.h>
+#ifdef OSX
+    #include <SDL_net/SDL_net.h>
+#else
+    #include <SDL/SDL_net.h>
+#endif
 // project includes
 #include "CharacterDataPackage.h"
 #include "Config.h"

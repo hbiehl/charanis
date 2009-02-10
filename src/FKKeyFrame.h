@@ -10,7 +10,11 @@
 #define FK_KEY_FRAME_H
 
 // dependency includes
-#include <Ogre/OgrePrerequisites.h>
+#ifdef OSX
+    #include <Ogre/OgrePrerequisites.h>
+#else
+    #include <OgrePrerequisites.h>
+#endif
 
 namespace Ogre {
 class Quaternion;

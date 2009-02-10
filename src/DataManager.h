@@ -19,7 +19,11 @@
 #include <boost/random/uniform_int.hpp>
 #include <boost/random/uniform_real.hpp>
 #include <boost/random/variate_generator.hpp>
-#include <Ogre/OgrePrerequisites.h>
+#ifdef OSX
+    #include <Ogre/OgrePrerequisites.h>
+#else
+    #include <OgrePrerequisites.h>
+#endif
 // project includes
 #include "EmotionTypes.h"
 

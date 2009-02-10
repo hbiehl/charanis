@@ -11,6 +11,7 @@
 
 // std includes
 #include <vector>
+
 // project includes
 #include "PipelineMiddleLayer.h"
 

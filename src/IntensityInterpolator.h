@@ -11,8 +11,13 @@
 
 // std includes
 #include <map>
+
 // dependency includes
-#include <Ogre/OgrePrerequisites.h>
+#ifdef OSX
+    #include <Ogre/OgrePrerequisites.h>
+#else
+    #include <OgrePrerequisites.h>
+#endif
 
 
 namespace Charanis {

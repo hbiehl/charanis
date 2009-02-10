@@ -35,7 +35,7 @@ class Pipeline {
 		~Pipeline();
 		
 		void addLayer(PipelineMiddleLayer* layer);
-		void Pipeline::addLayer(int position, PipelineMiddleLayer* layer);
+		void addLayer(int position, PipelineMiddleLayer* layer);
 		void removeLayer(int position);
 		
 		void createInnerQueues();

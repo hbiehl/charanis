@@ -16,8 +16,13 @@
 #include <cstdlib>
 
 // dependency includes
-#include <Ogre/OgreSkeletonSerializer.h>
-#include <Ogre/OgreTagPoint.h>
+#ifdef OSX
+    #include <Ogre/OgreSkeletonSerializer.h>
+    #include <Ogre/OgreTagPoint.h>
+#else
+    #include <OgreSkeletonSerializer.h>
+    #include <OgreTagPoint.h>
+#endif
 
 // project includes
 #include "Config.h"
@@ -40,7 +45,7 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	this->name = name;
 	this->sceneManager = sceneManager;
 	this->dataManager = dm;
-		
+	
 	BehaviorLibrary* bl = dataManager->getBehaviorLibrary(name);
 	ExpressionLibrary* expressionLibrary = bl->getExpressionLibrary();
 	StringIntMap* poseMapping = expressionLibrary->getPoseMapping();
@@ -68,18 +73,20 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	sceneNode->setScale(scale, scale, scale);
 	sceneNode->attachObject(entity);
 	
+    /*
 	// set some parameters of the entity
 	//entity->setCastShadows(true);
 	entity->getSkeleton()->setBlendMode(Ogre::ANIMBLEND_CUMULATIVE);
 	facialEntity = entity; //TODO temporary hack
-
-	// output some helpful information about the model
-	printBones();
-	printMeshes();
-	printMeshAnimations();
-	printAnimationStates();
 	
-	// add the skeleton animations of the model to BehaviourLibrary
+    std::cout << "Character::Character --"
+        << " ent="  << entity 
+        << " skel=" << entity->getSkeleton() 
+        << " node="<< sceneNode 
+        << std::endl;
+	
+	
+    // add the skeleton animations of the model to BehaviourLibrary
 	std::cout << "Available Animations for Character " << name << ":" << std::endl;
 	Ogre::AnimationStateIterator it = entity->getAllAnimationStates()->getAnimationStateIterator();
 	while (it.hasMoreElements()) {
@@ -87,6 +94,18 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 		bl->addBodyAnimation(new BodyAnimation(animState->getAnimationName()));
 	}
 	bl->printBodyAnimations();
+	*/
+    
+    // ======================= only needed because hacky model ===============
+	// add Eyes to the model
+	//addEyes(meshName);
+
+	// output some helpful information about the model
+	printBones();
+	printMeshes();
+	printMeshAnimations();
+	printAnimationStates();
+	
 	
 	/*
 	for (int i=0; i<EMOTION_END; i++) {
@@ -106,6 +125,7 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	facialEntity->getAnimationState("controlledExpression")->setTimePosition(0);
 	*/
 	
+
 	// ----------- Audio Stuff ----------
 	// Ein OpenAL-Audio-Source generieren...
 	std::cout << "OpenAL: Generating Source..." << std::endl;
@@ -125,11 +145,11 @@ Character::Character(Ogre::SceneManager* sceneManager, Ogre::SceneNode* parentNo
 	currentAudioTrack = NULL;
 	
 	// play an audioTrack to test if audio is working. TODO: These lines need to be removed for release
-	std::string filename = "../../../../CLEAN_UP/sound_engine.wav";
+	std::string filename = "../CLEAN_UP/sound_engine.wav";
 	if (name=="Robbie") {
-		filename = "../../../../CLEAN_UP/sound_electric.wav";
+		filename = "../CLEAN_UP/sound_electric.wav";
 	}
-	playAudioTrack(new AudioTrack(filename, 0));
+	//playAudioTrack(new AudioTrack(filename, 0));
 	
 	std::cout << "===== Constructor Character ("<< name << ") DONE ====" << std::endl;
 }
@@ -150,7 +170,7 @@ Character::~Character() {
 	
 	
 	if (entity->getMesh()->getName() == "robot.mesh") {
-		entity->detachObjectFromBone(facialEntity->getName());
+		//entity->detachObjectFromBone(facialEntity->getName());
 		
 		if (leftEyeEntity!=NULL) {
 			entity->detachObjectFromBone(leftEyeEntity->getName());
@@ -160,7 +180,7 @@ Character::~Character() {
 			entity->detachObjectFromBone(rightEyeEntity->getName());
 		}
 	} else if (entity->getMesh()->getName() == "Charanis.001.mesh") {
-		entity->detachObjectFromBone(facialEntity->getName());
+		//entity->detachObjectFromBone(facialEntity->getName());
 		
 		if (leftEyeEntity!=NULL) {
 			entity->detachObjectFromBone(leftEyeEntity->getName());
@@ -557,8 +577,9 @@ void Character::dropUnusedAnimations() {
 	Ogre::AnimationStateIterator animStateIt = entity->getAllAnimationStates()->getAnimationStateIterator();
 	while (animStateIt.hasMoreElements()) {
 		std::string animationName = animStateIt.getNext()->getAnimationName();
-		if (!entity->getSkeleton()->hasAnimation(animationName)
-		&& !facialEntity->getMesh()->hasAnimation(animationName)) {
+		//if (!entity->getSkeleton()->hasAnimation(animationName)
+		//&& !facialEntity->getMesh()->hasAnimation(animationName)) {
+		if (!entity->getSkeleton()->hasAnimation(animationName)) {
 			std::cout << "&&&&&&&&&& "<< name << "  --   REMOVING UNUSED ANIMATION_STATE " << animationName << std::endl;
 			entity->getAllAnimationStates()->removeAnimationState(animationName);
 			std::cout << "DONE" << std::endl;
@@ -568,6 +589,7 @@ void Character::dropUnusedAnimations() {
 }
 
 void Character::doEmotionalExpression(Ogre::Real engineTime) {
+/*
 	BehaviorLibrary* bl = dataManager->getBehaviorLibrary(name);
 	for (int i=0; i<EMOTION_END; i++) {
 		std::stringstream animationNameStream;
@@ -586,9 +608,11 @@ void Character::doEmotionalExpression(Ogre::Real engineTime) {
 		// Ogre zum Aktualisieren des Meshes bringen
 		facialEntity->getAnimationState(animationName)->getParent()->_notifyDirty();
 	}
+*/
 }
 
 void Character::doSpeechExpression(Ogre::Real engineTime) {
+/*
 	BehaviorLibrary* bl = dataManager->getBehaviorLibrary(name);
 	
 	TimedExpressionMap::iterator it0, it1;
@@ -629,12 +653,14 @@ void Character::doSpeechExpression(Ogre::Real engineTime) {
 		exp.fillKeyFrame(speechKeyFrame, bl->getExpressionLibrary()->getPoseMapping(), speechVolume);
 	}
 	facialEntity->getAnimationState("speech")->getParent()->_notifyDirty();
+*/
 }
 
 
 
 
 void Character::doControlledExpression(Ogre::Real engineTime) {
+/*
 	BehaviorLibrary* bl = dataManager->getBehaviorLibrary(name);
 	
 	TimedExpressionMap::iterator it0, it1;
@@ -669,6 +695,7 @@ void Character::doControlledExpression(Ogre::Real engineTime) {
 		exp.fillKeyFrame(controlledExpressionKeyFrame, bl->getExpressionLibrary()->getPoseMapping(), expressionWeight);
 	}
 	facialEntity->getAnimationState("controlledExpression")->getParent()->_notifyDirty();
+*/
 }
 
 

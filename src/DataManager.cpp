@@ -15,11 +15,21 @@
 #include "Config.h"
 
 
+
+namespace {
+#ifdef OSX
+    const std::string CFG_PATH("../../../../cfg/config.xml");
+#else
+    const std::string CFG_PATH("../cfg/config.xml");
+#endif
+}; // end of anonymous namespace
+
+
 namespace Charanis {
 
 DataManager::DataManager() : engineTime(0) , manualAnimationId(0) {
 	std::cout << "§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§§ DataManager::DataManager()" << std::endl;
-	config = new Config("../../../../cfg/config.xml");
+	config = new Config(CFG_PATH);
 
 	boost::mt19937 rng;
 	rng.seed(static_cast<unsigned int>(std::time(0)));

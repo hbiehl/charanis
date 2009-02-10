@@ -8,11 +8,19 @@
  */
 #include "FKPerformance.h"
 // dependency includes
-#include <Ogre/OgreAnimation.h>
-#include <Ogre/OgreBone.h>
-#include <Ogre/OgreEntity.h>
-#include <Ogre/OgreSkeleton.h>
-#include <Ogre/OgreSkeletonInstance.h>
+#ifdef OSX
+    #include <Ogre/OgreAnimation.h>
+    #include <Ogre/OgreBone.h>
+    #include <Ogre/OgreEntity.h>
+    #include <Ogre/OgreSkeleton.h>
+    #include <Ogre/OgreSkeletonInstance.h>
+#else
+    #include <OgreAnimation.h>
+    #include <OgreBone.h>
+    #include <OgreEntity.h>
+    #include <OgreSkeleton.h>
+    #include <OgreSkeletonInstance.h>
+#endif
 // project includes
 #include "CharacterPerformance.h"
 #include "FKKeyFrame.h"

@@ -8,7 +8,11 @@
  */
 #include "AddCharacterPackage.h"
 // dependency includes
-#include <Ogre/OgreVector3.h>
+#ifdef OSX
+    #include <Ogre/OgreVector3.h>
+#else
+    #include <OgreVector3.h>
+#endif
 
 namespace Charanis {
 

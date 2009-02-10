@@ -1,0 +1,106 @@
+# vim: set filetype=python:
+
+env = Environment()
+
+env.Append(CCFLAGS='-g')
+
+# where to look for includes
+#env.Append(CPPPATH=Split("""
+#        /home/hbiehl/Ogre/ogrenew_v1-4-4/OgreMain/include
+#        /home/hbiehl/Ogre/ois/includes
+#        """))
+env.Append(CPPPATH=Split("""
+        /usr/local/include/OGRE
+        /usr/local/include/OIS
+        """))
+
+# Files removed
+#   ClientSocketList.cpp
+#   MainWindow.cpp
+#	NetworkThread.cpp
+#	TestServer.cpp
+#	moc_ClientSocketList.cpp
+#	moc_MainWindow.cpp
+#	moc_NetworkThread.cpp
+srcs = Split("""
+		ActionLibrary.cpp
+		ActionScript.cpp
+		AddCharacterPackage.cpp
+		AddObjectPackage.cpp
+		AmbientLightPackage.cpp
+		AnimationCutterLayer.cpp
+		AnimationGenerationLayer.cpp
+		AudioTools.cpp
+		AudioTrack.cpp
+		BehaviorLibrary.cpp
+		BodyAnimation.cpp
+		BodyAnimationLibrary.cpp
+		CameraControlPackage.cpp
+		Character.cpp
+		CharacterData.cpp
+		CharacterDataPackage.cpp
+		CharacterExpression.cpp
+		CharacterPerformance.cpp
+		CharacterSoundPackage.cpp
+		CharanisInfoPanel.cpp
+		Config.cpp
+		DataManager.cpp
+		DirectionalLightPackage.cpp
+		EngineManager.cpp
+		ExpressionLibrary.cpp
+		EyeAnimation.cpp
+		EyeGazeGenerator.cpp
+		EyePosition.cpp
+		FacialExpression.cpp
+		FEMLParser.cpp
+		FKKeyFrame.cpp
+		FKPerformance.cpp
+		FKTrack.cpp
+		Generator.cpp
+		HeadMovementGenerator.cpp
+		IdleGenerationLayer.cpp
+		ImportFEMLFilePackage.cpp
+		ImportSAMLFilePackage.cpp
+		IntensityInterpolator.cpp
+		InvalidTimingException.cpp
+		main.cpp
+		MessageParser.cpp
+		NetworkLayer.cpp
+		Observer.cpp
+		ObserverKeyFrame.cpp
+		Package.cpp
+		PackageQueue.cpp
+		Parser.cpp
+		Pipeline.cpp
+		PipelineLayer.cpp
+		PipelineManager.cpp
+		PipelineMiddleLayer.cpp
+		RemoveCharacterPackage.cpp
+		RemoveDirectionalLightPackage.cpp
+		RemoveObjectPackage.cpp
+		RenderingLayer.cpp
+		SAMLParser.cpp
+		""")
+
+env.Append(LIBPATH=Split("""
+        /usr/local/lib
+        """))
+
+
+# all libraries needed
+libs = Split("""
+        libxerces-c
+        libalut
+        libboost_thread
+        libOgreMain
+        libOIS
+        libSDL
+        libSDL_net
+        """)
+
+env.Append(LIBS=libs)
+
+
+
+env.Program('charanis', srcs)
+
