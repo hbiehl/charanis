@@ -15,7 +15,7 @@
 
 #ifdef OSX
     #include <OpenAL/alc.h>
-    #include <OpenAL/alut.h> // Problem mit XCode-Update
+    #include "alut.h" // Problem mit XCode-Update
 #else
     #include <AL/alc.h>
     #include <AL/alut.h>
