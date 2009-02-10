@@ -2,9 +2,5 @@
 *.[oa]
 *.ob
 *.log
-*.mode1
-*.pbxuser
-*.pbxproj
-*.pbxindex
 Charanis.build
 build
